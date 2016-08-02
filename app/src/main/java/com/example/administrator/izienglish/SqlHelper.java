@@ -30,7 +30,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "db_verb.db";
 
     //Table name
-    private static final String TABLE_NAME = "VERB".trim();
+    private static final String TABLE_NAME = "VERB";
 
     // Fields Table Columns names
     private static final String KEY_ID = "id";
@@ -122,6 +122,8 @@ public class SqlHelper extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
+        Verbs v = new Verbs("V1    ","   V2   ","   V3");
+        arr.add(v);
         //Lấy giá trị tại đây
         while (cursor.isAfterLast() == false) {
 
@@ -141,7 +143,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     class CopyAsync extends AsyncTask<Context, Void, Void> {
         @Override
         protected void onPreExecute() {
-            IrregularVerbActivity.mProgressDialog.show();
+      //      IrregularVerbActivity.mProgressDialog.show();
             super.onPreExecute();
         }
 

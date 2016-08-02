@@ -12,7 +12,7 @@ public class IrregularVerbActivity extends AppCompatActivity {
     ListView lv_verb;
     public static MyArrayAdapter adapter = null;
     ArrayList<Verbs> arr = new ArrayList<Verbs>();
-    SqlHelper db = new SqlHelper(IrregularVerbActivity.this);
+    SqlHelper db;
     public static ProgressDialog mProgressDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +22,14 @@ public class IrregularVerbActivity extends AppCompatActivity {
         lv_verb = (ListView)findViewById(R.id.lv_verb);
 
         //init progress dialog
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setTitle("Đang khởi tạo dữ liệu ban đầu");
-        mProgressDialog.setMessage("Vui lòng chờ...");
-        mProgressDialog.setCancelable(true);
-        mProgressDialog.show();
+//        mProgressDialog = new ProgressDialog(this);
+//        mProgressDialog.setTitle("Đang khởi tạo dữ liệu ban đầu");
+//        mProgressDialog.setMessage("Vui lòng chờ...");
+//        mProgressDialog.setCancelable(true);
+//        mProgressDialog.show();
 
         //initData();
+        db = new SqlHelper(IrregularVerbActivity.this);
         arr = db.getData();
         adapter = new MyArrayAdapter(IrregularVerbActivity.this,R.layout.my_item_layout,arr);
         lv_verb.setAdapter(adapter);
