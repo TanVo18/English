@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv"
+            style="@style/custom_question_tv"
+            android:layout_width="@dimen/custom_question_width"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/imgView"
+            style="@style/custom_question_imgView"
+            android:layout_width="@dimen/custom_question_width"
+            android:layout_height="@dimen/custom_question_imgViewHeight"
+            android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
+    </LinearLayout>
+
+    <View
+        android:layout_below="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_question_ViewHeight">
+    </View>
+
+</RelativeLayout>

@@ -1,9 +1,12 @@
 package com.example.administrator.izienglish;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by Administrator on 26/7/2016.
  */
-public class Question {
+public class Question  implements Parcelable{
     private int id;
     private String question;
     private String answer1;
@@ -23,6 +26,28 @@ public class Question {
         this.answer4 = answer4;
         this.rightAnswer = rightAnswer;
     }
+
+    protected Question(Parcel in) {
+        id = in.readInt();
+        question = in.readString();
+        answer1 = in.readString();
+        answer2 = in.readString();
+        answer3 = in.readString();
+        answer4 = in.readString();
+        rightAnswer = in.readString();
+    }
+
+    public static final Creator<Question> CREATOR = new Creator<Question>() {
+        @Override
+        public Question createFromParcel(Parcel in) {
+            return new Question(in);
+        }
+
+        @Override
+        public Question[] newArray(int size) {
+            return new Question[size];
+        }
+    };
 
     public int getId() {
         return id;
@@ -82,5 +107,21 @@ public class Question {
 
     public String toString(){
         return this.question;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(question);
+        parcel.writeString(answer1);
+        parcel.writeString(answer2);
+        parcel.writeString(answer3);
+        parcel.writeString(answer4);
+        parcel.writeString(rightAnswer);
     }
 }

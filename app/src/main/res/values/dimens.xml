@@ -2,4 +2,11 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="MainBtnMarginTop">70dp</dimen>
+    <dimen name="custom_question_width">1dp</dimen>
+    <dimen name="custom_question_imgViewHeight">50dp</dimen>
+    <dimen name="custom_question_ViewHeight">1dp</dimen>
+    <dimen name="quiz_activity_ViewPagerHeight">450dp</dimen>
+    <dimen name="answerQuiz_Frag_textSize">20sp</dimen>
+    <dimen name="answerQuiz_Frag_MarginTop">50dp</dimen>
 </resources>

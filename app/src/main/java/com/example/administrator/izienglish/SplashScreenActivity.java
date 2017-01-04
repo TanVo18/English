@@ -3,69 +3,53 @@ package com.example.administrator.izienglish;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
+import android.widget.ImageView;
 
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ViewById;
-
 import java.util.ArrayList;
 import java.util.List;
 
-@EActivity
-public class MainActivity extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
+    private ImageView mImgView;
     public static final String ROOT_CHILD = "Question";
     public static final String UNDER_CHILD = "Part1";
     public static final String KEY_QUESTION = "question";
     public static final String KEY_BUNDLE = "bundle";
     private Firebase mRoot;
     private List<Question> mQuestions = new ArrayList<Question>();
-    @ViewById(R.id.btnListen)
-    Button mBtnListen;
-    @ViewById(R.id.btnGrammar)
-    Button mBtnGrammar;
-    @ViewById(R.id.btnExercise)
-    Button mBtnExercise;
-    @ViewById(R.id.btnVerb)
-    Button mBtnIrrVerb;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-
-    @AfterViews
-    public void Init(){
+        setContentView(R.layout.activity_splash_screen);
+        mImgView = (ImageView) findViewById(R.id.imgView);
+        mImgView.setImageResource(R.drawable.splashscreen);
+        //Firebase
         Firebase.setAndroidContext(this);
         mRoot = new Firebase("https://test-firebase-c80fc.firebaseio.com/");
-        getFirebaseData();
-        /*Khi co them splash*/
-//        Intent intent = getIntent();
-//        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
-//        mQuestions = bundle.getParcelableArrayList(KEY_QUESTION);
-//        Log.i("MainACTIVITY",mQuestions.size()+"");
-    }
 
-    @Click(R.id.btnExercise)
-    public void ClickExercise(){
-        Intent intent = new Intent(MainActivity.this,QuestionActivity_.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(KEY_QUESTION,(ArrayList)mQuestions);
-        intent.putExtra(KEY_BUNDLE,bundle);
-        startActivity(intent);
-    }
+        Thread t = new Thread() {
+            @Override
+            public void run() {
+                try {
+                    getFirebaseData();
+                    sleep(8000);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putParcelableArrayList(KEY_QUESTION,(ArrayList)mQuestions);
+                    intent.putExtra(KEY_BUNDLE,bundle);
+                    startActivity(intent);
+                    finish();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        t.start();
 
-    @Click(R.id.btnVerb)
-    public void ClickIrrVerb(){
-        Intent intent = new Intent(MainActivity.this,IrregularVerbActivity_.class);
-        startActivity(intent);
     }
 
     public void getFirebaseData() {
