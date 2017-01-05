@@ -7,4 +7,8 @@
     <color name="MainBtn1">#eefa0b</color>
     <color name="MainBtn2">#fa0b33</color>
     <color name="SplashBackground">#383435</color>
+    <color name="HomeScreenBackground">#e1dcdc</color>
+    <color name="HomeScreenTextColor">#FFFF00</color>
+    <color name="HomeScreenRelativeBackground">#e2df77</color>
+    <color name="HomeScreenTvBackground">#003366</color>
 </resources>

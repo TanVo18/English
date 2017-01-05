@@ -92,7 +92,6 @@ public class SqlHelper extends SQLiteOpenHelper {
 
     //để tạo database một lần duy nhất lúc khởi chạy ứng dụng lần đầu
     private void copyDatabase() {
-
         CopyAsync copyAsync = new CopyAsync();
         copyAsync.execute(mContext);
         setDatabaseVersion();

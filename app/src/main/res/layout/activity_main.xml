@@ -3,36 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/MainBackground"
     android:orientation="vertical"
+    android:background="@color/HomeScreenBackground"
     tools:context="com.example.administrator.izienglish.MainActivity">
 
-    <Button
-        android:id="@+id/btnListen"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/MainBtnMarginTop"
-        android:text="Listening"
-        style="@style/MainBtn1"/>
-
-    <Button
-        android:id="@+id/btnGrammar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Grammar"
-        style="@style/MainBtn2"/>
-
-    <Button
-        android:id="@+id/btnExercise"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Exercise"
-        style="@style/MainBtn1"/>
-
-    <Button
-        android:id="@+id/btnVerb"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Irregular Verbs"
-        style="@style/MainBtn2"/>
+        android:layout_height="match_parent"/>
 </LinearLayout>
