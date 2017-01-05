@@ -193,8 +193,6 @@ public class SqlHelper extends SQLiteOpenHelper {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            IrregularVerbActivity.mProgressDialog.dismiss();
-            IrregularVerbActivity.adapter.notifyDataSetChanged();
         }
     }
 

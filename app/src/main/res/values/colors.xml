@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#ff000d</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="MainBackground">#233aa7</color>
@@ -11,4 +11,5 @@
     <color name="HomeScreenTextColor">#FFFF00</color>
     <color name="HomeScreenRelativeBackground">#e2df77</color>
     <color name="HomeScreenTvBackground">#003366</color>
+    <color name="Main_TabStrip_Color">#ff000d</color>
 </resources>
