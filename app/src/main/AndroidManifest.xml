@@ -19,11 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IrregularVerbActivity_" />
         <activity android:name=".QuestionActivity_" />
         <activity android:name=".QuizActivity_" />
-
-        <activity android:name=".SplashScreenActivity"></activity>
+        <activity android:name=".SplashScreenActivity" />
     </application>
 
 </manifest>

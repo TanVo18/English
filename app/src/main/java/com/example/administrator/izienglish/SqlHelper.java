@@ -121,8 +121,6 @@ public class SqlHelper extends SQLiteOpenHelper {
         if (cursor != null)
             cursor.moveToFirst();
 
-        Verbs v = new Verbs("V1    ","   V2   ","   V3");
-        arr.add(v);
         //Lấy giá trị tại đây
         while (cursor.isAfterLast() == false) {
 
@@ -130,7 +128,7 @@ public class SqlHelper extends SQLiteOpenHelper {
             String v2 = cursor.getString(2);
             String v3 = cursor.getString(3);
 
-            Verbs verb = new Verbs(v1, v2, v3);
+            Verbs verb = new Verbs(v1, v2, v3,0,"to stop sleeping to wake up");
             arr.add(verb);
             cursor.moveToNext();
         }

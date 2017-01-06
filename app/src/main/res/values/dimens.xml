@@ -9,4 +9,15 @@
     <dimen name="quiz_activity_ViewPagerHeight">450dp</dimen>
     <dimen name="answerQuiz_Frag_textSize">20sp</dimen>
     <dimen name="answerQuiz_Frag_MarginTop">50dp</dimen>
+    <dimen name="custom_verb_ViewHeight">1dp</dimen>
+    <dimen name="custom_verb_LinearMarginTop">10dp</dimen>
+    <dimen name="definite_verb_TvWidth">1dp</dimen>
+    <dimen name="definite_verb_ImgWidth">1dp</dimen>
+    <dimen name="definite_verb_TvDefinitionSize">25sp</dimen>
+    <dimen name="definite_verb_TvDefineContentSize">15sp</dimen>
+    <dimen name="definiteVerb_frag_width">70dp</dimen>
+    <dimen name="definiteVerb_frag_height">300dp</dimen>
+    <dimen name="definiteVerb_frag_linear_marginTop">30dp</dimen>
+    <dimen name="definiteVerb_frag_imgViewWidth">150dp</dimen>
+    <dimen name="definiteVerb_frag_imgViewHeight">150dp</dimen>
 </resources>

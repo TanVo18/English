@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -24,9 +23,8 @@
     </LinearLayout>
 
     <View
-        android:layout_below="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_question_ViewHeight">
-    </View>
+        android:layout_height="@dimen/custom_question_ViewHeight"
+        android:layout_below="@+id/linearLayout"></View>
 
 </RelativeLayout>

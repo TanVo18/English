@@ -43,5 +43,18 @@
         <item name="android:textSize">20sp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/TextColor</item>
+    </style>
+
+    <style name="definite_verb_tv">
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/TextColor</item>
+    </style>
+
+    <style name="definite_verb_ImgView">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
     </style>
 </resources>

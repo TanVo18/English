@@ -1,24 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:background="@drawable/selector_row">
 
-    <TextView
-        android:id="@+id/tvVerb1"
-        style="@style/custom_verb_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="@dimen/custom_verb_LinearMarginTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvVerb2"
-        style="@style/custom_verb_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/tvVerb1"
+            style="@style/custom_verb_tv"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tvVerb3"
-        style="@style/custom_verb_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvVerb2"
+            style="@style/custom_verb_tv"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tvVerb3"
+            style="@style/custom_verb_tv"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/custom_verb_ViewHeight"
+        android:background="@color/custom_verb_view_color"
+        android:layout_below="@+id/linearLayout"></View>
+</RelativeLayout>
