@@ -14,7 +14,11 @@
     <color name="Main_TabStrip_Color">#ff000d</color>
     <color name="custom_verb_view_color">@android:color/black</color>
     <color name="TextColor">@android:color/black</color>
-    <color name="definite_frag_Background">#ffe81d</color>
+    <color name="definite_frag_Background">#FFCC66</color>
     <color name="definite_frag_DefiniteTextColor">#d62e0c</color>
     <color name="selected_row">#14f4e9</color>
+    <color name="frag_answer_background">#333333</color>
+    <color name="frag_answer_textColor">#FFCC66</color>
+
+
 </resources>

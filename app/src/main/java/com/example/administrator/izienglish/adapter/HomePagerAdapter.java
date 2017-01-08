@@ -10,7 +10,6 @@ import android.text.SpannableString;
 import android.text.style.ImageSpan;
 
 import com.example.administrator.izienglish.Fragment.GrammarFragment_;
-import com.example.administrator.izienglish.Fragment.VerbFragment_;
 import com.example.administrator.izienglish.R;
 
 public class HomePagerAdapter extends FragmentPagerAdapter  {
@@ -29,7 +28,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter  {
             case 0:
                 return new GrammarFragment_();
             case 1:
-                return new VerbFragment_();
+                return new GrammarFragment_();
             case 2:
                 return new GrammarFragment_();
             case 3:

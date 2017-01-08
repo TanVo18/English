@@ -1,6 +1,7 @@
 package com.example.administrator.izienglish.Fragment;
 
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -34,7 +35,7 @@ public class AnswerQuizFragment extends Fragment {
     TextView mTvQuestion;
     @FragmentArg
     Question mQuestion;
-
+    private Typeface mCustomFont;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +43,17 @@ public class AnswerQuizFragment extends Fragment {
 
     @AfterViews
     public void Init(){
+        mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "roboto_bold.ttf");
         mTvQuestion.setText(mQuestion.getQuestion().toString());
         radA.setText(mQuestion.getAnswer1().toString());
         radB.setText(mQuestion.getAnswer2().toString());
         radC.setText(mQuestion.getAnswer3().toString());
         radD.setText(mQuestion.getAnswer4().toString());
+        mTvQuestion.setTypeface(mCustomFont);
+        radA.setTypeface(mCustomFont);
+        radB.setTypeface(mCustomFont);
+        radC.setTypeface(mCustomFont);
+        radD.setTypeface(mCustomFont);
     }
 
     @Override

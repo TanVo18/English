@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/frag_answer_background"
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:layout_marginTop="@dimen/custom_question_MarginTop"
         android:id="@+id/linearLayout"
+        android:background="@drawable/rectangle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -12,7 +15,9 @@
             android:id="@+id/tv"
             style="@style/custom_question_tv"
             android:layout_width="@dimen/custom_question_width"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            />
 
         <ImageView
             android:id="@+id/imgView"
@@ -21,10 +26,5 @@
             android:layout_height="@dimen/custom_question_imgViewHeight"
             android:src="@drawable/ic_keyboard_arrow_right_black_24dp" />
     </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/custom_question_ViewHeight"
-        android:layout_below="@+id/linearLayout"></View>
 
 </RelativeLayout>

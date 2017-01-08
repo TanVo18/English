@@ -1,6 +1,7 @@
 package com.example.administrator.izienglish;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,7 +21,7 @@ import static com.example.administrator.izienglish.MainActivity.KEY_BUNDLE;
 import static com.example.administrator.izienglish.MainActivity.KEY_QUESTION;
 
 @EActivity
-public class QuestionActivity extends AppCompatActivity implements QuestionRecyclerAdapter.OnFragmentInteractionListener{
+public class QuestionActivity extends AppCompatActivity {
     private List<Question> mQuestions = new ArrayList<Question>();
     private String mInitArray[];
     private List<String> mTitles = new ArrayList<String>();
@@ -28,7 +29,7 @@ public class QuestionActivity extends AppCompatActivity implements QuestionRecyc
     private RecyclerView.LayoutManager mLayoutManager;
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
-
+    Typeface mCustomFont;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +43,8 @@ public class QuestionActivity extends AppCompatActivity implements QuestionRecyc
         for(int i = 0; i< mInitArray.length; i++){
             mTitles.add(mInitArray[i]);
         }
-        mAdapter = new QuestionRecyclerAdapter(mTitles);
+        mCustomFont = Typeface.createFromAsset(getAssets(), "balsam_digit_regular.ttf");
+        mAdapter = new QuestionRecyclerAdapter(mTitles,mCustomFont);
         mLayoutManager = new LinearLayoutManager(getBaseContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
@@ -55,15 +57,4 @@ public class QuestionActivity extends AppCompatActivity implements QuestionRecyc
         Log.i("QuesActi",mQuestions.size()+"");
     }
 
-
-    @Override
-    public void onFragmentInteraction(int position) {
-        Log.i("position",position+"");
-        Log.i("QuesActi",mQuestions.size()+"");
-        Intent intent = new Intent(QuestionActivity.this,QuizActivity_.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(KEY_QUESTION,(ArrayList)mQuestions);
-        intent.putExtra(KEY_BUNDLE,bundle);
-        startActivity(intent);
-    }
 }

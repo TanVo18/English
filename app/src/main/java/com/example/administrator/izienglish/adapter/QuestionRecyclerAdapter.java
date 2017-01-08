@@ -1,5 +1,6 @@
 package com.example.administrator.izienglish.adapter;
 
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,35 +8,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.QuestionActivity_;
 import com.example.administrator.izienglish.R;
 
 import java.util.List;
 
 public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecyclerAdapter.ViewHolder> {
     private List<String> mTitles;
-    public OnFragmentInteractionListener mListener;
-    public QuestionRecyclerAdapter(List<String> titles) {
+    private Typeface mCustomFont;
+    public QuestionRecyclerAdapter(List<String> titles, Typeface customFont) {
         this.mTitles = titles;
+        this.mCustomFont = customFont;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemview = inflater.inflate(R.layout.custom_question_item, parent, false);
-        mListener = (QuestionActivity_)parent.getContext();
         return new ViewHolder(itemview);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.mTv.setText(mTitles.get(position).toString());
-        holder.mTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mListener.onFragmentInteraction(position);
-            }
-        });
+        holder.mTv.setTypeface(mCustomFont);
     }
 
     @Override
@@ -54,8 +49,5 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
         }
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(int position);
-    }
+
 }

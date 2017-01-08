@@ -23,6 +23,7 @@
     <style name="custom_question_tv">
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">30sp</item>
+        <item name="android:textColor">#FFCC66</item>
     </style>
 
     <style name="custom_question_imgView">
@@ -56,5 +57,11 @@
     <style name="definite_verb_ImgView">
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="frag_answer_radBtn">
+        <item name="android:textColor">@color/frag_answer_textColor</item>
+        <item name="android:background">@drawable/rectangle</item>
+        <item name="android:textSize">20sp</item>
     </style>
 </resources>

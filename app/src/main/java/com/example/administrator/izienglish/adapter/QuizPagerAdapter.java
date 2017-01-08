@@ -18,8 +18,9 @@ import java.util.List;
 
 public class QuizPagerAdapter extends FragmentPagerAdapter {
     private List<Question> mQuestions = new ArrayList<Question>();
+    private String tabTitles[] = new String[] { "Question1"};
 
-    public QuizPagerAdapter(FragmentManager fm, List<Question> questions) {
+    public QuizPagerAdapter(FragmentManager fm, ArrayList<Question> questions) {
         super(fm);
         this.mQuestions = questions;
     }
@@ -35,5 +36,11 @@ public class QuizPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return mQuestions.size();
+    }
+
+        @Override
+    public CharSequence getPageTitle(int position) {
+        // Generate title based on item position
+        return tabTitles[0];
     }
 }

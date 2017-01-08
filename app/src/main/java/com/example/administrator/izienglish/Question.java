@@ -6,7 +6,7 @@ import android.os.Parcelable;
 /**
  * Created by Administrator on 26/7/2016.
  */
-public class Question  implements Parcelable{
+public class Question implements Parcelable {
     private int id;
     private String question;
     private String answer1;
@@ -15,9 +15,10 @@ public class Question  implements Parcelable{
     private String answer4;
     private String rightAnswer;
 
-    public Question(){}
+    public Question() {
+    }
 
-    public Question(int id,String question,String answer1,String answer2,String answer3,String answer4,String rightAnswer){
+    public Question(int id, String question, String answer1, String answer2, String answer3, String answer4, String rightAnswer) {
         this.id = id;
         this.question = question;
         this.answer1 = answer1;
@@ -105,7 +106,7 @@ public class Question  implements Parcelable{
         this.rightAnswer = rightAnswer;
     }
 
-    public String toString(){
+    public String toString() {
         return this.question;
     }
 

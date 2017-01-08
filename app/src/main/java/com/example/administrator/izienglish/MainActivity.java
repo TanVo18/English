@@ -1,10 +1,19 @@
 package com.example.administrator.izienglish;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
+import com.example.administrator.izienglish.Fragment.GrammarFragment;
+import com.example.administrator.izienglish.Fragment.GrammarFragment_;
+import com.example.administrator.izienglish.Fragment.ListQuestionFragment;
+import com.example.administrator.izienglish.Fragment.ListQuestionFragment_;
+import com.example.administrator.izienglish.Fragment.VerbFragment;
+import com.example.administrator.izienglish.Fragment.VerbFragment_;
 import com.example.administrator.izienglish.adapter.HomePagerAdapter;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -32,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private PagerSlidingTabStrip mTabs;
     private ViewPager mPager;
     private HomePagerAdapter mAdapter;
-
+    private FragmentManager mFm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,11 +59,53 @@ public class MainActivity extends AppCompatActivity {
         mPager = (ViewPager) findViewById(pager);
         mAdapter = new HomePagerAdapter(getSupportFragmentManager(),getBaseContext());
         mPager.setAdapter(mAdapter);
-
+        mPager.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                mPager.onTouchEvent(event);
+                return false;
+            }
+        });
         // Bind the tabs to the ViewPager
         mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
         mTabs.setViewPager(mPager);
         mTabs.setIndicatorColor(getResources().getColor(R.color.Main_TabStrip_Color));
+        mFm = getSupportFragmentManager();
+        mTabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position){
+                    case 0:
+                        GrammarFragment frag = new GrammarFragment_().builder().build();
+                        mFm.beginTransaction().replace(R.id.Container,frag).commit();
+                        break;
+                    case 1:
+                        VerbFragment frag1 = new VerbFragment_().builder().build();
+                        mFm.beginTransaction().replace(R.id.Container,frag1).commit();
+                        break;
+                    case 2:
+                        ListQuestionFragment frag3 = new ListQuestionFragment_().builder().build();
+                        mFm.beginTransaction().replace(R.id.Container,frag3).commit();
+                        break;
+                    case 3:
+                        GrammarFragment frag4 = new GrammarFragment_().builder().build();
+                        mFm.beginTransaction().replace(R.id.Container,frag4).commit();
+                        break;
+                }
+                mTabs.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         /*Khi co them splash*/
 //        Intent intent = getIntent();
 //        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);

@@ -14,7 +14,6 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static com.example.administrator.izienglish.MainActivity.KEY_BUNDLE;
 import static com.example.administrator.izienglish.MainActivity.KEY_QUESTION;
@@ -24,7 +23,7 @@ public class QuizActivity extends AppCompatActivity {
     @ViewById(R.id.viewPager)
     ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
-    private List<Question> mQuestions = new ArrayList<Question>();
+    private ArrayList<Question> mQuestions = new ArrayList<Question>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
