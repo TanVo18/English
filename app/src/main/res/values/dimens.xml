@@ -23,4 +23,5 @@
     <dimen name="definiteVerb_frag_linear_marginTop">30dp</dimen>
     <dimen name="definiteVerb_frag_imgViewWidth">150dp</dimen>
     <dimen name="definiteVerb_frag_imgViewHeight">150dp</dimen>
+    <dimen name="Intro_Activity_indicatorHeight">48dp</dimen>
 </resources>

@@ -15,13 +15,15 @@ import java.util.List;
  * Created by Administrator on 4/1/2017.
  */
 
-public class HomeScreenRecyclerAdapter extends RecyclerView.Adapter<HomeScreenRecyclerAdapter.ViewHolder>{
+public class HomeScreenRecyclerAdapter extends RecyclerView.Adapter<HomeScreenRecyclerAdapter.ViewHolder> {
     private List<String> mTitles;
     private int[] mImages;
-    public HomeScreenRecyclerAdapter(List<String> mTitles,int[] images){
+
+    public HomeScreenRecyclerAdapter(List<String> mTitles, int[] images) {
         this.mTitles = mTitles;
         this.mImages = images;
     }
+
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
@@ -44,11 +46,12 @@ public class HomeScreenRecyclerAdapter extends RecyclerView.Adapter<HomeScreenRe
         private TextView mTv;
         private ImageView mImgView;
         private View mView;
+
         public ViewHolder(View itemView) {
             super(itemView);
-            mTv = (TextView)itemView.findViewById(R.id.tvItem);
-            mImgView = (ImageView)itemView.findViewById(R.id.imgView);
-            mView=itemView;
+            mTv = (TextView) itemView.findViewById(R.id.tvItem);
+            mImgView = (ImageView) itemView.findViewById(R.id.imgView);
+            mView = itemView;
         }
     }
 

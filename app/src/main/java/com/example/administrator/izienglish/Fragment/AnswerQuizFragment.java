@@ -11,7 +11,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.Question;
+import com.example.administrator.izienglish.Model.Question;
 import com.example.administrator.izienglish.R;
 
 import org.androidannotations.annotations.AfterViews;
@@ -36,13 +36,14 @@ public class AnswerQuizFragment extends Fragment {
     @FragmentArg
     Question mQuestion;
     private Typeface mCustomFont;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
     @AfterViews
-    public void Init(){
+    public void Init() {
         mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "roboto_bold.ttf");
         mTvQuestion.setText(mQuestion.getQuestion().toString());
         radA.setText(mQuestion.getAnswer1().toString());

@@ -9,12 +9,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tabs"
-        tools:context=".MainActivity" />
+        tools:context=".Activity.MainActivity" />
 
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        />
-
+        android:layout_height="50dp" />
 </RelativeLayout>

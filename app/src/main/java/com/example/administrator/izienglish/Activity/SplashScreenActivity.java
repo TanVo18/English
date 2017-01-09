@@ -1,18 +1,23 @@
-package com.example.administrator.izienglish;
+package com.example.administrator.izienglish.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.example.administrator.izienglish.Model.Question;
+import com.example.administrator.izienglish.R;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import org.androidannotations.annotations.EActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@EActivity
 public class SplashScreenActivity extends AppCompatActivity {
     private ImageView mImgView;
     public static final String ROOT_CHILD = "Question";
@@ -21,6 +26,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     public static final String KEY_BUNDLE = "bundle";
     private Firebase mRoot;
     private List<Question> mQuestions = new ArrayList<Question>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +45,8 @@ public class SplashScreenActivity extends AppCompatActivity {
                     sleep(8000);
                     Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
                     Bundle bundle = new Bundle();
-                    bundle.putParcelableArrayList(KEY_QUESTION,(ArrayList)mQuestions);
-                    intent.putExtra(KEY_BUNDLE,bundle);
+                    bundle.putParcelableArrayList(KEY_QUESTION, (ArrayList) mQuestions);
+                    intent.putExtra(KEY_BUNDLE, bundle);
                     startActivity(intent);
                     finish();
                 } catch (InterruptedException e) {
@@ -49,7 +55,6 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
         };
         t.start();
-
     }
 
     public void getFirebaseData() {

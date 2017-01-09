@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/SplashBackground"
-    tools:context="com.example.administrator.izienglish.SplashScreenActivity">
+    tools:context="com.example.administrator.izienglish.Activity.SplashScreenActivity">
 
     <ImageView
         android:id="@+id/imgView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        />
+        android:layout_height="match_parent" />
 </RelativeLayout>

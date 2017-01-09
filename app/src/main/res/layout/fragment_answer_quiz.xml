@@ -9,45 +9,43 @@
         android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnPrevious"
-        android:textColor="@color/frag_answer_textColor"
         android:layout_marginTop="@dimen/answerQuiz_Frag_TvMarginTop"
+        android:textColor="@color/frag_answer_textColor"
         android:textSize="@dimen/answerQuiz_Frag_textSize" />
 
     <RadioGroup
-        android:layout_marginTop="@dimen/answerQuiz_Frag_GroupMarginTop"
         android:id="@+id/radGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvQuestion">
+        android:layout_below="@+id/tvQuestion"
+        android:layout_marginTop="@dimen/answerQuiz_Frag_GroupMarginTop">
 
         <RadioButton
-            android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop"
             android:id="@+id/radA"
+            style="@style/frag_answer_radBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/frag_answer_radBtn"/>
+            android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop" />
 
         <RadioButton
-            android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop"
             android:id="@+id/radB"
+            style="@style/frag_answer_radBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/frag_answer_radBtn"/>
+            android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop" />
 
         <RadioButton
-            android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop"
             android:id="@+id/radC"
+            style="@style/frag_answer_radBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/frag_answer_radBtn"/>
+            android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop" />
 
         <RadioButton
-            android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop"
             android:id="@+id/radD"
+            style="@style/frag_answer_radBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/frag_answer_radBtn"/>
+            android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop" />
     </RadioGroup>
-
 </RelativeLayout>

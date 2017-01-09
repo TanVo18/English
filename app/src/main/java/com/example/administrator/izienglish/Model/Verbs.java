@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish;
+package com.example.administrator.izienglish.Model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -6,18 +6,18 @@ import android.os.Parcelable;
 /**
  * Created by Administrator on 23/7/2016.
  */
-public class Verbs implements Parcelable{
+public class Verbs implements Parcelable {
     private String v1;
     private String v2;
     private String v3;
     private int favorite;
     private String definition;
 
-    public Verbs(){
+    public Verbs() {
 
     }
 
-    public Verbs(String v1,String v2,String v3,int favorite,String definition){
+    public Verbs(String v1, String v2, String v3, int favorite, String definition) {
         this.v1 = v1;
         this.v2 = v2;
         this.v3 = v3;
@@ -86,7 +86,7 @@ public class Verbs implements Parcelable{
         this.definition = definition;
     }
 
-    public String toString(){
+    public String toString() {
         return this.v1 + " - " + this.v2 + " - " + this.v3;
     }
 

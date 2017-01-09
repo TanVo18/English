@@ -9,14 +9,39 @@
         <item>Question 81-100</item>
     </string-array>
 
+    <string-array name="array_quiz_quantities">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+    </string-array>
+
     <string name="quiz_btnFinish">Finish</string>
     <string name="quiz_btnNext">Next</string>
     <string name="quiz_btnBack">Back</string>
-
     <string name="example_for_verb1">Mary will awake in an hour because she has to go to work.</string>
     <string name="example_for_verb2">I awoke in the middle of the night when I heard that noise.</string>
     <string name="example_for_verb3">The patient has awoken from a two-week coma.</string>
+    <string name="Intro_activity_btnLogin">Start</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

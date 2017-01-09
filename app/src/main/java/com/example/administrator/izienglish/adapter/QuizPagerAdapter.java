@@ -3,11 +3,10 @@ package com.example.administrator.izienglish.adapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
 
 import com.example.administrator.izienglish.Fragment.AnswerQuizFragment;
 import com.example.administrator.izienglish.Fragment.AnswerQuizFragment_;
-import com.example.administrator.izienglish.Question;
+import com.example.administrator.izienglish.Model.Question;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,16 +17,16 @@ import java.util.List;
 
 public class QuizPagerAdapter extends FragmentPagerAdapter {
     private List<Question> mQuestions = new ArrayList<Question>();
-    private String tabTitles[] = new String[] { "Question1"};
+    private String mTabTitles[];
 
-    public QuizPagerAdapter(FragmentManager fm, ArrayList<Question> questions) {
+    public QuizPagerAdapter(FragmentManager fm, ArrayList<Question> questions, String[] tabTitle) {
         super(fm);
         this.mQuestions = questions;
+        this.mTabTitles = tabTitle;
     }
 
     @Override
     public Fragment getItem(int position) {
-        Log.i("position",position+"");
         Question ques = mQuestions.get(position);
         AnswerQuizFragment frag = new AnswerQuizFragment_().builder().mQuestion(ques).build();
         return frag;
@@ -38,9 +37,9 @@ public class QuizPagerAdapter extends FragmentPagerAdapter {
         return mQuestions.size();
     }
 
-        @Override
+    @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position
-        return tabTitles[0];
+        return mTabTitles[position];
     }
 }

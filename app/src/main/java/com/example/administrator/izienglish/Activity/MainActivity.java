@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish;
+package com.example.administrator.izienglish.Activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -14,6 +14,8 @@ import com.example.administrator.izienglish.Fragment.ListQuestionFragment;
 import com.example.administrator.izienglish.Fragment.ListQuestionFragment_;
 import com.example.administrator.izienglish.Fragment.VerbFragment;
 import com.example.administrator.izienglish.Fragment.VerbFragment_;
+import com.example.administrator.izienglish.Model.Question;
+import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.adapter.HomePagerAdapter;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         getFirebaseData();
 
         mPager = (ViewPager) findViewById(pager);
-        mAdapter = new HomePagerAdapter(getSupportFragmentManager(),getBaseContext());
+        mAdapter = new HomePagerAdapter(getSupportFragmentManager(), getBaseContext());
         mPager.setAdapter(mAdapter);
         mPager.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -79,22 +81,22 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         GrammarFragment frag = new GrammarFragment_().builder().build();
-                        mFm.beginTransaction().replace(R.id.Container,frag).commit();
+                        mFm.beginTransaction().replace(R.id.Container, frag).commit();
                         break;
                     case 1:
                         VerbFragment frag1 = new VerbFragment_().builder().build();
-                        mFm.beginTransaction().replace(R.id.Container,frag1).commit();
+                        mFm.beginTransaction().replace(R.id.Container, frag1).commit();
                         break;
                     case 2:
                         ListQuestionFragment frag3 = new ListQuestionFragment_().builder().build();
-                        mFm.beginTransaction().replace(R.id.Container,frag3).commit();
+                        mFm.beginTransaction().replace(R.id.Container, frag3).commit();
                         break;
                     case 3:
                         GrammarFragment frag4 = new GrammarFragment_().builder().build();
-                        mFm.beginTransaction().replace(R.id.Container,frag4).commit();
+                        mFm.beginTransaction().replace(R.id.Container, frag4).commit();
                         break;
                 }
                 mTabs.notifyDataSetChanged();
@@ -151,7 +153,6 @@ public class MainActivity extends AppCompatActivity {
         mTitles.add("Irregular Verb");
         mTitles.add("About App");
     }
-
 
 
 }

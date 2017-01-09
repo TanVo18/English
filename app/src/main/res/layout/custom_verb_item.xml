@@ -6,9 +6,9 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_marginTop="@dimen/custom_verb_LinearMarginTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/custom_verb_LinearMarginTop"
         android:orientation="horizontal">
 
         <TextView
@@ -33,6 +33,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/custom_verb_ViewHeight"
-        android:background="@color/custom_verb_view_color"
-        android:layout_below="@+id/linearLayout"></View>
+        android:layout_below="@+id/linearLayout"
+        android:background="@color/custom_verb_view_color"></View>
 </RelativeLayout>

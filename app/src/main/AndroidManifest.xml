@@ -12,16 +12,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity_">
+        <activity android:name=".Activity.MainActivity_">
+
+        </activity>
+        <activity android:name=".Activity.SplashScreenActivity_" />
+
+        <activity android:name=".Activity.IntroductionActivity_">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuestionActivity_" />
-        <activity android:name=".QuizActivity_" />
-        <activity android:name=".SplashScreenActivity" />
     </application>
 
 </manifest>

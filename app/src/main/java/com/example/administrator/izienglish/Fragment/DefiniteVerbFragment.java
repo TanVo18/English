@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.Verbs;
+import com.example.administrator.izienglish.Model.Verbs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -51,6 +51,7 @@ public class DefiniteVerbFragment extends DialogFragment {
     @FragmentArg
     Verbs mVerb;
     private Typeface mCustomFont;
+
     public DefiniteVerbFragment() {
     }
 
@@ -81,16 +82,16 @@ public class DefiniteVerbFragment extends DialogFragment {
         mTvDefineContent.setText(mVerb.getDefinition().toString());
         mTvExample.setText("Example");
         mTvExample.setTypeface(mCustomFont);
-        mTvExampleContent.setText(getResources().getString(R.string.example_for_verb1) +"\n\n"+getResources().getString(R.string.example_for_verb2)+"\n\n"+getResources().getString(R.string.example_for_verb3));
+        mTvExampleContent.setText(getResources().getString(R.string.example_for_verb1) + "\n\n" + getResources().getString(R.string.example_for_verb2) + "\n\n" + getResources().getString(R.string.example_for_verb3));
     }
 
     @Click(R.id.imgViewClose)
-    void ClickCloseIcon(){
+    void ClickCloseIcon() {
         dismiss();
     }
 
     @Click(R.id.imgViewShare)
-    void ClickShareIcon(){
+    void ClickShareIcon() {
 
     }
 

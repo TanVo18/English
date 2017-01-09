@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.Verbs;
+import com.example.administrator.izienglish.Model.Verbs;
 
 import java.util.List;
 
@@ -17,13 +17,13 @@ import java.util.List;
  * Created by Administrator on 5/1/2017.
  */
 
-public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHolder>{
+public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHolder> {
     private List<Verbs> mVerbs;
     private Typeface mCustomFont;
 
     private int focusedItem = 0;
 
-    public IrreVerbAdapter(List<Verbs> questions, Typeface font){
+    public IrreVerbAdapter(List<Verbs> questions, Typeface font) {
         this.mVerbs = questions;
         this.mCustomFont = font;
     }
@@ -52,7 +52,7 @@ public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHo
         return mVerbs.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTvVerb1;
         private TextView mTvVerb2;
         private TextView mTvVerb3;

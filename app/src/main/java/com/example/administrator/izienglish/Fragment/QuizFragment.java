@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.astuetz.PagerSlidingTabStrip;
-import com.example.administrator.izienglish.Question;
+import com.example.administrator.izienglish.Model.Question;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.adapter.QuizPagerAdapter;
 
@@ -30,7 +30,7 @@ public class QuizFragment extends Fragment {
     @ViewById(R.id.pager)
     ViewPager mPager;
     private QuizPagerAdapter mAdapter;
-
+    private String[] mQuizQuantities;
 
     public QuizFragment() {
         // Required empty public constructor
@@ -51,8 +51,9 @@ public class QuizFragment extends Fragment {
 
     @AfterViews
     public void Init() {
-        mAdapter = new QuizPagerAdapter(getChildFragmentManager(), mQuestions);
-        Log.i("mQuestion",mQuestions.size()+"");
+        mQuizQuantities = getActivity().getResources().getStringArray(R.array.array_quiz_quantities);
+        mAdapter = new QuizPagerAdapter(getChildFragmentManager(), mQuestions, mQuizQuantities);
+        Log.i("mQuestion", mQuestions.size() + "");
         mPager.setAdapter(mAdapter);
         mTabs.setViewPager(mPager);
         mTabs.setIndicatorColor(getResources().getColor(R.color.Main_TabStrip_Color));

@@ -4,26 +4,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/HomeScreenBackground"
-    tools:context="com.example.administrator.izienglish.MainActivity">
+    tools:context="com.example.administrator.izienglish.Activity.MainActivity">
 
     <FrameLayout
         android:id="@+id/Container"
-        android:layout_above="@+id/tabs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tabs" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_alignParentBottom="true"
-        tools:context=".MainActivity" />
+        tools:context=".Activity.MainActivity" />
 
     <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-         />
-
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

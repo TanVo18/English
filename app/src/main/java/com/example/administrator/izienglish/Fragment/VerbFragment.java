@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.SqlHelper;
-import com.example.administrator.izienglish.Verbs;
+import com.example.administrator.izienglish.Model.Verbs;
 import com.example.administrator.izienglish.adapter.IrreVerbAdapter;
 
 import org.androidannotations.annotations.AfterViews;

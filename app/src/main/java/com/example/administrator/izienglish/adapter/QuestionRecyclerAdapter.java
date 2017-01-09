@@ -15,6 +15,7 @@ import java.util.List;
 public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecyclerAdapter.ViewHolder> {
     private List<String> mTitles;
     private Typeface mCustomFont;
+
     public QuestionRecyclerAdapter(List<String> titles, Typeface customFont) {
         this.mTitles = titles;
         this.mCustomFont = customFont;
