@@ -11,24 +11,26 @@ import com.example.administrator.izienglish.Model.Question;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Administrator on 4/1/2017.
- */
+
 
 public class QuizPagerAdapter extends FragmentPagerAdapter {
     private List<Question> mQuestions = new ArrayList<Question>();
     private String mTabTitles[];
+    private String mSelectedAnswers[];
+    private int mFlag;
 
-    public QuizPagerAdapter(FragmentManager fm, ArrayList<Question> questions, String[] tabTitle) {
+    public QuizPagerAdapter(FragmentManager fm, ArrayList<Question> questions, String[] tabTitle,int flag,String[] SelectedAnswers) {
         super(fm);
         this.mQuestions = questions;
         this.mTabTitles = tabTitle;
+        this.mFlag = flag;
+        this.mSelectedAnswers = SelectedAnswers;
     }
 
     @Override
     public Fragment getItem(int position) {
         Question ques = mQuestions.get(position);
-        AnswerQuizFragment frag = new AnswerQuizFragment_().builder().mQuestion(ques).build();
+        AnswerQuizFragment frag = new AnswerQuizFragment_().builder().mQuestion(ques).mPosition(position).mFlag(mFlag).mSelectedAnswer(mSelectedAnswers[position]).build();
         return frag;
     }
 

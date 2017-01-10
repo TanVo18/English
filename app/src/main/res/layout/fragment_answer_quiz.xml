@@ -9,7 +9,6 @@
         android:id="@+id/tvQuestion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/answerQuiz_Frag_TvMarginTop"
         android:textColor="@color/frag_answer_textColor"
         android:textSize="@dimen/answerQuiz_Frag_textSize" />
 
@@ -17,7 +16,6 @@
         android:id="@+id/radGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvQuestion"
         android:layout_marginTop="@dimen/answerQuiz_Frag_GroupMarginTop">
 
         <RadioButton
@@ -48,4 +46,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/answerQuiz_Frag_radBtnMarginTop" />
     </RadioGroup>
+
+    <Button
+        android:id="@+id/btnFinish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/answerQuiz_frag_btn"
+        android:text="@string/AnswerQuiz_frag_btn"
+        />
 </RelativeLayout>

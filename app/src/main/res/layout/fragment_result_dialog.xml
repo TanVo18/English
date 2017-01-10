@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/definite_frag_Background"
+    tools:context="com.example.administrator.izienglish.Fragment.ResultDialogFragment">
+
+
+    <TextView
+        android:layout_marginTop="@dimen/result_frag_tvMarginTop"
+        android:id="@+id/tvResult"
+        android:layout_below="@+id/imgView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/result_frag_tvSize"
+        android:textColor="@color/definite_frag_DefiniteTextColor"/>
+
+    <Button
+        android:id="@+id/btnReview"
+        android:layout_below="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/result_frag_btn"
+        android:text="@string/resultFragBtn"
+        />
+</RelativeLayout>

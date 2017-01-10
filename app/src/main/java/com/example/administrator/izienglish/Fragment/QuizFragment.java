@@ -25,6 +25,10 @@ import java.util.ArrayList;
 public class QuizFragment extends Fragment {
     @FragmentArg
     ArrayList<Question> mQuestions = new ArrayList<Question>();
+    @FragmentArg
+    int mFlag;
+    @FragmentArg
+    String mSelectedAnswers[];
     @ViewById(R.id.tabs)
     PagerSlidingTabStrip mTabs;
     @ViewById(R.id.pager)
@@ -52,8 +56,7 @@ public class QuizFragment extends Fragment {
     @AfterViews
     public void Init() {
         mQuizQuantities = getActivity().getResources().getStringArray(R.array.array_quiz_quantities);
-        mAdapter = new QuizPagerAdapter(getChildFragmentManager(), mQuestions, mQuizQuantities);
-        Log.i("mQuestion", mQuestions.size() + "");
+        mAdapter = new QuizPagerAdapter(getChildFragmentManager(), mQuestions, mQuizQuantities,mFlag,mSelectedAnswers);
         mPager.setAdapter(mAdapter);
         mTabs.setViewPager(mPager);
         mTabs.setIndicatorColor(getResources().getColor(R.color.Main_TabStrip_Color));

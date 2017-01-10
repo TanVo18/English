@@ -69,4 +69,18 @@
         <item name="android:textSize">25sp</item>
         <item name="android:background">@color/Main_TabStrip_Color</item>
     </style>
+
+    <style name="answerQuiz_frag_btn">
+        <item name="android:textSize">25sp</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:background">@color/Main_TabStrip_Color</item>
+    </style>
+
+    <style name="result_frag_btn">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:background">@color/resultFragBtn</item>
+    </style>
 </resources>
