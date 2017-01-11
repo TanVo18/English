@@ -2,14 +2,15 @@ package com.example.administrator.izienglish.Fragment;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.example.administrator.izienglish.Model.Question;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.adapter.QuizPagerAdapter;
@@ -21,21 +22,26 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
+import static com.example.administrator.izienglish.Activity.MainActivity.QUANTITY_QUESTION;
+
 @EFragment
-public class QuizFragment extends Fragment {
+public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToFragment{
     @FragmentArg
     ArrayList<Question> mQuestions = new ArrayList<Question>();
     @FragmentArg
     int mFlag;
     @FragmentArg
     String mSelectedAnswers[];
+    @FragmentArg
+    int mFlagChangeColor;
     @ViewById(R.id.tabs)
-    PagerSlidingTabStrip mTabs;
+    TabLayout mTabs;
     @ViewById(R.id.pager)
-    ViewPager mPager;
+    ViewPager mViewPager;
     private QuizPagerAdapter mAdapter;
     private String[] mQuizQuantities;
-
+    private int mPosition = 0;
+    private int checks[] = new int[QUANTITY_QUESTION];
     public QuizFragment() {
         // Required empty public constructor
     }
@@ -55,11 +61,58 @@ public class QuizFragment extends Fragment {
 
     @AfterViews
     public void Init() {
+        InitArray();
         mQuizQuantities = getActivity().getResources().getStringArray(R.array.array_quiz_quantities);
-        mAdapter = new QuizPagerAdapter(getChildFragmentManager(), mQuestions, mQuizQuantities,mFlag,mSelectedAnswers);
-        mPager.setAdapter(mAdapter);
-        mTabs.setViewPager(mPager);
-        mTabs.setIndicatorColor(getResources().getColor(R.color.Main_TabStrip_Color));
+        mAdapter = new QuizPagerAdapter(this,getChildFragmentManager(), mQuestions, mQuizQuantities,mFlag,mSelectedAnswers);
+        mViewPager.setAdapter(mAdapter);
+        mTabs.setupWithViewPager(mViewPager);
+        mTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mPosition = tab.getPosition();
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
+    public View setupTab(int title){
+        TextView tab = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
+        tab.setText((title+1)+"");
+        tab.setTextColor(getActivity().getResources().getColor(R.color.colorChooseQuestion));
+        return tab;
+    }
+
+    //Interface From AnswerQuizFragment
+    @Override
+    public void Pass() {
+        Log.i("Click","bang");
+        if(checkPosition()){
+            mTabs.getTabAt(mPosition).setCustomView(setupTab(mPosition));
+            checks[mPosition] = mPosition;
+        }
+    }
+
+    public void InitArray(){
+        for(int i=0;i<QUANTITY_QUESTION;i++){
+           checks[i] = QUANTITY_QUESTION;
+        }
+    }
+    //check truong hop da doi mau` roi lai doi tiep khi quay nguoc lai cau hoi truoc
+    public boolean checkPosition(){
+        for(int i=0;i<QUANTITY_QUESTION;i++){
+            if(checks[i] == mPosition){
+                return false;
+            }
+        }
+        return true;
+    }
 }

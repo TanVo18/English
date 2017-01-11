@@ -26,4 +26,5 @@
     <dimen name="Intro_Activity_indicatorHeight">48dp</dimen>
     <dimen name="result_frag_tvMarginTop">30dp</dimen>
     <dimen name="result_frag_tvSize">25dp</dimen>
+    <dimen name="custom_tab_tvSize">20sp</dimen>
 </resources>

@@ -18,19 +18,22 @@ public class QuizPagerAdapter extends FragmentPagerAdapter {
     private String mTabTitles[];
     private String mSelectedAnswers[];
     private int mFlag;
-
-    public QuizPagerAdapter(FragmentManager fm, ArrayList<Question> questions, String[] tabTitle,int flag,String[] SelectedAnswers) {
+    AnswerQuizFragment.SendToFragment mQuizFragment;
+    public QuizPagerAdapter(AnswerQuizFragment.SendToFragment quizFragment,FragmentManager fm, ArrayList<Question> questions, String[] tabTitle,int flag,String[] SelectedAnswers) {
         super(fm);
         this.mQuestions = questions;
         this.mTabTitles = tabTitle;
         this.mFlag = flag;
         this.mSelectedAnswers = SelectedAnswers;
+        mQuizFragment=quizFragment;
     }
 
     @Override
     public Fragment getItem(int position) {
         Question ques = mQuestions.get(position);
         AnswerQuizFragment frag = new AnswerQuizFragment_().builder().mQuestion(ques).mPosition(position).mFlag(mFlag).mSelectedAnswer(mSelectedAnswers[position]).build();
+        //test
+        frag.setOnCallbackDataListener(mQuizFragment);
         return frag;
     }
 

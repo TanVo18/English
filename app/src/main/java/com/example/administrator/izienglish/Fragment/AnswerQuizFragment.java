@@ -47,6 +47,10 @@ public class AnswerQuizFragment extends Fragment {
     private RadioButton mRadAnswer;
     private View mView;
     private SendData mCallback;
+
+    //test sendtoFragment
+    SendToFragment mOnCallbackDataListener;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,11 +58,10 @@ public class AnswerQuizFragment extends Fragment {
 
     @AfterViews
     public void Init() {
-        if(mFlag==1){
+        if (mFlag == 1) {
             ResetColor();
             SettingData();
-        }
-        else if(mFlag==2){
+        } else if (mFlag == 2) {
             SettingData();
             HighLight();
         }
@@ -67,12 +70,13 @@ public class AnswerQuizFragment extends Fragment {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 i = mRadGroup.getCheckedRadioButtonId();
                 mRadAnswer = (RadioButton) mView.findViewById(i);
-                     mCallback.Send(mRadAnswer.getText().toString(), mPosition);
+                mCallback.Send(mRadAnswer.getText().toString(), mPosition);
+                mOnCallbackDataListener.Pass();
             }
         });
     }
 
-    public void SettingData(){
+    public void SettingData() {
         mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "roboto_bold.ttf");
         mTvQuestion.setText(mQuestion.getQuestion().toString());
         mRadA.setText(mQuestion.getAnswer1().toString());
@@ -86,46 +90,40 @@ public class AnswerQuizFragment extends Fragment {
         mRadD.setTypeface(mCustomFont);
     }
 
-    public void HighLight(){
-        if(mRadA.getText().toString().equals(mQuestion.getRightAnswer().toString())){
+    public void HighLight() {
+        if (mRadA.getText().toString().equals(mQuestion.getRightAnswer().toString())) {
             mRadA.setTextColor(getActivity().getResources().getColor(R.color.colorRightAnswer));
-        }
-        else if (mRadB.getText().toString().equals(mQuestion.getRightAnswer().toString())){
+        } else if (mRadB.getText().toString().equals(mQuestion.getRightAnswer().toString())) {
             mRadB.setTextColor(getActivity().getResources().getColor(R.color.colorRightAnswer));
-        }
-        else if (mRadC.getText().toString().equals(mQuestion.getRightAnswer().toString())){
+        } else if (mRadC.getText().toString().equals(mQuestion.getRightAnswer().toString())) {
             mRadC.setTextColor(getActivity().getResources().getColor(R.color.colorRightAnswer));
-        }
-        else if (mRadD.getText().toString().equals(mQuestion.getRightAnswer().toString())){
+        } else if (mRadD.getText().toString().equals(mQuestion.getRightAnswer().toString())) {
             mRadD.setTextColor(getActivity().getResources().getColor(R.color.colorRightAnswer));
         }
         MarkSelectedAnswer();
     }
 
-    public void ResetColor(){
+    public void ResetColor() {
         mRadA.setTextColor(getActivity().getResources().getColor(R.color.frag_answer_textColor));
         mRadB.setTextColor(getActivity().getResources().getColor(R.color.frag_answer_textColor));
         mRadC.setTextColor(getActivity().getResources().getColor(R.color.frag_answer_textColor));
         mRadD.setTextColor(getActivity().getResources().getColor(R.color.frag_answer_textColor));
     }
 
-    public void MarkSelectedAnswer(){
-        if(mRadA.getText().toString().equals(mSelectedAnswer)){
+    public void MarkSelectedAnswer() {
+        if (mRadA.getText().toString().equals(mSelectedAnswer)) {
             mRadA.setChecked(true);
-        }
-        else if(mRadB.getText().toString().equals(mSelectedAnswer)){
+        } else if (mRadB.getText().toString().equals(mSelectedAnswer)) {
             mRadB.setChecked(true);
-        }
-        else if(mRadC.getText().toString().equals(mSelectedAnswer)){
+        } else if (mRadC.getText().toString().equals(mSelectedAnswer)) {
             mRadC.setChecked(true);
-        }
-        else if(mRadD.getText().toString().equals(mSelectedAnswer)){
+        } else if (mRadD.getText().toString().equals(mSelectedAnswer)) {
             mRadD.setChecked(true);
         }
     }
 
     @Click(R.id.btnFinish)
-    void ActionFinish(){
+    void ActionFinish() {
         mCallback.ClickFinish();
     }
 
@@ -139,6 +137,7 @@ public class AnswerQuizFragment extends Fragment {
 
     public interface SendData {
         public void Send(String chosenKey, int position);
+
         public void ClickFinish();
     }
 
@@ -152,6 +151,15 @@ public class AnswerQuizFragment extends Fragment {
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
+    }
+
+    //test gui truc tiep qua fragment
+    public interface SendToFragment {
+        public void Pass();
+    }
+
+    public void setOnCallbackDataListener(SendToFragment onCallbackDataListener) {
+        mOnCallbackDataListener = onCallbackDataListener;
     }
 
 }

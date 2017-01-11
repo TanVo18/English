@@ -55,5 +55,4 @@ public class ResultDialogFragment extends DialogFragment {
     void ClickReview(){
         dismiss();
     }
-
 }

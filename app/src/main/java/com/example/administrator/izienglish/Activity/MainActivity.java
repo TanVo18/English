@@ -1,15 +1,11 @@
 package com.example.administrator.izienglish.Activity;
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Toast;
 
-import com.astuetz.PagerSlidingTabStrip;
 import com.example.administrator.izienglish.Fragment.AnswerQuizFragment;
 import com.example.administrator.izienglish.Fragment.GrammarFragment;
 import com.example.administrator.izienglish.Fragment.GrammarFragment_;
@@ -31,11 +27,10 @@ import com.firebase.client.FirebaseError;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.administrator.izienglish.R.id.pager;
 
 @EActivity
 public class MainActivity extends AppCompatActivity implements AnswerQuizFragment.SendData {
@@ -46,8 +41,6 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     private Firebase mRoot;
     private ArrayList<Question> mQuestions = new ArrayList<Question>();
     private List<String> mTitles = new ArrayList<String>();
-    private PagerSlidingTabStrip mTabs;
-    private ViewPager mPager;
     private HomePagerAdapter mAdapter;
     private FragmentManager mFm;
     public static final String TRUE_ANSWER = "T";
@@ -57,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     public static final int QUANTITY_QUESTION = 10;
     public static final String NOTIFY_NULL = "You must answer all questions";
     private int mFlag = 1;
+    @ViewById(R.id.tabs)
+    TabLayout mTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,71 +65,67 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         Firebase.setAndroidContext(this);
         mRoot = new Firebase("https://test-firebase-c80fc.firebaseio.com/");
         //khoi tao tieu de va fakeData
-        InitTitle();
         FakeData();
         // khoi tao mang chua cau dung
         mResultArray = new String[QUANTITY_QUESTION];
         // khoi tao mang save answer
         mSelectedAnswers = new String[QUANTITY_QUESTION];
+        mFm = getSupportFragmentManager();
         InitSelectedAnswers();
         getFirebaseData();
-        mPager = (ViewPager) findViewById(pager);
-        mAdapter = new HomePagerAdapter(getSupportFragmentManager(), getBaseContext());
-        mPager.setAdapter(mAdapter);
-        mPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                mPager.onTouchEvent(event);
-                return false;
-            }
-        });
-        // Bind the tabs to the ViewPager
-        mTabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-        mTabs.setViewPager(mPager);
-        mTabs.setIndicatorColor(getResources().getColor(R.color.Main_TabStrip_Color));
-        mFm = getSupportFragmentManager();
-        mTabs.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        GrammarFragment frag = new GrammarFragment_().builder().build();
-                        mFm.beginTransaction().replace(R.id.Container, frag).commit();
-                        break;
-                    case 1:
-                        VerbFragment frag1 = new VerbFragment_().builder().build();
-                        mFm.beginTransaction().replace(R.id.Container, frag1).commit();
-                        break;
-                    case 2:
-                        mFlag = 1;
-                        ListQuestionFragment frag3 = new ListQuestionFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
-                        mFm.beginTransaction().replace(R.id.Container, frag3).commit();
-                        break;
-                    case 3:
-                        GrammarFragment frag4 = new GrammarFragment_().builder().build();
-                        mFm.beginTransaction().replace(R.id.Container, frag4).commit();
-                        break;
-                }
-                mTabs.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
+        //tao ra tab
+        setupTabIcon();
         /*Khi co them splash*/
 //        Intent intent = getIntent();
 //        Bundle bundle = intent.getBundleExtra(KEY_BUNDLE);
 //        mQuestions = bundle.getParcelableArrayList(KEY_QUESTION);
 //        Log.i("MainACTIVITY",mQuestions.size()+"");
 
+        mTab.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                getTabPosition(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+    }
+
+    public void setupTabIcon() {
+        mTab.addTab(mTab.newTab().setText("Grammar").setIcon(R.drawable.literature_filled_50));
+        mTab.addTab(mTab.newTab().setText("Irregular Verb").setIcon(R.drawable.pencil_48));
+        mTab.addTab(mTab.newTab().setText("Quiz").setIcon(R.drawable.test_passed_filled_50));
+        mTab.addTab(mTab.newTab().setText("Setting").setIcon(R.drawable.settings_filled_50));
+    }
+
+    public void getTabPosition(int position) {
+        switch (position) {
+            case 0:
+                GrammarFragment frag = new GrammarFragment_().builder().build();
+                mFm.beginTransaction().replace(R.id.Container, frag).commit();
+                break;
+            case 1:
+                VerbFragment frag1 = new VerbFragment_().builder().build();
+                mFm.beginTransaction().replace(R.id.Container, frag1).commit();
+                break;
+            case 2:
+                mFlag = 1;
+                ListQuestionFragment frag3 = new ListQuestionFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
+                mFm.beginTransaction().replace(R.id.Container, frag3).commit();
+                break;
+            case 3:
+                GrammarFragment frag4 = new GrammarFragment_().builder().build();
+                mFm.beginTransaction().replace(R.id.Container, frag4).commit();
+                break;
+        }
     }
 
     public void getFirebaseData() {
@@ -168,16 +159,9 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         });
     }
 
-    public void InitTitle() {
-        mTitles.add("Grammar");
-        mTitles.add("Exercise");
-        mTitles.add("Irregular Verb");
-        mTitles.add("About App");
-    }
-
-    public void InitSelectedAnswers(){
-        for(int i=0;i<mSelectedAnswers.length;i++){
-            mSelectedAnswers[i]="abc";
+    public void InitSelectedAnswers() {
+        for (int i = 0; i < mSelectedAnswers.length; i++) {
+            mSelectedAnswers[i] = "abc";
         }
     }
 
@@ -197,8 +181,6 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     //Function from AnswerQuizFragment
     @Override
     public void Send(String chosenKey, int position) {
-        Log.i("key", chosenKey);
-        Log.i("position", position + "");
         mSelectedAnswers[position] = chosenKey;
         if (chosenKey.equals(mQuestions.get(position).getRightAnswer())) {
             mResultArray[position] = TRUE_ANSWER;
@@ -211,11 +193,13 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     @Override
     public void ClickFinish() {
         if (checkNotNull(mResultArray)) {
+            //reset lai mang result
             mFlag = 2;
             QuizFragment frag = new QuizFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
             mFm.beginTransaction().replace(R.id.Container, frag).commit();
             ResultDialogFragment frag2 = new ResultDialogFragment_().builder().mResults(mResultArray).build();
-            frag2.show(getSupportFragmentManager(),"dialog");
+            frag2.show(getSupportFragmentManager(), "dialog");
+            mResultArray = new String[QUANTITY_QUESTION];
         } else {
             Toast.makeText(getBaseContext(), NOTIFY_NULL, Toast.LENGTH_LONG).show();
         }
