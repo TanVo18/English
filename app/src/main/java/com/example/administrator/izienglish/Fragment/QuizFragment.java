@@ -40,7 +40,6 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     ViewPager mViewPager;
     private QuizPagerAdapter mAdapter;
     private String[] mQuizQuantities;
-    private int mPosition = 0;
     private int checks[] = new int[QUANTITY_QUESTION];
     public QuizFragment() {
         // Required empty public constructor
@@ -66,22 +65,6 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
         mAdapter = new QuizPagerAdapter(this,getChildFragmentManager(), mQuestions, mQuizQuantities,mFlag,mSelectedAnswers);
         mViewPager.setAdapter(mAdapter);
         mTabs.setupWithViewPager(mViewPager);
-        mTabs.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                mPosition = tab.getPosition();
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
     }
 
     public View setupTab(int title){
@@ -93,11 +76,11 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
 
     //Interface From AnswerQuizFragment
     @Override
-    public void Pass() {
+    public void Pass(int position) {
         Log.i("Click","bang");
-        if(checkPosition()){
-            mTabs.getTabAt(mPosition).setCustomView(setupTab(mPosition));
-            checks[mPosition] = mPosition;
+        if(checkPosition(position)){
+            mTabs.getTabAt(position).setCustomView(setupTab(position));
+            checks[position] = position;
         }
     }
 
@@ -107,9 +90,9 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
         }
     }
     //check truong hop da doi mau` roi lai doi tiep khi quay nguoc lai cau hoi truoc
-    public boolean checkPosition(){
+    public boolean checkPosition(int position){
         for(int i=0;i<QUANTITY_QUESTION;i++){
-            if(checks[i] == mPosition){
+            if(checks[i] == position){
                 return false;
             }
         }

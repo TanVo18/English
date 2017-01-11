@@ -2,20 +2,26 @@ package com.example.administrator.izienglish.Fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
 
+import com.example.administrator.izienglish.Activity.DefiniteVerbActivity_;
+import com.example.administrator.izienglish.Model.Verbs;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.SqlHelper;
-import com.example.administrator.izienglish.Model.Verbs;
 import com.example.administrator.izienglish.adapter.IrreVerbAdapter;
 
 import org.androidannotations.annotations.AfterViews;
@@ -34,6 +40,15 @@ public class VerbFragment extends Fragment {
     private IrreVerbAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Typeface mCustomFont;
+    @ViewById(R.id.edSearch)
+    EditText mEdSearch;
+    @ViewById(R.id.tvVerb1)
+    TextView tvVerb1;
+    @ViewById(R.id.tvVerb2)
+    TextView tvVerb2;
+    @ViewById(R.id.tvVerb3)
+    TextView tvVerb3;
+    public static final String KEY_BUNDLE = "verb";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +58,7 @@ public class VerbFragment extends Fragment {
     @AfterViews
     public void Init() {
         mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "roboto_bold.ttf");
+        getFontForTv();
         mDb = new SqlHelper(getContext());
         mVerbs = mDb.getData();
         mAdapter = new IrreVerbAdapter(mVerbs, mCustomFont);
@@ -53,11 +69,19 @@ public class VerbFragment extends Fragment {
             @Override
             public void onClick(View view, int position) {
 
+//                Verbs verb = mVerbs.get(position);
+//                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).build();
+//                frag.show(getFragmentManager(),"DialogFragment");
                 Verbs verb = mVerbs.get(position);
-                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).build();
-                frag.show(getFragmentManager(),"DialogFragment");
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(KEY_BUNDLE,verb);
+                Intent intent = new Intent(getActivity(), DefiniteVerbActivity_.class);
+                intent.putExtra(KEY_BUNDLE,bundle);
+                startActivity(intent);
             }
         }));
+        //search
+        addTextListener();
     }
 
     @Override
@@ -65,6 +89,12 @@ public class VerbFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_verb, container, false);
+    }
+
+    public void getFontForTv(){
+        tvVerb1.setTypeface(mCustomFont);
+        tvVerb2.setTypeface(mCustomFont);
+        tvVerb3.setTypeface(mCustomFont);
     }
 
     public interface ClickListener {
@@ -104,6 +134,40 @@ public class VerbFragment extends Fragment {
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
         }
+    }
+
+    //Search in recyclerView
+    public void addTextListener(){
+        mEdSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence query, int start, int before, int count) {
+                query = query.toString().toLowerCase();
+                final List<Verbs> filteredList = new ArrayList<>();
+
+                for (int i = 0; i < mVerbs.size(); i++) {
+
+                    final String text = mVerbs.get(i).getV1().toLowerCase();
+                    if (text.contains(query)) {
+                        filteredList.add(mVerbs.get(i));
+                    }
+                }
+                mAdapter = new IrreVerbAdapter(filteredList, mCustomFont);
+                mLayoutManager = new LinearLayoutManager(getContext());
+                mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setLayoutManager(mLayoutManager);
+                mAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
     }
 
 }

@@ -27,4 +27,5 @@
     <dimen name="result_frag_tvMarginTop">30dp</dimen>
     <dimen name="result_frag_tvSize">25dp</dimen>
     <dimen name="custom_tab_tvSize">20sp</dimen>
+    <dimen name="verb_frag_layoutMarginTop">30dp</dimen>
 </resources>

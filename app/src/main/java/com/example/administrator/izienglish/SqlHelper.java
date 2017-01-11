@@ -29,7 +29,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
 
     // Database Name
-    public static final String DATABASE_NAME = "db_verb.db";
+    public static final String DATABASE_NAME = "db_verb2.db";
 
     //Table name
     private static final String TABLE_NAME = "VERB";
@@ -39,6 +39,8 @@ public class SqlHelper extends SQLiteOpenHelper {
     private static final String KEY_VERB1 = "verb1";
     private static final String KEY_VERB2 = "verb2";
     private static final String KEY_VERB3 = "verb3";
+    private static final String KEY_CONTAIN = "contain";
+    private static final String KEY_FAVORITE = "favorite";
 
 
     private Context mContext;
@@ -129,8 +131,9 @@ public class SqlHelper extends SQLiteOpenHelper {
             String v1 = cursor.getString(1);
             String v2 = cursor.getString(2);
             String v3 = cursor.getString(3);
-
-            Verbs verb = new Verbs(v1, v2, v3,0,"to stop sleeping to wake up");
+            String contain = cursor.getString(4);
+            int favorite = cursor.getInt(5);
+            Verbs verb = new Verbs(v1, v2, v3,contain,favorite);
             arr.add(verb);
             cursor.moveToNext();
         }

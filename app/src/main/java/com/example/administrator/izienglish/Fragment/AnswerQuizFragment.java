@@ -71,7 +71,7 @@ public class AnswerQuizFragment extends Fragment {
                 i = mRadGroup.getCheckedRadioButtonId();
                 mRadAnswer = (RadioButton) mView.findViewById(i);
                 mCallback.Send(mRadAnswer.getText().toString(), mPosition);
-                mOnCallbackDataListener.Pass();
+                mOnCallbackDataListener.Pass(mPosition);
             }
         });
     }
@@ -155,7 +155,7 @@ public class AnswerQuizFragment extends Fragment {
 
     //test gui truc tiep qua fragment
     public interface SendToFragment {
-        public void Pass();
+        public void Pass(int position);
     }
 
     public void setOnCallbackDataListener(SendToFragment onCallbackDataListener) {

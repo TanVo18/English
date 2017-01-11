@@ -1,31 +1,29 @@
-package com.example.administrator.izienglish.Fragment;
+package com.example.administrator.izienglish.Activity;
 
-
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.R;
+import com.example.administrator.izienglish.Fragment.VerbFragment;
 import com.example.administrator.izienglish.Model.Verbs;
+import com.example.administrator.izienglish.R;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.FragmentArg;
+import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
-@EFragment
-public class DefiniteVerbFragment extends DialogFragment {
+@EActivity
+public class DefiniteVerbActivity extends AppCompatActivity {
     @ViewById(R.id.imgViewShare)
     ImageView mImgViewShare;
     @ViewById(R.id.imgViewClose)
     ImageView mImgViewClose;
+    @ViewById(R.id.imgViewFavorite)
+    ImageView mImgViewFav;
     @ViewById(R.id.tvVerb1)
     TextView mTvVerb1;
     @ViewById(R.id.tvVerb2)
@@ -48,27 +46,20 @@ public class DefiniteVerbFragment extends DialogFragment {
     TextView mTvExample;
     @ViewById(R.id.tvExampleContent)
     TextView mTvExampleContent;
-    @FragmentArg
-    Verbs mVerb;
+    private Verbs mVerb;
     private Typeface mCustomFont;
-
-    public DefiniteVerbFragment() {
-    }
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_definite_verb);
     }
 
     @AfterViews
     public void Init() {
-        getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        int width = getResources().getDimensionPixelSize(R.dimen.definiteVerb_frag_width);
-        int height = getResources().getDimensionPixelSize(R.dimen.definiteVerb_frag_height);
-        getDialog().getWindow().setLayout(width, height);
-        mImgViewShare.setImageResource(R.drawable.ic_share_black_24dp);
-        mImgViewClose.setImageResource(R.drawable.ic_close_black_24dp);
+        getData();
+        mImgViewShare.setImageResource(R.drawable.share_50);
+        mImgViewClose.setImageResource(R.drawable.close_50);
+        checkFavorite();
         mTvVerb1.setText(mVerb.getV1().toString());
         mTvVerb2.setText(mVerb.getV2().toString());
         mTvVerb3.setText(mVerb.getV3().toString());
@@ -77,7 +68,7 @@ public class DefiniteVerbFragment extends DialogFragment {
         mImgViewSound3.setImageResource(R.drawable.speaker);
         mImgViewVerb.setImageResource(R.drawable.blow_verb);
         mTvDefinition.setText("Definition");
-        mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "roboto_bold.ttf");
+        mCustomFont = Typeface.createFromAsset(getAssets(), "roboto_bold.ttf");
         mTvDefinition.setTypeface(mCustomFont);
         mTvDefineContent.setText(mVerb.getDefinition().toString());
         mTvExample.setText("Example");
@@ -85,9 +76,15 @@ public class DefiniteVerbFragment extends DialogFragment {
         mTvExampleContent.setText(getResources().getString(R.string.example_for_verb1) + "\n\n" + getResources().getString(R.string.example_for_verb2) + "\n\n" + getResources().getString(R.string.example_for_verb3));
     }
 
+    public void getData(){
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(VerbFragment.KEY_BUNDLE);
+        mVerb = bundle.getParcelable(VerbFragment.KEY_BUNDLE);
+    }
+
     @Click(R.id.imgViewClose)
     void ClickCloseIcon() {
-        dismiss();
+        finish();
     }
 
     @Click(R.id.imgViewShare)
@@ -95,11 +92,12 @@ public class DefiniteVerbFragment extends DialogFragment {
 
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_definite_verb, container, false);
+    public void checkFavorite(){
+        if(mVerb.getFavorite()==0){
+            mImgViewFav.setImageResource(R.drawable.ic_favorite_border_red_48dp);
+        }
+        else{
+            mImgViewFav.setImageResource(R.drawable.ic_favorite_red_48dp);
+        }
     }
-
 }

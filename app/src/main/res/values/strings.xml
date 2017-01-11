@@ -30,7 +30,11 @@
     <string name="example_for_verb3">The patient has awoken from a two-week coma.</string>
     <string name="Intro_activity_btnLogin">Start</string>
     <string name="AnswerQuiz_frag_btn">Finish</string>
-
     <string name="resultFragBtn">Review</string>
+
+    <string name="verb_frag_title_verb1">INFINITIVE</string>
+    <string name="verb_frag_title_verb2">PAST SIMP.</string>
+    <string name="verb_frag_title_verb3">PAST PART.</string>
+    <string name="verb_frag_title_edHint">Search Word</string>
 
 </resources>
