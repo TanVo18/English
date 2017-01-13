@@ -6,10 +6,11 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.Model.Verbs;
+import com.example.administrator.izienglish.R;
 
 import java.util.List;
 
@@ -45,17 +46,27 @@ public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHo
         holder.mTvVerb2.setTypeface(mCustomFont);
         holder.mTvVerb3.setTypeface(mCustomFont);
         holder.itemView.setSelected(focusedItem == position);
+        if (verb.getFavorite() == 1) {
+            holder.mRelativeLayout.setBackgroundResource(R.color.Main_TabStrip_Color);
+        } else {
+            holder.mRelativeLayout.setBackgroundResource(R.color.IrreVerbAdapterWhiteColor);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return mVerbs.size();
+        if (mVerbs == null) {
+            return 0;
+        } else {
+            return mVerbs.size();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView mTvVerb1;
         private TextView mTvVerb2;
         private TextView mTvVerb3;
+        private RelativeLayout mRelativeLayout;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -63,6 +74,8 @@ public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHo
             mTvVerb1 = (TextView) itemView.findViewById(R.id.tvVerb1);
             mTvVerb2 = (TextView) itemView.findViewById(R.id.tvVerb2);
             mTvVerb3 = (TextView) itemView.findViewById(R.id.tvVerb3);
+            mRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
+
         }
 
         @Override

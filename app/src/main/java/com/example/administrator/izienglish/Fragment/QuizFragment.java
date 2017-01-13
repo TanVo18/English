@@ -1,7 +1,9 @@
 package com.example.administrator.izienglish.Fragment;
 
 
+import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -25,7 +27,7 @@ import java.util.ArrayList;
 import static com.example.administrator.izienglish.Activity.MainActivity.QUANTITY_QUESTION;
 
 @EFragment
-public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToFragment{
+public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToFragment {
     @FragmentArg
     ArrayList<Question> mQuestions = new ArrayList<Question>();
     @FragmentArg
@@ -38,9 +40,16 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     TabLayout mTabs;
     @ViewById(R.id.pager)
     ViewPager mViewPager;
+    @ViewById(R.id.tvTime)
+    TextView mTvTime;
     private QuizPagerAdapter mAdapter;
     private String[] mQuizQuantities;
     private int checks[] = new int[QUANTITY_QUESTION];
+    private Handler mHandler;
+    private long mSecond = 0;
+    private long mMinute = 1;
+    private SendData mCallback;
+
     public QuizFragment() {
         // Required empty public constructor
     }
@@ -62,14 +71,17 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     public void Init() {
         InitArray();
         mQuizQuantities = getActivity().getResources().getStringArray(R.array.array_quiz_quantities);
-        mAdapter = new QuizPagerAdapter(this,getChildFragmentManager(), mQuestions, mQuizQuantities,mFlag,mSelectedAnswers);
+        mAdapter = new QuizPagerAdapter(this, getChildFragmentManager(), mQuestions, mQuizQuantities, mFlag, mSelectedAnswers);
         mViewPager.setAdapter(mAdapter);
         mTabs.setupWithViewPager(mViewPager);
+        //start handler
+        //countSecond();
+
     }
 
-    public View setupTab(int title){
+    public View setupTab(int title) {
         TextView tab = (TextView) LayoutInflater.from(getContext()).inflate(R.layout.custom_tab, null);
-        tab.setText((title+1)+"");
+        tab.setText((title + 1) + "");
         tab.setTextColor(getActivity().getResources().getColor(R.color.colorChooseQuestion));
         return tab;
     }
@@ -77,25 +89,63 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     //Interface From AnswerQuizFragment
     @Override
     public void Pass(int position) {
-        Log.i("Click","bang");
-        if(checkPosition(position)){
+        Log.i("Click", "bang");
+        if (checkPosition(position)) {
             mTabs.getTabAt(position).setCustomView(setupTab(position));
             checks[position] = position;
         }
     }
 
-    public void InitArray(){
-        for(int i=0;i<QUANTITY_QUESTION;i++){
-           checks[i] = QUANTITY_QUESTION;
+    public void InitArray() {
+        for (int i = 0; i < QUANTITY_QUESTION; i++) {
+            checks[i] = QUANTITY_QUESTION;
         }
     }
+
     //check truong hop da doi mau` roi lai doi tiep khi quay nguoc lai cau hoi truoc
-    public boolean checkPosition(int position){
-        for(int i=0;i<QUANTITY_QUESTION;i++){
-            if(checks[i] == position){
+    public boolean checkPosition(int position) {
+        for (int i = 0; i < QUANTITY_QUESTION; i++) {
+            if (checks[i] == position) {
                 return false;
             }
         }
         return true;
+    }
+
+    public void countSecond() {
+        mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mHandler.removeCallbacksAndMessages(null);
+                if (mMinute == 0 && mSecond == 0) {
+                    mCallback.SendFromQuizFrag();
+                    mHandler.removeCallbacksAndMessages(null);
+                }
+                if (mSecond == 0) {
+                    mSecond = 60;
+                    mMinute--;
+                }
+                mSecond--;
+                mTvTime.setText(mMinute + " : " + mSecond);
+                mHandler.postDelayed(this, 1000);
+            }
+        }, 1000);
+    }
+
+    public interface SendData {
+        public void SendFromQuizFrag();
+    }
+
+    @Override
+    public void onAttach(Context activity) {
+        super.onAttach(activity);
+
+        try {
+            mCallback = (SendData) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
+        }
     }
 }

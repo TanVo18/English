@@ -8,9 +8,9 @@
     <dimen name="custom_question_ViewHeight">1dp</dimen>
     <dimen name="custom_question_MarginTop">20dp</dimen>
     <dimen name="quiz_activity_ViewPagerHeight">450dp</dimen>
-    <dimen name="answerQuiz_Frag_textSize">20sp</dimen>
+    <dimen name="answerQuiz_Frag_textSize">17sp</dimen>
     <dimen name="answerQuiz_Frag_TvMarginTop">30dp</dimen>
-    <dimen name="answerQuiz_Frag_GroupMarginTop">150dp</dimen>
+    <dimen name="answerQuiz_Frag_GroupMarginTop">120dp</dimen>
     <dimen name="answerQuiz_Frag_radBtnMarginTop">20dp</dimen>
     <dimen name="custom_verb_ViewHeight">1dp</dimen>
     <dimen name="custom_verb_LinearMarginTop">10dp</dimen>

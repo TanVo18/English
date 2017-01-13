@@ -22,7 +22,7 @@ import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 @EFragment
-public class AnswerQuizFragment extends Fragment {
+public class AnswerQuizFragment extends Fragment{
     @ViewById(R.id.radGroup)
     RadioGroup mRadGroup;
     @ViewById(R.id.radA)
@@ -71,7 +71,9 @@ public class AnswerQuizFragment extends Fragment {
                 i = mRadGroup.getCheckedRadioButtonId();
                 mRadAnswer = (RadioButton) mView.findViewById(i);
                 mCallback.Send(mRadAnswer.getText().toString(), mPosition);
-                mOnCallbackDataListener.Pass(mPosition);
+                if (mOnCallbackDataListener != null) {
+                    mOnCallbackDataListener.Pass(mPosition);
+                }
             }
         });
     }

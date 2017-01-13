@@ -1,8 +1,5 @@
 package com.example.administrator.izienglish.Fragment;
-
-
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.Activity.DefiniteVerbActivity_;
 import com.example.administrator.izienglish.Model.Verbs;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.SqlHelper;
@@ -26,15 +22,16 @@ import com.example.administrator.izienglish.adapter.IrreVerbAdapter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @EFragment
-public class VerbFragment extends Fragment {
-    private List<Verbs> mVerbs = new ArrayList<Verbs>();
-    private SqlHelper mDb;
+public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCallbackDataListener {
+    @FragmentArg
+    ArrayList<Verbs> mVerbs = new ArrayList<Verbs>();
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
     private IrreVerbAdapter mAdapter;
@@ -49,18 +46,18 @@ public class VerbFragment extends Fragment {
     @ViewById(R.id.tvVerb3)
     TextView tvVerb3;
     public static final String KEY_BUNDLE = "verb";
-
+    private SqlHelper mDb;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mDb = new SqlHelper(getActivity().getBaseContext());
+
     }
 
     @AfterViews
     public void Init() {
         mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "roboto_bold.ttf");
         getFontForTv();
-        mDb = new SqlHelper(getContext());
-        mVerbs = mDb.getData();
         mAdapter = new IrreVerbAdapter(mVerbs, mCustomFont);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setAdapter(mAdapter);
@@ -68,16 +65,10 @@ public class VerbFragment extends Fragment {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-
-//                Verbs verb = mVerbs.get(position);
-//                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).build();
-//                frag.show(getFragmentManager(),"DialogFragment");
                 Verbs verb = mVerbs.get(position);
-                Bundle bundle = new Bundle();
-                bundle.putParcelable(KEY_BUNDLE,verb);
-                Intent intent = new Intent(getActivity(), DefiniteVerbActivity_.class);
-                intent.putExtra(KEY_BUNDLE,bundle);
-                startActivity(intent);
+                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).mPosition(position).build();
+                frag.setOnCallbackDataListener(VerbFragment.this);
+                frag.show(getFragmentManager(), "DialogFragment");
             }
         }));
         //search
@@ -91,10 +82,18 @@ public class VerbFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_verb, container, false);
     }
 
-    public void getFontForTv(){
+    public void getFontForTv() {
         tvVerb1.setTypeface(mCustomFont);
         tvVerb2.setTypeface(mCustomFont);
         tvVerb3.setTypeface(mCustomFont);
+    }
+
+    //Get data From DefiniteVerbFragment
+    @Override
+    public void updateRecycler(Verbs verb, int position) {
+        mDb.update(verb.getV1(),verb.getFavorite());
+        mVerbs.set(position,verb);
+        mAdapter.notifyDataSetChanged();
     }
 
     public interface ClickListener {
@@ -137,7 +136,7 @@ public class VerbFragment extends Fragment {
     }
 
     //Search in recyclerView
-    public void addTextListener(){
+    public void addTextListener() {
         mEdSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -169,5 +168,4 @@ public class VerbFragment extends Fragment {
             }
         });
     }
-
 }

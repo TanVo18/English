@@ -18,7 +18,9 @@ import com.example.administrator.izienglish.Fragment.ResultDialogFragment_;
 import com.example.administrator.izienglish.Fragment.VerbFragment;
 import com.example.administrator.izienglish.Fragment.VerbFragment_;
 import com.example.administrator.izienglish.Model.Question;
+import com.example.administrator.izienglish.Model.Verbs;
 import com.example.administrator.izienglish.R;
+import com.example.administrator.izienglish.SqlHelper;
 import com.example.administrator.izienglish.adapter.HomePagerAdapter;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
@@ -33,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EActivity
-public class MainActivity extends AppCompatActivity implements AnswerQuizFragment.SendData {
+public class MainActivity extends AppCompatActivity implements AnswerQuizFragment.SendData,QuizFragment.SendData {
     public static final String ROOT_CHILD = "Question";
     public static final String UNDER_CHILD = "Part1";
     public static final String KEY_QUESTION = "question";
@@ -50,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     public static final int QUANTITY_QUESTION = 10;
     public static final String NOTIFY_NULL = "You must answer all questions";
     private int mFlag = 1;
+    private SqlHelper mDb;
+    private ArrayList<Verbs> mIrreVerbs;
     @ViewById(R.id.tabs)
     TabLayout mTab;
 
@@ -67,9 +71,11 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         //khoi tao tieu de va fakeData
         FakeData();
         // khoi tao mang chua cau dung
-        mResultArray = new String[QUANTITY_QUESTION];
+        InitResultArrays();
         // khoi tao mang save answer
         mSelectedAnswers = new String[QUANTITY_QUESTION];
+        // khoi tao mang irregular verb
+        getDataIrregularVerb();
         mFm = getSupportFragmentManager();
         InitSelectedAnswers();
         getFirebaseData();
@@ -113,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
                 mFm.beginTransaction().replace(R.id.Container, frag).commit();
                 break;
             case 1:
-                VerbFragment frag1 = new VerbFragment_().builder().build();
+                VerbFragment frag1 = new VerbFragment_().builder().mVerbs(mIrreVerbs).build();
                 mFm.beginTransaction().replace(R.id.Container, frag1).commit();
                 break;
             case 2:
@@ -126,6 +132,12 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
                 mFm.beginTransaction().replace(R.id.Container, frag4).commit();
                 break;
         }
+    }
+
+    public void getDataIrregularVerb() {
+        mIrreVerbs = new ArrayList<Verbs>();
+        mDb = new SqlHelper(getBaseContext());
+        mIrreVerbs = mDb.getData();
     }
 
     public void getFirebaseData() {
@@ -157,6 +169,13 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
 
             }
         });
+    }
+
+    public void InitResultArrays() {
+        mResultArray = new String[QUANTITY_QUESTION];
+        for (int i = 0; i < QUANTITY_QUESTION; i++) {
+            mResultArray[i] = "F";
+        }
     }
 
     public void InitSelectedAnswers() {
@@ -212,5 +231,15 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
             }
         }
         return true;
+    }
+    //Function from QuizFragment
+    @Override
+    public void SendFromQuizFrag() {
+        mFlag = 2;
+        QuizFragment frag = new QuizFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
+        mFm.beginTransaction().replace(R.id.Container, frag).commit();
+        ResultDialogFragment frag2 = new ResultDialogFragment_().builder().mResults(mResultArray).build();
+        frag2.show(getSupportFragmentManager(), "dialog");
+        mResultArray = new String[QUANTITY_QUESTION];
     }
 }

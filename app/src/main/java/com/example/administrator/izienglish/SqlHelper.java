@@ -3,6 +3,7 @@ package com.example.administrator.izienglish;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -42,7 +43,7 @@ public class SqlHelper extends SQLiteOpenHelper {
     private static final String KEY_CONTAIN = "contain";
     private static final String KEY_FAVORITE = "favorite";
 
-
+    private SQLiteDatabase mDb;
     private Context mContext;
     public static File DATABASE_FILE;
     private boolean mInvalidDatabaseFile = false;
@@ -71,6 +72,27 @@ public class SqlHelper extends SQLiteOpenHelper {
         } finally {
             if (db != null && db.isOpen()) {
                 db.close();
+            }
+        }
+    }
+
+    public void open() {
+        try {
+            mDb = getWritableDatabase();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * close database
+     */
+    public void close() {
+        if (mDb != null && mDb.isOpen()) {
+            try {
+                mDb.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
     }
@@ -133,69 +155,76 @@ public class SqlHelper extends SQLiteOpenHelper {
             String v3 = cursor.getString(3);
             String contain = cursor.getString(4);
             int favorite = cursor.getInt(5);
-            Verbs verb = new Verbs(v1, v2, v3,contain,favorite);
+            Verbs verb = new Verbs(v1, v2, v3, contain, favorite);
             arr.add(verb);
             cursor.moveToNext();
         }
         cursor.close();
         return arr;
     }
+
+    public void update(String verbName, int favorite) {
+        open();
+        String query = "UPDATE " + TABLE_NAME + " SET favorite = " + favorite + " WHERE verb1 = '" + verbName+"'";
+        mDb.execSQL(query);
+        close();
+    }
 }
 
-    class CopyAsync extends AsyncTask<Context, Void, Void> {
-        @Override
-        protected void onPreExecute() {
-      //      IrregularVerbActivity.mProgressDialog.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Context... params) {
-
-            AssetManager assetManager = params[0].getResources().getAssets();
-            InputStream in = null;
-            OutputStream out = null;
-            try {
-                in = assetManager.open(SqlHelper.DATABASE_NAME);
-                out = new FileOutputStream(SqlHelper.DATABASE_FILE);
-                byte[] buffer = new byte[1024];
-                int read = 0;
-                while ((read = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, read);
-                }
-            } catch (IOException e) {
-            } finally {
-                if (in != null) {
-                    try {
-                        in.close();
-                    } catch (IOException e) {
-                    }
-                }
-                if (out != null) {
-                    try {
-                        out.close();
-                    } catch (IOException e) {
-                    }
-                }
-            }
-
-            SQLiteDatabase db = null;
-            try {
-                db = SQLiteDatabase.openDatabase(SqlHelper.DATABASE_FILE.getAbsolutePath(), null,
-                        SQLiteDatabase.OPEN_READWRITE);
-                db.execSQL("PRAGMA user_version = " + SqlHelper.DATABASE_VERSION);
-            } catch (SQLiteException e) {
-            } finally {
-                if (db != null && db.isOpen()) {
-                    db.close();
-                }
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-        }
+class CopyAsync extends AsyncTask<Context, Void, Void> {
+    @Override
+    protected void onPreExecute() {
+        //      IrregularVerbActivity.mProgressDialog.show();
+        super.onPreExecute();
     }
+
+    @Override
+    protected Void doInBackground(Context... params) {
+
+        AssetManager assetManager = params[0].getResources().getAssets();
+        InputStream in = null;
+        OutputStream out = null;
+        try {
+            in = assetManager.open(SqlHelper.DATABASE_NAME);
+            out = new FileOutputStream(SqlHelper.DATABASE_FILE);
+            byte[] buffer = new byte[1024];
+            int read = 0;
+            while ((read = in.read(buffer)) != -1) {
+                out.write(buffer, 0, read);
+            }
+        } catch (IOException e) {
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                }
+            }
+        }
+
+        SQLiteDatabase db = null;
+        try {
+            db = SQLiteDatabase.openDatabase(SqlHelper.DATABASE_FILE.getAbsolutePath(), null,
+                    SQLiteDatabase.OPEN_READWRITE);
+            db.execSQL("PRAGMA user_version = " + SqlHelper.DATABASE_VERSION);
+        } catch (SQLiteException e) {
+        } finally {
+            if (db != null && db.isOpen()) {
+                db.close();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(Void aVoid) {
+        super.onPostExecute(aVoid);
+    }
+}
 

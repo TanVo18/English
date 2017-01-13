@@ -37,4 +37,6 @@
     <string name="verb_frag_title_verb3">PAST PART.</string>
     <string name="verb_frag_title_edHint">Search Word</string>
 
+    <string name="answer_quiz_frag_tvTime">05:00</string>
+
 </resources>

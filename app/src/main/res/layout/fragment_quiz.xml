@@ -3,19 +3,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/frag_answer_background"
     tools:context="com.example.administrator.izienglish.Fragment.QuizFragment">
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabs"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabMode="scrollable"
+        />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_below="@+id/tabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/answer_quiz_frag_tvTime"
+        android:textColor="@color/Main_TabStrip_Color"
+        android:textSize="@dimen/answerQuiz_Frag_textSize" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tabs"
+        android:layout_below="@id/tvTime"
         tools:context=".Activity.MainActivity" />
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:tabMode="scrollable"
-        />
+
 </RelativeLayout>
