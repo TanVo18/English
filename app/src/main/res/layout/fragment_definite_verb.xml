@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.administrator.izienglish.Fragment.DefiniteVerbFragment">
+    tools:context="com.example.administrator.izienglish.fragments.DefiniteVerbFragment">
 
     <ImageView
         android:id="@+id/imgViewShare"

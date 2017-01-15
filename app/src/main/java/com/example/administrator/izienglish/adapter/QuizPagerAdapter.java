@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.administrator.izienglish.Fragment.AnswerQuizFragment;
-import com.example.administrator.izienglish.Fragment.AnswerQuizFragment_;
-import com.example.administrator.izienglish.Model.Question;
+import com.example.administrator.izienglish.fragments.AnswerQuizFragment;
+import com.example.administrator.izienglish.fragments.AnswerQuizFragment_;
+import com.example.administrator.izienglish.model.Question;
 
 import java.util.ArrayList;
 import java.util.List;

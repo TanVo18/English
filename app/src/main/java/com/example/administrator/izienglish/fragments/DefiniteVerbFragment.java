@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.Fragment;
+package com.example.administrator.izienglish.fragments;
 
 
 import android.graphics.Typeface;
@@ -12,7 +12,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.Model.Verbs;
+import com.example.administrator.izienglish.model.Verbs;
 import com.example.administrator.izienglish.R;
 
 import org.androidannotations.annotations.AfterViews;

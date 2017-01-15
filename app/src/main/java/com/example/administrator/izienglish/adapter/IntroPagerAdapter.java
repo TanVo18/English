@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.administrator.izienglish.Fragment.IntroFragment;
-import com.example.administrator.izienglish.Fragment.IntroFragment_;
+import com.example.administrator.izienglish.fragments.IntroFragment;
+import com.example.administrator.izienglish.fragments.IntroFragment_;
 import com.example.administrator.izienglish.R;
 
 /**

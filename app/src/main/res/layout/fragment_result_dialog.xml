@@ -1,26 +1,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/definite_frag_Background"
-    tools:context="com.example.administrator.izienglish.Fragment.ResultDialogFragment">
-
+    tools:context="com.example.administrator.izienglish.fragments.ResultDialogFragment">
 
     <TextView
-        android:layout_marginTop="@dimen/result_frag_tvMarginTop"
         android:id="@+id/tvResult"
-        android:layout_below="@+id/imgView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/result_frag_tvSize"
-        android:textColor="@color/definite_frag_DefiniteTextColor"/>
+        android:layout_below="@+id/imgView"
+        android:layout_marginTop="@dimen/result_frag_tvMarginTop"
+        android:textColor="@color/definite_frag_DefiniteTextColor"
+        android:textSize="@dimen/result_frag_tvSize" />
 
-    <Button
+    <com.github.lzyzsd.circleprogress.DonutProgress
+        android:id="@+id/donutProgress"
+        android:layout_width="@dimen/result_diaglog_frag_ProgressWidth"
+        android:layout_height="@dimen/result_diaglog_frag_ProgressHeight"
+        android:layout_below="@id/tvResult"
+        android:layout_centerHorizontal="true"
+        custom:donut_progress="0" />
+
+    <info.hoang8f.widget.FButton
         android:id="@+id/btnReview"
-        android:layout_below="@+id/tvResult"
+        android:layout_marginTop="@dimen/result_diaglog_frag_BtnMarginTop"
+        style="@style/result_frag_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/result_frag_btn"
+        android:layout_below="@+id/donutProgress"
         android:text="@string/resultFragBtn"
-        />
+        fbutton:buttonColor="@color/Main_TabStrip_Color"
+        fbutton:cornerRadius="5dp"
+        fbutton:shadowColor="@android:color/black"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="5dp" />
 </RelativeLayout>

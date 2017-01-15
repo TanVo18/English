@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.Fragment;
+package com.example.administrator.izienglish.fragments;
 
 
 import android.content.Context;
@@ -14,7 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.administrator.izienglish.Model.Question;
+import com.example.administrator.izienglish.model.Question;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.adapter.QuestionRecyclerAdapter;
 
@@ -50,7 +50,7 @@ public class ListQuestionFragment extends Fragment {
     @AfterViews
     public void Init() {
 
-        mInitArray = getResources().getStringArray(R.array.array_title);
+        mInitArray = getResources().getStringArray(R.array.array_question_titles);
         for (int i = 0; i < mInitArray.length; i++) {
             mTitles.add(mInitArray[i]);
         }

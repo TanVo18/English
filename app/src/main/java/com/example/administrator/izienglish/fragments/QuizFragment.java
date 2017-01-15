@@ -1,9 +1,10 @@
-package com.example.administrator.izienglish.Fragment;
+package com.example.administrator.izienglish.fragments;
 
 
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -13,9 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.Model.Question;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.adapter.QuizPagerAdapter;
+import com.example.administrator.izienglish.model.Question;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -24,7 +25,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
-import static com.example.administrator.izienglish.Activity.MainActivity.QUANTITY_QUESTION;
+import static com.example.administrator.izienglish.activities.MainActivity.QUANTITY_QUESTION;
 
 @EFragment
 public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToFragment {
@@ -46,8 +47,8 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     private String[] mQuizQuantities;
     private int checks[] = new int[QUANTITY_QUESTION];
     private Handler mHandler;
-    private long mSecond = 0;
-    private long mMinute = 1;
+    private int mSecond = 0;
+    private int mMinute = 5;
     private SendData mCallback;
 
     public QuizFragment() {
@@ -69,14 +70,34 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
 
     @AfterViews
     public void Init() {
+        mHandler = new Handler() {
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                int second = msg.arg1;
+                if (mMinute == 0) {
+                    mHandler.removeCallbacksAndMessages(null);
+                    mCallback.SendFromQuizFrag();
+                }
+                if (second == 59) {
+                    mMinute--;
+                }
+                mTvTime.setText(mMinute + " : " + second);
+            }
+        };
         InitArray();
         mQuizQuantities = getActivity().getResources().getStringArray(R.array.array_quiz_quantities);
         mAdapter = new QuizPagerAdapter(this, getChildFragmentManager(), mQuestions, mQuizQuantities, mFlag, mSelectedAnswers);
         mViewPager.setAdapter(mAdapter);
         mTabs.setupWithViewPager(mViewPager);
+        mTvTime.setText(mMinute + " : " + mSecond);
         //start handler
-        //countSecond();
-
+        if (mFlag == 2) {
+            mHandler.removeCallbacksAndMessages(null);
+        }
+        else{
+            countSecond();
+        }
     }
 
     public View setupTab(int title) {
@@ -113,21 +134,22 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     }
 
     public void countSecond() {
-        mHandler = new Handler();
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 mHandler.removeCallbacksAndMessages(null);
-                if (mMinute == 0 && mSecond == 0) {
-                    mCallback.SendFromQuizFrag();
-                    mHandler.removeCallbacksAndMessages(null);
-                }
+                Message msg = mHandler.obtainMessage();
                 if (mSecond == 0) {
-                    mSecond = 60;
-                    mMinute--;
+                    msg.arg1 = mSecond;
+                    mHandler.sendMessage(msg);
+                    mSecond = 59;
+                } else {
+                    msg.arg1 = mSecond;
+                    mHandler.sendMessage(msg);
+                    mSecond--;
                 }
-                mSecond--;
-                mTvTime.setText(mMinute + " : " + mSecond);
+                Log.i("second", mSecond + "");
+                //     mTvTime.setText(mMinute + " : " + mSecond);
                 mHandler.postDelayed(this, 1000);
             }
         }, 1000);
@@ -147,5 +169,11 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
             throw new ClassCastException(activity.toString()
                     + " must implement OnHeadlineSelectedListener");
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mHandler.removeCallbacksAndMessages(null);
     }
 }

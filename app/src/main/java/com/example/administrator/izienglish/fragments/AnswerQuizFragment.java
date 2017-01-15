@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.Fragment;
+package com.example.administrator.izienglish.fragments;
 
 
 import android.content.Context;
@@ -12,7 +12,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.Model.Question;
+import com.example.administrator.izienglish.model.Question;
 import com.example.administrator.izienglish.R;
 
 import org.androidannotations.annotations.AfterViews;

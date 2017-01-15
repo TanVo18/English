@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/HomeScreenBackground"
-    tools:context="com.example.administrator.izienglish.Activity.MainActivity">
+    tools:context="com.example.administrator.izienglish.activities.MainActivity">
 
     <FrameLayout
         android:id="@+id/Container"

@@ -1,11 +1,11 @@
-package com.example.administrator.izienglish.Activity;
+package com.example.administrator.izienglish.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import com.example.administrator.izienglish.Model.Question;
+import com.example.administrator.izienglish.model.Question;
 import com.example.administrator.izienglish.R;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;

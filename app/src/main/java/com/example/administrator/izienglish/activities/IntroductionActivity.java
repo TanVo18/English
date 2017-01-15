@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.Activity;
+package com.example.administrator.izienglish.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,7 +21,6 @@ public class IntroductionActivity extends AppCompatActivity {
     ViewPager mViewPager;
     @ViewById(R.id.indicator)
     CircleIndicator mIndicator;
-
     private IntroPagerAdapter mAdapter;
 
     @Override

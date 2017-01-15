@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.Fragment;
+package com.example.administrator.izienglish.fragments;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.Model.Verbs;
+import com.example.administrator.izienglish.model.Verbs;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.SqlHelper;
 import com.example.administrator.izienglish.adapter.IrreVerbAdapter;

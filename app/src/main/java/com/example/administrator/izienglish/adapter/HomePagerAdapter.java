@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.administrator.izienglish.Fragment.GrammarFragment_;
+import com.example.administrator.izienglish.fragments.GrammarFragment_;
 
 public class HomePagerAdapter extends FragmentPagerAdapter  {
     final int PAGE_COUNT = 4;

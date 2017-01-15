@@ -1,24 +1,23 @@
-package com.example.administrator.izienglish.Activity;
+package com.example.administrator.izienglish.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
-import com.example.administrator.izienglish.Fragment.AnswerQuizFragment;
-import com.example.administrator.izienglish.Fragment.GrammarFragment;
-import com.example.administrator.izienglish.Fragment.GrammarFragment_;
-import com.example.administrator.izienglish.Fragment.ListQuestionFragment;
-import com.example.administrator.izienglish.Fragment.ListQuestionFragment_;
-import com.example.administrator.izienglish.Fragment.QuizFragment;
-import com.example.administrator.izienglish.Fragment.QuizFragment_;
-import com.example.administrator.izienglish.Fragment.ResultDialogFragment;
-import com.example.administrator.izienglish.Fragment.ResultDialogFragment_;
-import com.example.administrator.izienglish.Fragment.VerbFragment;
-import com.example.administrator.izienglish.Fragment.VerbFragment_;
-import com.example.administrator.izienglish.Model.Question;
-import com.example.administrator.izienglish.Model.Verbs;
+import com.example.administrator.izienglish.fragments.AnswerQuizFragment;
+import com.example.administrator.izienglish.fragments.GrammarFragment;
+import com.example.administrator.izienglish.fragments.GrammarFragment_;
+import com.example.administrator.izienglish.fragments.ListQuestionFragment;
+import com.example.administrator.izienglish.fragments.ListQuestionFragment_;
+import com.example.administrator.izienglish.fragments.QuizFragment;
+import com.example.administrator.izienglish.fragments.QuizFragment_;
+import com.example.administrator.izienglish.fragments.ResultDialogFragment;
+import com.example.administrator.izienglish.fragments.ResultDialogFragment_;
+import com.example.administrator.izienglish.fragments.VerbFragment;
+import com.example.administrator.izienglish.fragments.VerbFragment_;
+import com.example.administrator.izienglish.model.Question;
+import com.example.administrator.izienglish.model.Verbs;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.SqlHelper;
 import com.example.administrator.izienglish.adapter.HomePagerAdapter;
@@ -211,17 +210,17 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     //Function from AnswerQuizFragment
     @Override
     public void ClickFinish() {
-        if (checkNotNull(mResultArray)) {
+     //   if (checkNotNull(mResultArray)) {
             //reset lai mang result
             mFlag = 2;
             QuizFragment frag = new QuizFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
             mFm.beginTransaction().replace(R.id.Container, frag).commit();
             ResultDialogFragment frag2 = new ResultDialogFragment_().builder().mResults(mResultArray).build();
             frag2.show(getSupportFragmentManager(), "dialog");
-            mResultArray = new String[QUANTITY_QUESTION];
-        } else {
-            Toast.makeText(getBaseContext(), NOTIFY_NULL, Toast.LENGTH_LONG).show();
-        }
+            InitResultArrays();
+//        } else {
+//            Toast.makeText(getBaseContext(), NOTIFY_NULL, Toast.LENGTH_LONG).show();
+//        }
     }
 
     public boolean checkNotNull(String[] arr) {

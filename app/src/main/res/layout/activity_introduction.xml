@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_introduction"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black"
-    tools:context="com.example.administrator.izienglish.Activity.IntroductionActivity">
+    tools:context="com.example.administrator.izienglish.activities.IntroductionActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/indicator"
-        tools:context=".Activity.MainActivity" />
+        tools:context=".activities.MainActivity" />
 
     <me.relex.circleindicator.CircleIndicator
         android:id="@+id/indicator"
@@ -22,9 +23,14 @@
         android:layout_above="@+id/btnStart"
         app:ci_drawable="@drawable/circle_indicator_color" />
 
-    <Button
+    <info.hoang8f.widget.FButton
         android:id="@+id/btnStart"
         style="@style/intro_activity_btn"
+        fbutton:buttonColor="@color/Main_TabStrip_Color"
+        fbutton:cornerRadius="5dp"
+        fbutton:shadowColor="@android:color/black"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

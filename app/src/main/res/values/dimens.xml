@@ -28,4 +28,7 @@
     <dimen name="result_frag_tvSize">25dp</dimen>
     <dimen name="custom_tab_tvSize">20sp</dimen>
     <dimen name="verb_frag_layoutMarginTop">30dp</dimen>
+    <dimen name="result_diaglog_frag_ProgressHeight">200dp</dimen>
+    <dimen name="result_diaglog_frag_ProgressWidth">200dp</dimen>
+    <dimen name="result_diaglog_frag_BtnMarginTop">40dp</dimen>
 </resources>

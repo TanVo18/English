@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.Model.Verbs;
+import com.example.administrator.izienglish.model.Verbs;
 import com.example.administrator.izienglish.R;
 
 import java.util.List;

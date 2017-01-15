@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.Fragment;
+package com.example.administrator.izienglish.fragments;
 
 
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.Window;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
+import com.github.lzyzsd.circleprogress.DonutProgress;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -24,7 +25,8 @@ public class ResultDialogFragment extends DialogFragment {
     private int mCount=0;
     @FragmentArg
     String[] mResults;
-
+    @ViewById(R.id.donutProgress)
+    DonutProgress mProgressBar;
     public ResultDialogFragment() {
     }
 
@@ -48,11 +50,20 @@ public class ResultDialogFragment extends DialogFragment {
                 mCount++;
             }
         }
-        mTv.setText("Score: "+mCount+"/20");
+        InitProgress();
+        mTv.setText("Score: "+mCount+"/10");
     }
 
     @Click(R.id.btnReview)
     void ClickReview(){
         dismiss();
     }
+
+    public void InitProgress(){
+        float percent = (100*mCount)/mResults.length;
+        mProgressBar.setFinishedStrokeWidth(70);
+        mProgressBar.setUnfinishedStrokeWidth(70);
+        mProgressBar.setProgress((int) percent);
+    }
+
 }
