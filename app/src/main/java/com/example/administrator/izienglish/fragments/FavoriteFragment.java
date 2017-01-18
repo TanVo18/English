@@ -1,24 +1,23 @@
 package com.example.administrator.izienglish.fragments;
 
+
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Editable;
-import android.text.TextWatcher;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.SqlHelper;
-import com.example.administrator.izienglish.adapters.IrreVerbAdapter;
+import com.example.administrator.izienglish.adapters.FavoriteVerbAdapter;
 import com.example.administrator.izienglish.model.Verbs;
 
 import org.androidannotations.annotations.AfterViews;
@@ -27,19 +26,17 @@ import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @EFragment
-public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCallbackDataListener {
+public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.OnCallbackDataListener{
     @FragmentArg
     ArrayList<Verbs> mVerbs = new ArrayList<Verbs>();
+    private ArrayList<Verbs> mFavoriteVerbs = new ArrayList<Verbs>();
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
-    private IrreVerbAdapter mAdapter;
+    private FavoriteVerbAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Typeface mCustomFont;
-    @ViewById(R.id.edSearch)
-    EditText mEdSearch;
     @ViewById(R.id.tvVerb1)
     TextView tvVerb1;
     @ViewById(R.id.tvVerb2)
@@ -47,51 +44,52 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
     @ViewById(R.id.tvVerb3)
     TextView tvVerb3;
     private SqlHelper mDb;
-    private List<Verbs> mTempVerbs;
+
+    public FavoriteFragment() {
+        // Required empty public constructor
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDb = new SqlHelper(getActivity().getBaseContext());
-
-    }
-
-    @AfterViews
-    public void Init() {
-        mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "gel_pen_heavy.ttf");
-        getFontForTv();
-        mTempVerbs = mVerbs;
-        mAdapter = new IrreVerbAdapter(mVerbs, mCustomFont);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                /* dung 1 mang mTempVerbs de nhan biet khi nao thi search khi nao thi khong search
-                *  Tranh truong hop sau khi filter search, click vao item thi van hien thi noi dung cua item cu~
-                *  phai phan ra 2 mang
-                * */
-                Verbs verb;
-                if(mTempVerbs.size()<mVerbs.size()){
-                    verb = mTempVerbs.get(position);
-                }
-                else{
-                    verb = mVerbs.get(position);
-                }
-                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).mPosition(position).build();
-                frag.setOnCallbackDataListener(VerbFragment.this);
-                frag.show(getFragmentManager(), "DialogFragment");
-            }
-        }));
-        //search
-        addTextListener();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_verb, container, false);
+        return inflater.inflate(R.layout.fragment_favorite, container, false);
+    }
+
+    @AfterViews
+    public void Init() {
+        mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "gel_pen_heavy.ttf");
+        getFontForTv();
+        getFavoriteVerb();
+        mAdapter = new FavoriteVerbAdapter(mFavoriteVerbs, mCustomFont);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Verbs verb = mFavoriteVerbs.get(position);
+                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).mPosition(position).build();
+                frag.setOnCallbackDataListener(FavoriteFragment.this);
+                frag.show(getFragmentManager(), "DialogFragment");
+            }
+        }));
+    }
+
+    public void getFavoriteVerb(){
+        for(int i=0; i < mVerbs.size();i++){
+            Verbs verb = mVerbs.get(i);
+            if(verb.getFavorite()==1){
+                mFavoriteVerbs.add(verb);
+            }
+        }
     }
 
     public void getFontForTv() {
@@ -103,10 +101,11 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
     //Get data From DefiniteVerbFragment
     @Override
     public void updateRecycler(Verbs verb) {
-        mDb.update(verb.getV1(), verb.getFavorite());
-        for(int i=0;i<mVerbs.size();i++){
-            if(mVerbs.get(i).getV1().equals(verb.getV1())){
-                mVerbs.set(i, verb);
+        Log.i("fds","blablablabla");
+        mDb.update(verb.getV1(),verb.getFavorite());
+        for(int i=0;i<mFavoriteVerbs.size();i++){
+            if(mFavoriteVerbs.get(i).getV1().equals(verb.getV1())){
+                mFavoriteVerbs.set(i, verb);
             }
         }
         mAdapter.notifyDataSetChanged();
@@ -121,7 +120,7 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
         private GestureDetector gestureDetector;
         private ClickListener clickListener;
 
-        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
+        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final FavoriteFragment.ClickListener clickListener) {
             this.clickListener = clickListener;
             gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener() {
                 @Override
@@ -149,41 +148,5 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
         }
-    }
-
-    //Search in recyclerView
-    public void addTextListener() {
-        mEdSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence query, int start, int before, int count) {
-                query = query.toString().toLowerCase();
-                mTempVerbs = new ArrayList<Verbs>();
-                final List<Verbs> filterList = new ArrayList<Verbs>();
-                for (int i = 0; i < mVerbs.size(); i++) {
-
-                    final String text = mVerbs.get(i).getV1();
-                    final String text2 = mVerbs.get(i).getV2();
-                    final String text3 = mVerbs.get(i).getV3();
-                    if (text.contains(query) || text2.contains(query) || text3.contains(query)) {
-                        mTempVerbs.add(mVerbs.get(i));
-                    }
-                }
-                mAdapter = new IrreVerbAdapter(mTempVerbs, mCustomFont);
-                mLayoutManager = new LinearLayoutManager(getContext());
-                mRecyclerView.setAdapter(mAdapter);
-                mRecyclerView.setLayoutManager(mLayoutManager);
-                mAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        });
     }
 }

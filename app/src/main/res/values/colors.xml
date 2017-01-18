@@ -6,7 +6,7 @@
     <color name="MainBackground">#233aa7</color>
     <color name="MainBtn1">#eefa0b</color>
     <color name="MainBtn2">#fa0b33</color>
-    <color name="SplashBackground">#383435</color>
+    <color name="SplashBackground">#3f8b27</color>
     <color name="HomeScreenBackground">#e1dcdc</color>
     <color name="HomeScreenTextColor">#FFFF00</color>
     <color name="HomeScreenRelativeBackground">#e2df77</color>
@@ -23,4 +23,5 @@
     <color name="resultFragBtn">#d62e0c</color>
     <color name="colorChooseQuestion">#186e2a</color>
     <color name="IrreVerbAdapterWhiteColor">@android:color/white</color>
+    <color name="ItemVerbColor">#ffdf00</color>
 </resources>

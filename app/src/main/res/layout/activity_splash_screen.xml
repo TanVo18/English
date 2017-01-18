@@ -7,8 +7,13 @@
     android:background="@color/SplashBackground"
     tools:context="com.example.administrator.izienglish.activities.SplashScreenActivity">
 
-    <ImageView
-        android:id="@+id/imgView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/splash_activity_tvSize"
+        android:textColor="@android:color/white"
+        />
 </RelativeLayout>

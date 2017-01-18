@@ -21,10 +21,12 @@ import pl.droidsonroids.gif.GifTextView;
 public class IntroFragment extends Fragment {
     @ViewById(R.id.imgView)
     ImageView mImgView;
-    @ViewById(R.id.gifTv)
-    GifTextView mGifTv;
     @FragmentArg
     int mImg;
+    @FragmentArg
+    int mImgWord;
+    @ViewById(R.id.gifTv)
+    GifTextView mGifTv;
 
     public IntroFragment() {
         // Required empty public constructor
@@ -53,6 +55,7 @@ public class IntroFragment extends Fragment {
 
     @AfterViews
     void Init() {
-        mGifTv.setBackgroundResource(mImg);
+        mImgView.setBackgroundResource(mImg);
+        mGifTv.setBackgroundResource(mImgWord);
     }
 }

@@ -14,6 +14,7 @@
     <dimen name="answerQuiz_Frag_radBtnMarginTop">20dp</dimen>
     <dimen name="custom_verb_ViewHeight">1dp</dimen>
     <dimen name="custom_verb_LinearMarginTop">10dp</dimen>
+    <dimen name="custom_verb_tvSlashWidth">1dp</dimen>
     <dimen name="definite_verb_TvWidth">1dp</dimen>
     <dimen name="definite_verb_ImgWidth">1dp</dimen>
     <dimen name="definite_verb_TvDefinitionSize">25sp</dimen>
@@ -31,4 +32,9 @@
     <dimen name="result_diaglog_frag_ProgressHeight">200dp</dimen>
     <dimen name="result_diaglog_frag_ProgressWidth">200dp</dimen>
     <dimen name="result_diaglog_frag_BtnMarginTop">40dp</dimen>
+    <dimen name="share_frag_layoutMarginTop">80dp</dimen>
+    <dimen name="custom_FButton_cornerRadius">5dp</dimen>
+    <dimen name="custom_FButton_shadowHeight">5dp</dimen>
+    <dimen name="custom_verb_itemLayoutHeight">60dp</dimen>
+    <dimen name="splash_activity_tvSize">50sp</dimen>
 </resources>

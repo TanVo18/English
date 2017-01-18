@@ -7,6 +7,13 @@
     android:background="@color/definite_frag_Background"
     tools:context="com.example.administrator.izienglish.fragments.ResultDialogFragment">
 
+    <ImageView
+        android:id="@+id/imgViewShare"
+        android:src="@drawable/share_36"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true" />
+
     <TextView
         android:id="@+id/tvResult"
         android:layout_width="match_parent"
@@ -26,11 +33,11 @@
 
     <info.hoang8f.widget.FButton
         android:id="@+id/btnReview"
-        android:layout_marginTop="@dimen/result_diaglog_frag_BtnMarginTop"
         style="@style/result_frag_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/donutProgress"
+        android:layout_marginTop="@dimen/result_diaglog_frag_BtnMarginTop"
         android:text="@string/resultFragBtn"
         fbutton:buttonColor="@color/Main_TabStrip_Color"
         fbutton:cornerRadius="5dp"

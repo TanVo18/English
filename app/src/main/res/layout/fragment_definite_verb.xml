@@ -10,12 +10,6 @@
     tools:context="com.example.administrator.izienglish.fragments.DefiniteVerbFragment">
 
     <ImageView
-        android:id="@+id/imgViewShare"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true" />
-
-    <ImageView
         android:id="@+id/imgViewFavorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -8,12 +8,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.model.Question;
 import com.example.administrator.izienglish.R;
+import com.example.administrator.izienglish.activities.MainActivity;
+import com.example.administrator.izienglish.model.Question;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -35,6 +37,8 @@ public class AnswerQuizFragment extends Fragment{
     RadioButton mRadD;
     @ViewById(R.id.tvQuestion)
     TextView mTvQuestion;
+    @ViewById(R.id.btnFinish)
+    Button mBtnFinish;
     @FragmentArg
     Question mQuestion;
     @FragmentArg
@@ -58,6 +62,12 @@ public class AnswerQuizFragment extends Fragment{
 
     @AfterViews
     public void Init() {
+        if(mPosition< MainActivity.QUANTITY_QUESTION-1){
+            mBtnFinish.setVisibility(View.INVISIBLE);
+        }
+        else{
+            mBtnFinish.setVisibility(View.VISIBLE);
+        }
         if (mFlag == 1) {
             ResetColor();
             SettingData();

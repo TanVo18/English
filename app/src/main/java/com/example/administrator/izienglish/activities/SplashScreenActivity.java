@@ -1,38 +1,42 @@
 package com.example.administrator.izienglish.activities;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.example.administrator.izienglish.model.Question;
 import com.example.administrator.izienglish.R;
+import com.example.administrator.izienglish.model.Question;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @EActivity
 public class SplashScreenActivity extends AppCompatActivity {
-    private ImageView mImgView;
     public static final String ROOT_CHILD = "Question";
     public static final String UNDER_CHILD = "Part1";
     public static final String KEY_QUESTION = "question";
     public static final String KEY_BUNDLE = "bundle";
     private Firebase mRoot;
     private List<Question> mQuestions = new ArrayList<Question>();
-
+    @ViewById(R.id.tv)
+    TextView mTvTitle;
+    private Typeface mCustomFont;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        mImgView = (ImageView) findViewById(R.id.imgView);
-        mImgView.setImageResource(R.drawable.splashscreen);
+        mTvTitle.setText("IZI ENGLISH");
+        mCustomFont = Typeface.createFromAsset(getAssets(), "gel_pen_heavy.ttf");
+        mTvTitle.setTypeface(mCustomFont);
         //Firebase
         Firebase.setAndroidContext(this);
         mRoot = new Firebase("https://test-firebase-c80fc.firebaseio.com/");

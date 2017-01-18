@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.adapter;
+package com.example.administrator.izienglish.adapters;
 
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
@@ -39,15 +39,15 @@ public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Verbs verb = mVerbs.get(position);
-        holder.mTvVerb1.setText(verb.getV1().toString());
-        holder.mTvVerb2.setText(verb.getV2().toString());
-        holder.mTvVerb3.setText(verb.getV3().toString());
+        holder.mTvVerb1.setText(verb.getV1().toUpperCase());
+        holder.mTvVerb2.setText(verb.getV2().toUpperCase());
+        holder.mTvVerb3.setText(verb.getV3().toUpperCase());
         holder.mTvVerb1.setTypeface(mCustomFont);
         holder.mTvVerb2.setTypeface(mCustomFont);
         holder.mTvVerb3.setTypeface(mCustomFont);
         holder.itemView.setSelected(focusedItem == position);
         if (verb.getFavorite() == 1) {
-            holder.mRelativeLayout.setBackgroundResource(R.color.Main_TabStrip_Color);
+            holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbColor);
         } else {
             holder.mRelativeLayout.setBackgroundResource(R.color.IrreVerbAdapterWhiteColor);
         }

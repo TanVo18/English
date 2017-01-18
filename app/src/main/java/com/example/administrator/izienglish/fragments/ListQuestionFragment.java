@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 
 import com.example.administrator.izienglish.model.Question;
 import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.adapter.QuestionRecyclerAdapter;
+import com.example.administrator.izienglish.adapters.QuestionRecyclerAdapter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;

@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.adapter;
+package com.example.administrator.izienglish.adapters;
 
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;

@@ -3,25 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context="com.example.administrator.izienglish.fragments.VerbFragment">
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/search_36" />
-
-    <EditText
-        android:id="@+id/edSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:hint="@string/verb_frag_title_edHint" />
+    tools:context="com.example.administrator.izienglish.fragments.FavoriteFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edSearch"
         android:layout_marginTop="@dimen/verb_frag_layoutMarginTop"
         android:orientation="horizontal">
 
@@ -54,4 +41,5 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/linearLayout"
         android:clickable="true" />
+
 </RelativeLayout>

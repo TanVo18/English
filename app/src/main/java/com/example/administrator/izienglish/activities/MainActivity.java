@@ -5,7 +5,12 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.administrator.izienglish.R;
+import com.example.administrator.izienglish.SqlHelper;
+import com.example.administrator.izienglish.adapters.HomePagerAdapter;
 import com.example.administrator.izienglish.fragments.AnswerQuizFragment;
+import com.example.administrator.izienglish.fragments.FavoriteFragment;
+import com.example.administrator.izienglish.fragments.FavoriteFragment_;
 import com.example.administrator.izienglish.fragments.GrammarFragment;
 import com.example.administrator.izienglish.fragments.GrammarFragment_;
 import com.example.administrator.izienglish.fragments.ListQuestionFragment;
@@ -14,13 +19,12 @@ import com.example.administrator.izienglish.fragments.QuizFragment;
 import com.example.administrator.izienglish.fragments.QuizFragment_;
 import com.example.administrator.izienglish.fragments.ResultDialogFragment;
 import com.example.administrator.izienglish.fragments.ResultDialogFragment_;
+import com.example.administrator.izienglish.fragments.SettingFragment;
+import com.example.administrator.izienglish.fragments.SettingFragment_;
 import com.example.administrator.izienglish.fragments.VerbFragment;
 import com.example.administrator.izienglish.fragments.VerbFragment_;
 import com.example.administrator.izienglish.model.Question;
 import com.example.administrator.izienglish.model.Verbs;
-import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.SqlHelper;
-import com.example.administrator.izienglish.adapter.HomePagerAdapter;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -34,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @EActivity
-public class MainActivity extends AppCompatActivity implements AnswerQuizFragment.SendData,QuizFragment.SendData {
+public class MainActivity extends AppCompatActivity implements AnswerQuizFragment.SendData, QuizFragment.SendData {
     public static final String ROOT_CHILD = "Question";
     public static final String UNDER_CHILD = "Part1";
     public static final String KEY_QUESTION = "question";
@@ -86,6 +90,9 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
 //        mQuestions = bundle.getParcelableArrayList(KEY_QUESTION);
 //        Log.i("MainACTIVITY",mQuestions.size()+"");
 
+        //initial first page
+        GrammarFragment frag = new GrammarFragment_().builder().build();
+        mFm.beginTransaction().replace(R.id.Container, frag).commit();
         mTab.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -107,8 +114,10 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     public void setupTabIcon() {
         mTab.addTab(mTab.newTab().setText("Grammar").setIcon(R.drawable.literature_filled_50));
         mTab.addTab(mTab.newTab().setText("Irregular Verb").setIcon(R.drawable.pencil_48));
+        mTab.addTab(mTab.newTab().setText("Favorite").setIcon(R.drawable.ic_favorite_purple_48dp));
         mTab.addTab(mTab.newTab().setText("Quiz").setIcon(R.drawable.test_passed_filled_50));
         mTab.addTab(mTab.newTab().setText("Setting").setIcon(R.drawable.settings_filled_50));
+
     }
 
     public void getTabPosition(int position) {
@@ -122,12 +131,16 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
                 mFm.beginTransaction().replace(R.id.Container, frag1).commit();
                 break;
             case 2:
+                FavoriteFragment frag2 = new FavoriteFragment_().builder().mVerbs(mIrreVerbs).build();
+                mFm.beginTransaction().replace(R.id.Container, frag2).commit();
+                break;
+            case 3:
                 mFlag = 1;
                 ListQuestionFragment frag3 = new ListQuestionFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
                 mFm.beginTransaction().replace(R.id.Container, frag3).commit();
                 break;
-            case 3:
-                GrammarFragment frag4 = new GrammarFragment_().builder().build();
+            case 4:
+                SettingFragment frag4 = new SettingFragment_().builder().build();
                 mFm.beginTransaction().replace(R.id.Container, frag4).commit();
                 break;
         }
@@ -210,14 +223,14 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     //Function from AnswerQuizFragment
     @Override
     public void ClickFinish() {
-     //   if (checkNotNull(mResultArray)) {
-            //reset lai mang result
-            mFlag = 2;
-            QuizFragment frag = new QuizFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
-            mFm.beginTransaction().replace(R.id.Container, frag).commit();
-            ResultDialogFragment frag2 = new ResultDialogFragment_().builder().mResults(mResultArray).build();
-            frag2.show(getSupportFragmentManager(), "dialog");
-            InitResultArrays();
+        //   if (checkNotNull(mResultArray)) {
+        //reset lai mang result
+        mFlag = 2;
+        QuizFragment frag = new QuizFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
+        mFm.beginTransaction().replace(R.id.Container, frag).commit();
+        ResultDialogFragment frag2 = new ResultDialogFragment_().builder().mResults(mResultArray).build();
+        frag2.show(getSupportFragmentManager(), "dialog");
+        InitResultArrays();
 //        } else {
 //            Toast.makeText(getBaseContext(), NOTIFY_NULL, Toast.LENGTH_LONG).show();
 //        }
@@ -231,6 +244,7 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         }
         return true;
     }
+
     //Function from QuizFragment
     @Override
     public void SendFromQuizFrag() {

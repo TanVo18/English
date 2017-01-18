@@ -6,7 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.adapter.IntroPagerAdapter;
+import com.example.administrator.izienglish.adapters.IntroPagerAdapter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;

@@ -25,8 +25,6 @@ import java.util.Locale;
 
 @EFragment
 public class DefiniteVerbFragment extends DialogFragment {
-    @ViewById(R.id.imgViewShare)
-    ImageView mImgViewShare;
     @ViewById(R.id.imgViewClose)
     ImageView mImgViewClose;
     @ViewById(R.id.imgViewFavorite)
@@ -79,7 +77,6 @@ public class DefiniteVerbFragment extends DialogFragment {
     @AfterViews
     public void Init() {
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
-        mImgViewShare.setImageResource(R.drawable.share_50);
         mImgViewClose.setImageResource(R.drawable.close_50);
         checkFavorite();
         mTvVerb1.setText(mVerb.getV1().toString());
@@ -109,16 +106,10 @@ public class DefiniteVerbFragment extends DialogFragment {
 
     @Click(R.id.imgViewClose)
     void ClickCloseIcon() {
-    //    mCallback.SendToMain(mVerb,mPosition);
         if(mOnCallbackDataListener!=null){
-            mOnCallbackDataListener.updateRecycler(mVerb,mPosition);
+            mOnCallbackDataListener.updateRecycler(mVerb);
         }
         dismiss();
-    }
-
-    @Click(R.id.imgViewShare)
-    void ClickShareIcon() {
-
     }
 
     public void checkFavorite() {
@@ -142,7 +133,7 @@ public class DefiniteVerbFragment extends DialogFragment {
 
     //Send to VerbFragment
     public interface OnCallbackDataListener{
-        public void updateRecycler(Verbs verb, int position);
+        public void updateRecycler(Verbs verb);
     }
 
     public void setOnCallbackDataListener(OnCallbackDataListener onCallbackDataListener) {

@@ -22,7 +22,7 @@
 
     <style name="custom_question_tv">
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">30sp</item>
+        <item name="android:textSize">25sp</item>
         <item name="android:textColor">#FFCC66</item>
     </style>
 
@@ -41,9 +41,16 @@
     </style>
 
     <style name="custom_verb_tv">
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">17sp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/TextColor</item>
+    </style>
+
+    <style name="custom_verb_tvSlash">
+        <item name="android:textSize">20sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">0.1</item>
         <item name="android:textColor">@color/TextColor</item>
     </style>
 
@@ -89,4 +96,24 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="share_frag_tv">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/definite_frag_DefiniteTextColor</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <style name="share_frag_switch">
+        <item name="android:layout_weight">0.5</item>
+    </style>
+
+    <style name="share_frag_btnOpenStore">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textSize">25dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:background">@color/resultFragBtn</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">40dp</item>
+    </style>
+
 </resources>

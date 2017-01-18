@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.adapter;
+package com.example.administrator.izienglish.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

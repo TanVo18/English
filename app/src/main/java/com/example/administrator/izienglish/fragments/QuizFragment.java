@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.adapter.QuizPagerAdapter;
+import com.example.administrator.izienglish.adapters.QuizPagerAdapter;
 import com.example.administrator.izienglish.model.Question;
 
 import org.androidannotations.annotations.AfterViews;

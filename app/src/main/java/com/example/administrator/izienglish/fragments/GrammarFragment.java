@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.adapter.GrammarPagerAdapter;
+import com.example.administrator.izienglish.adapters.GrammarPagerAdapter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;

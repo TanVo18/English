@@ -1,0 +1,40 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.administrator.izienglish.fragments.SettingFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout"
+        android:layout_marginTop="@dimen/share_frag_layoutMarginTop">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/share_frag_tv_notify"
+            style="@style/share_frag_tv"
+            />
+
+        <Switch
+            android:id="@+id/noti_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/share_frag_switch"/>
+    </LinearLayout>
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/btnOpenStore"
+        style="@style/share_frag_btnOpenStore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout"
+        android:text="@string/share_frag_btn"
+        fbutton:buttonColor="@color/Main_TabStrip_Color"
+        fbutton:cornerRadius="@dimen/custom_FButton_cornerRadius"
+        fbutton:shadowColor="@android:color/black"
+        fbutton:shadowEnabled="true"
+        fbutton:shadowHeight="@dimen/custom_FButton_shadowHeight" />
+</RelativeLayout>

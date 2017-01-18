@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
@@ -27,6 +28,9 @@ public class ResultDialogFragment extends DialogFragment {
     String[] mResults;
     @ViewById(R.id.donutProgress)
     DonutProgress mProgressBar;
+    @ViewById(R.id.imgViewShare)
+    ImageView mImgView;
+
     public ResultDialogFragment() {
     }
 
@@ -64,6 +68,11 @@ public class ResultDialogFragment extends DialogFragment {
         mProgressBar.setFinishedStrokeWidth(70);
         mProgressBar.setUnfinishedStrokeWidth(70);
         mProgressBar.setProgress((int) percent);
+    }
+
+    @Click(R.id.imgViewShare)
+    void ActionShare(){
+        
     }
 
 }
