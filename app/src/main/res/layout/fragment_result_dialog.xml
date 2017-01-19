@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/fragment_result"
     android:background="@color/definite_frag_Background"
     tools:context="com.example.administrator.izienglish.fragments.ResultDialogFragment">
 

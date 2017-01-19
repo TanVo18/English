@@ -51,5 +51,7 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'
     compile 'info.hoang8f:fbutton:1.0.5'
     compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
+    compile 'com.facebook.android:facebook-android-sdk:4.1.0'
+    compile 'com.sromku:simple-fb:4.1.1'
     testCompile 'junit:junit:4.12'
 }

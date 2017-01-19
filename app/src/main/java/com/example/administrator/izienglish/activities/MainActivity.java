@@ -1,5 +1,7 @@
 package com.example.administrator.izienglish.activities;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
@@ -34,11 +36,12 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 @EActivity
-public class MainActivity extends AppCompatActivity implements AnswerQuizFragment.SendData, QuizFragment.SendData {
+public class MainActivity extends AppCompatActivity implements AnswerQuizFragment.SendData, QuizFragment.SendData, ResultDialogFragment.OnHeadlineSelectedListener {
     public static final String ROOT_CHILD = "Question";
     public static final String UNDER_CHILD = "Part1";
     public static final String KEY_QUESTION = "question";
@@ -59,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     private ArrayList<Verbs> mIrreVerbs;
     @ViewById(R.id.tabs)
     TabLayout mTab;
+    android.view.View mContent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,5 +258,24 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         ResultDialogFragment frag2 = new ResultDialogFragment_().builder().mResults(mResultArray).build();
         frag2.show(getSupportFragmentManager(), "dialog");
         mResultArray = new String[QUANTITY_QUESTION];
+    }
+
+    //Data from ResultFragment
+    @Override
+    public void sendShareData() {
+        //open facebook to share
+        initShareIntent("facebook");
+    }
+
+    //open facebook to share
+    private void initShareIntent(String _text) {
+        File filePath = getFileStreamPath("test.jpg");
+        Intent shareIntent = new Intent();
+        shareIntent.setAction(Intent.ACTION_SEND);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, _text);
+        shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(String.valueOf(filePath))));  //optional//use this when you want to send an image
+        shareIntent.setType("image/jpeg");
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(shareIntent, "send"));
     }
 }

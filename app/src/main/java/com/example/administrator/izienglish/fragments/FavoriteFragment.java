@@ -9,10 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.GestureDetector;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
@@ -27,7 +25,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
 
-@EFragment
+@EFragment(R.layout.fragment_favorite)
 public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.OnCallbackDataListener{
     @FragmentArg
     ArrayList<Verbs> mVerbs = new ArrayList<Verbs>();
@@ -53,13 +51,6 @@ public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDb = new SqlHelper(getActivity().getBaseContext());
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_favorite, container, false);
     }
 
     @AfterViews

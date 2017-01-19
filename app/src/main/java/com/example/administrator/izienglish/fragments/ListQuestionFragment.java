@@ -14,9 +14,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.administrator.izienglish.model.Question;
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.adapters.QuestionRecyclerAdapter;
+import com.example.administrator.izienglish.model.Question;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EFragment;
@@ -24,7 +24,6 @@ import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @EFragment
 public class ListQuestionFragment extends Fragment {
@@ -35,7 +34,7 @@ public class ListQuestionFragment extends Fragment {
     @FragmentArg
     String[] mSelectedAnswers;
     private String mInitArray[];
-    private List<String> mTitles = new ArrayList<String>();
+    private String[] mTitles;
     private QuestionRecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private FragmentManager mFragManager;
@@ -50,10 +49,7 @@ public class ListQuestionFragment extends Fragment {
     @AfterViews
     public void Init() {
 
-        mInitArray = getResources().getStringArray(R.array.array_question_titles);
-        for (int i = 0; i < mInitArray.length; i++) {
-            mTitles.add(mInitArray[i]);
-        }
+        mTitles = getResources().getStringArray(R.array.array_question_titles);
         mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "balsam_digit_regular.ttf");
         mAdapter = new QuestionRecyclerAdapter(mTitles, mCustomFont);
         mLayoutManager = new LinearLayoutManager(getContext());

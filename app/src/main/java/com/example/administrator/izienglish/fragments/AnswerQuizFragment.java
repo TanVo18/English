@@ -5,12 +5,11 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
@@ -23,7 +22,7 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
-@EFragment
+@EFragment(R.layout.fragment_answer_quiz)
 public class AnswerQuizFragment extends Fragment{
     @ViewById(R.id.radGroup)
     RadioGroup mRadGroup;
@@ -47,9 +46,10 @@ public class AnswerQuizFragment extends Fragment{
     int mFlag;
     @FragmentArg
     String mSelectedAnswer;
+    @ViewById(R.id.fragment_answer_quiz)
+    RelativeLayout mView;
     private Typeface mCustomFont;
     private RadioButton mRadAnswer;
-    private View mView;
     private SendData mCallback;
 
     //test sendtoFragment
@@ -137,14 +137,6 @@ public class AnswerQuizFragment extends Fragment{
     @Click(R.id.btnFinish)
     void ActionFinish() {
         mCallback.ClickFinish();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        mView = inflater.inflate(R.layout.fragment_answer_quiz, container, false);
-        return mView;
     }
 
     public interface SendData {

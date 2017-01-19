@@ -10,13 +10,11 @@ import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
 
-import java.util.List;
-
 public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecyclerAdapter.ViewHolder> {
-    private List<String> mTitles;
+    private String[] mTitles;
     private Typeface mCustomFont;
 
-    public QuestionRecyclerAdapter(List<String> titles, Typeface customFont) {
+    public QuestionRecyclerAdapter(String[] titles, Typeface customFont) {
         this.mTitles = titles;
         this.mCustomFont = customFont;
     }
@@ -30,13 +28,13 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.mTv.setText(mTitles.get(position).toString());
+        holder.mTv.setText(mTitles[position].toString());
         holder.mTv.setTypeface(mCustomFont);
     }
 
     @Override
     public int getItemCount() {
-        return mTitles.size();
+        return mTitles.length;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

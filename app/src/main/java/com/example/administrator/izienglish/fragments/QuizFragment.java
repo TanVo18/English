@@ -11,7 +11,6 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
@@ -27,7 +26,7 @@ import java.util.ArrayList;
 
 import static com.example.administrator.izienglish.activities.MainActivity.QUANTITY_QUESTION;
 
-@EFragment
+@EFragment(R.layout.fragment_quiz)
 public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToFragment {
     @FragmentArg
     ArrayList<Question> mQuestions = new ArrayList<Question>();
@@ -58,14 +57,6 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_quiz, container, false);
     }
 
     @AfterViews

@@ -5,15 +5,12 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.DialogFragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.administrator.izienglish.model.Verbs;
 import com.example.administrator.izienglish.R;
+import com.example.administrator.izienglish.model.Verbs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
@@ -23,7 +20,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.util.Locale;
 
-@EFragment
+@EFragment(R.layout.fragment_definite_verb)
 public class DefiniteVerbFragment extends DialogFragment {
     @ViewById(R.id.imgViewClose)
     ImageView mImgViewClose;
@@ -65,13 +62,6 @@ public class DefiniteVerbFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_definite_verb, container, false);
     }
 
     @AfterViews

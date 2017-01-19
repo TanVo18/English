@@ -9,10 +9,8 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.GestureDetector;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -29,7 +27,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.ArrayList;
 import java.util.List;
 
-@EFragment
+@EFragment(R.layout.fragment_verb)
 public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCallbackDataListener {
     @FragmentArg
     ArrayList<Verbs> mVerbs = new ArrayList<Verbs>();
@@ -48,11 +46,11 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
     TextView tvVerb3;
     private SqlHelper mDb;
     private List<Verbs> mTempVerbs;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mDb = new SqlHelper(getActivity().getBaseContext());
-
     }
 
     @AfterViews
@@ -85,13 +83,6 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
         }));
         //search
         addTextListener();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_verb, container, false);
     }
 
     public void getFontForTv() {

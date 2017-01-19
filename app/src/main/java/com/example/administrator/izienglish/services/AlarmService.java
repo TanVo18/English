@@ -85,9 +85,9 @@ public class AlarmService extends Service {
                 mHandler.removeCallbacksAndMessages(null);
                 mSecond += 1000;
                 Log.i("second", mSecond + "");
-                showForegroundNotification(mRandomVerb);
                 if (mSecond > mTime) {
                     mSecond = 0;
+                    showForegroundNotification(mRandomVerb);
                     showNotification();
                     randomVerb();
                     calculateTime();

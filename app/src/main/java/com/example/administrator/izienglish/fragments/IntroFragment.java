@@ -3,9 +3,6 @@ package com.example.administrator.izienglish.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.administrator.izienglish.R;
@@ -17,7 +14,7 @@ import org.androidannotations.annotations.ViewById;
 
 import pl.droidsonroids.gif.GifTextView;
 
-@EFragment
+@EFragment(R.layout.fragment_intro)
 public class IntroFragment extends Fragment {
     @ViewById(R.id.imgView)
     ImageView mImgView;
@@ -44,13 +41,6 @@ public class IntroFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro, container, false);
     }
 
     @AfterViews

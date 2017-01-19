@@ -39,7 +39,9 @@ public class IntroductionActivity extends AppCompatActivity {
 
     @Click(R.id.btnStart)
     void OpenMainActivity() {
-        Intent intent = new Intent(IntroductionActivity.this, MainActivity_.class);
+//        Intent intent = new Intent(IntroductionActivity.this, MainActivity_.class);
+//        startActivity(intent);
+        Intent intent = new Intent(IntroductionActivity.this, SharingActivity_.class);
         startActivity(intent);
     }
 }

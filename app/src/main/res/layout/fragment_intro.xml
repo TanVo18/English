@@ -7,13 +7,14 @@
 
     <ImageView
         android:id="@+id/imgView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="@dimen/intro_frag_imgView_width"
+        android:layout_height="@dimen/intro_frag_imgView_height"
         android:layout_centerHorizontal="true"
         />
 
     <pl.droidsonroids.gif.GifTextView
         android:id="@+id/gifTv"
+        android:layout_marginTop="@dimen/intro_frag_gif_marginTop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imgView"
