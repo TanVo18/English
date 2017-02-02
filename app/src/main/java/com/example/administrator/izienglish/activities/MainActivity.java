@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.SqlHelper;
@@ -63,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     @ViewById(R.id.tabs)
     TabLayout mTab;
     android.view.View mContent;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +78,11 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         Firebase.setAndroidContext(this);
         mRoot = new Firebase("https://test-firebase-c80fc.firebaseio.com/");
         //khoi tao tieu de va fakeData
-        FakeData();
+//        FakeData();
+        Intent intent = getIntent();
+        Bundle bundle = intent.getBundleExtra(SplashScreenActivity.KEY_BUNDLE);
+        mQuestions = bundle.getParcelableArrayList(SplashScreenActivity.KEY_QUESTION);
+        Log.i("QUESTION",mQuestions.size()+"");
         // khoi tao mang chua cau dung
         InitResultArrays();
         // khoi tao mang save answer
@@ -85,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         getDataIrregularVerb();
         mFm = getSupportFragmentManager();
         InitSelectedAnswers();
-        getFirebaseData();
+
         //tao ra tab
         setupTabIcon();
         /*Khi co them splash*/
@@ -187,6 +193,26 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.my_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.googlePlay:
+                Intent intent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("market://details?id=" + getPackageName()));
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     public void InitResultArrays() {
         mResultArray = new String[QUANTITY_QUESTION];
         for (int i = 0; i < QUANTITY_QUESTION; i++) {
@@ -198,19 +224,6 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         for (int i = 0; i < mSelectedAnswers.length; i++) {
             mSelectedAnswers[i] = "abc";
         }
-    }
-
-    public void FakeData() {
-        mQuestions.add(new Question(1, "Since they are without direct supervision,field managers are expected to be able to find solutions to simple problems by ___ ", "them", "they", "themselves", "their", "themselves"));
-        mQuestions.add(new Question(40, "_____until the end of last year did you need a visa to travel to Russia if you are an American Citizen", "none", "no", "not", "nor", "not"));
-        mQuestions.add(new Question(41, "All vacationers are invited to take part in the water sports _____ available at the resort", "active", "activities", "actively", "activeness", "activities"));
-        mQuestions.add(new Question(42, "Business leaders have strongly _____ the environmental protection law, saying it will cost corporations too much money, leading to higher prices for consumers", "criticism", "criticizing", "critical", "criticized", "criticized"));
-        mQuestions.add(new Question(43, "The number of election lawbreakers has increased at an _____ rate,as illegal campaigning for the local elections intensifies", "alarm", "alarmed", "alarming", "alarmingly", "alarming"));
-        mQuestions.add(new Question(44, "Despite weak forecasts, the Bradford Group reported an _____ profit growth of 2.3 billion dollars this year", "impression", "impressed", "impressively", "impressive", "impressive"));
-        mQuestions.add(new Question(45, "Especially when negotiating sensitive decisions like a merger, it is important to have an acute bussiness _____", "sense", "to sense", "sensing", "sensation", "sense"));
-        mQuestions.add(new Question(46, "Because the terms of the new contract were so favorable, the union members were not at all _____ about signing it", "hesitancy", "hesitant", "hesitated", "hesitation", "hesitant"));
-        mQuestions.add(new Question(47, "Employees _____ in the time management seminar are learning how to utilize their time more efficiently at work", "participate", "participation", "participating", "participated", "participating"));
-        mQuestions.add(new Question(48, "Choosing a carrer or major can seem _____ so we have some practical steps you can take to make a good choice", "confusing", "confusion", "confused", "confusingly", "confusing"));
     }
 
     //Function from AnswerQuizFragment
@@ -227,26 +240,12 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     //Function from AnswerQuizFragment
     @Override
     public void ClickFinish() {
-        //   if (checkNotNull(mResultArray)) {
-        //reset lai mang result
         mFlag = 2;
         QuizFragment frag = new QuizFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
         mFm.beginTransaction().replace(R.id.Container, frag).commit();
         ResultDialogFragment frag2 = new ResultDialogFragment_().builder().mResults(mResultArray).build();
         frag2.show(getSupportFragmentManager(), "dialog");
         InitResultArrays();
-//        } else {
-//            Toast.makeText(getBaseContext(), NOTIFY_NULL, Toast.LENGTH_LONG).show();
-//        }
-    }
-
-    public boolean checkNotNull(String[] arr) {
-        for (int i = 0; i < QUANTITY_QUESTION; i++) {
-            if (mResultArray[i] == null) {
-                return false;
-            }
-        }
-        return true;
     }
 
     //Function from QuizFragment

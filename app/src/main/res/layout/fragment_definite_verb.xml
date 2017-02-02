@@ -1,116 +1,187 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/definite_frag_Background"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.administrator.izienglish.fragments.DefiniteVerbFragment">
 
-    <ImageView
-        android:id="@+id/imgViewFavorite"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
-
-    <ImageView
-        android:id="@+id/imgViewClose"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true" />
-
-    <LinearLayout
-        android:id="@+id/LinearLayoutWord"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imgViewClose"
-        android:layout_marginTop="@dimen/definiteVerb_frag_linear_marginTop"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tvVerb1"
-            style="@style/definite_verb_tv"
-            android:layout_width="@dimen/definite_verb_TvWidth"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/tvVerb2"
-            style="@style/definite_verb_tv"
-            android:layout_width="@dimen/definite_verb_TvWidth"
-            android:layout_height="match_parent" />
-
-        <TextView
-            android:id="@+id/tvVerb3"
-            style="@style/definite_verb_tv"
-            android:layout_width="@dimen/definite_verb_TvWidth"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/LinearLayoutImgView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/LinearLayoutWord"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imgViewSound1"
-            style="@style/definite_verb_ImgView"
-            android:layout_width="@dimen/definite_verb_ImgWidth"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:id="@+id/imgViewSound2"
-            style="@style/definite_verb_ImgView"
-            android:layout_width="@dimen/definite_verb_ImgWidth"
-            android:layout_height="match_parent" />
-
-        <ImageView
-            android:id="@+id/imgViewSound3"
-            style="@style/definite_verb_ImgView"
-            android:layout_width="@dimen/definite_verb_ImgWidth"
-            android:layout_height="match_parent" />
-    </LinearLayout>
-
-    <ImageView
-        android:id="@+id/imgViewVerb"
-        android:layout_width="@dimen/definiteVerb_frag_imgViewWidth"
-        android:layout_height="@dimen/definiteVerb_frag_imgViewHeight"
-        android:layout_below="@+id/LinearLayoutImgView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/definiteVerb_frag_linear_marginTop" />
-
-    <TextView
-        android:id="@+id/tvDefinition"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgViewVerb"
-        android:textColor="@color/definite_frag_DefiniteTextColor"
-        android:textSize="@dimen/definite_verb_TvDefinitionSize" />
-
-    <TextView
-        android:id="@+id/tvDefineContent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDefinition"
-        android:textColor="@color/TextColor"
-        android:textSize="@dimen/definite_verb_TvDefineContentSize" />
-
-    <TextView
-        android:id="@+id/tvExample"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvDefineContent"
-        android:textColor="@color/definite_frag_DefiniteTextColor"
-        android:textSize="@dimen/definite_verb_TvDefinitionSize" />
-
-    <TextView
-        android:id="@+id/tvExampleContent"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/tvExample"
-        android:textColor="@color/TextColor"
-        android:textSize="@dimen/definite_verb_TvDefineContentSize" />
-</RelativeLayout>
+        android:background="@color/definite_frag_Background"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        tools:context="com.example.administrator.izienglish.fragments.DefiniteVerbFragment">
+
+        <ImageView
+            android:id="@+id/imgViewClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgViewClose"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgViewWhite"
+                style="@style/definite_verb_frag_imgViewSphere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sphere_white_50" />
+
+            <ImageView
+                android:id="@+id/imgViewBlue"
+                style="@style/definite_verb_frag_imgViewSphere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sphere_blue_50" />
+
+            <ImageView
+                android:id="@+id/imgViewYellow"
+                style="@style/definite_verb_frag_imgViewSphere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sphere_yellow_50" />
+
+            <ImageView
+                android:id="@+id/imgViewGreen"
+                style="@style/definite_verb_frag_imgViewSphere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sphere_green_50" />
+
+            <ImageView
+                android:id="@+id/imgViewRed"
+                style="@style/definite_verb_frag_imgViewSphere"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/sphere_red_50" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutWord"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/linearLayoutColor"
+            android:layout_marginTop="@dimen/definiteVerb_frag_linear_marginTop"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvVerb1"
+                style="@style/definite_verb_tv"
+                android:layout_width="@dimen/definite_verb_TvWidth"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tvVerb2"
+                style="@style/definite_verb_tv"
+                android:layout_width="@dimen/definite_verb_TvWidth"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tvVerb3"
+                style="@style/definite_verb_tv"
+                android:layout_width="@dimen/definite_verb_TvWidth"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutIPA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LinearLayoutWord"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvIpa1"
+                style="@style/definite_verb_tv"
+                android:layout_width="@dimen/definite_verb_TvWidth"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tvIpa2"
+                style="@style/definite_verb_tv"
+                android:layout_width="@dimen/definite_verb_TvWidth"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/tvIpa3"
+                style="@style/definite_verb_tv"
+                android:layout_width="@dimen/definite_verb_TvWidth"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayoutImgView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LinearLayoutIPA"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imgViewSound1"
+                style="@style/definite_verb_ImgView"
+                android:layout_width="@dimen/definite_verb_ImgWidth"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/imgViewSound2"
+                style="@style/definite_verb_ImgView"
+                android:layout_width="@dimen/definite_verb_ImgWidth"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:id="@+id/imgViewSound3"
+                style="@style/definite_verb_ImgView"
+                android:layout_width="@dimen/definite_verb_ImgWidth"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imgViewVerb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/LinearLayoutImgView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/definiteVerb_frag_linear_marginTop" />
+
+        <TextView
+            android:id="@+id/tvDefinition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgViewVerb"
+            android:textColor="@color/definite_frag_DefiniteTextColor"
+            android:textSize="@dimen/definite_verb_TvDefinitionSize" />
+
+        <TextView
+            android:id="@+id/tvDefineContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDefinition"
+            android:textColor="@color/TextColor"
+            android:textSize="@dimen/definite_verb_TvDefineContentSize" />
+
+        <TextView
+            android:id="@+id/tvExample"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvDefineContent"
+            android:textColor="@color/definite_frag_DefiniteTextColor"
+            android:textSize="@dimen/definite_verb_TvDefinitionSize" />
+
+        <TextView
+            android:id="@+id/tvExampleContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tvExample"
+            android:textColor="@color/TextColor"
+            android:textSize="@dimen/definite_verb_TvDefineContentSize" />
+    </RelativeLayout>
+
+</ScrollView>

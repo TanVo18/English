@@ -34,8 +34,6 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     int mFlag;
     @FragmentArg
     String mSelectedAnswers[];
-    @FragmentArg
-    int mFlagChangeColor;
     @ViewById(R.id.tabs)
     TabLayout mTabs;
     @ViewById(R.id.pager)
@@ -77,7 +75,7 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
             }
         };
         InitArray();
-        mQuizQuantities = getActivity().getResources().getStringArray(R.array.array_quiz_quantities);
+        mQuizQuantities = getResources().getStringArray(R.array.array_quiz_quantities);
         mAdapter = new QuizPagerAdapter(this, getChildFragmentManager(), mQuestions, mQuizQuantities, mFlag, mSelectedAnswers);
         mViewPager.setAdapter(mAdapter);
         mTabs.setupWithViewPager(mViewPager);
@@ -101,11 +99,21 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     //Interface From AnswerQuizFragment
     @Override
     public void Pass(int position) {
-        Log.i("Click", "bang");
         if (checkPosition(position)) {
             mTabs.getTabAt(position).setCustomView(setupTab(position));
             checks[position] = position;
         }
+    }
+    //Interface From AnswerQuizFragment
+    @Override
+    public void Send(String chosenKey, int position) {
+
+    }
+
+    //Interface From AnswerQuizFragment
+    @Override
+    public void clickFinish() {
+
     }
 
     public void InitArray() {

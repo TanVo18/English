@@ -77,7 +77,7 @@ public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.O
     public void getFavoriteVerb(){
         for(int i=0; i < mVerbs.size();i++){
             Verbs verb = mVerbs.get(i);
-            if(verb.getFavorite()==1){
+            if(verb.getFavorite()!=0){
                 mFavoriteVerbs.add(verb);
             }
         }

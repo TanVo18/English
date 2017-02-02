@@ -3,6 +3,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/custom_verb_itemLayoutHeight"
+    android:layout_marginTop="@dimen/custom_favorite_layoutMarginTop"
     android:background="@android:color/white">
 
     <LinearLayout
@@ -42,5 +43,4 @@
             android:layout_width="@dimen/custom_verb_tvSlashWidth"
             android:layout_height="match_parent" />
     </LinearLayout>
-
 </RelativeLayout>

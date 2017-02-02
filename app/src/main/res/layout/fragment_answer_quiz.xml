@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_answer_quiz"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/frag_answer_background"
@@ -8,7 +9,6 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:id="@+id/fragment_answer_quiz"
     tools:context="com.example.administrator.izienglish.fragments.AnswerQuizFragment">
 
     <TextView
@@ -56,13 +56,12 @@
     <info.hoang8f.widget.FButton
         android:id="@+id/btnFinish"
         style="@style/answerQuiz_frag_btn"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AnswerQuiz_frag_btn"
         fbutton:buttonColor="@color/Main_TabStrip_Color"
         fbutton:cornerRadius="5dp"
         fbutton:shadowColor="@android:color/black"
         fbutton:shadowEnabled="true"
-        fbutton:shadowHeight="5dp"
-        android:text="@string/AnswerQuiz_frag_btn"
-        />
+        fbutton:shadowHeight="5dp" />
 </RelativeLayout>

@@ -70,7 +70,7 @@ public class AlarmService extends Service {
     public void calculateTime(){
         Calendar c = Calendar.getInstance();
         long time = c.getTimeInMillis();
-        c.add(Calendar.MINUTE,1);
+        c.add(Calendar.HOUR,24);
         mTime = c.getTimeInMillis() - time - Calendar.getInstance().get(Calendar.SECOND);
         Log.i("length of time",mTime+"");
     }

@@ -1,25 +1,24 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/frag_answer_background"
     tools:context="com.example.administrator.izienglish.fragments.QuizFragment">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"
-        android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="scrollable"
-        />
+        android:background="@android:color/white"
+        app:tabMode="scrollable" />
 
     <TextView
         android:id="@+id/tvTime"
-        android:layout_below="@+id/tabs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/tabs"
         android:textColor="@color/Main_TabStrip_Color"
         android:textSize="@dimen/answerQuiz_Frag_textSize" />
 
@@ -29,6 +28,4 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/tvTime"
         tools:context=".activities.MainActivity" />
-
-
 </RelativeLayout>

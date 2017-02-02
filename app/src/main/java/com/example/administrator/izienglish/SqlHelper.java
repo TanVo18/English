@@ -24,24 +24,19 @@ import java.util.ArrayList;
  */
 public class SqlHelper extends SQLiteOpenHelper {
 
-    ArrayList<Verbs> arr = new ArrayList<Verbs>();
+    ArrayList<Verbs> mVerbs = new ArrayList<Verbs>();
+    ArrayList<String> mExps = new ArrayList<String>();
     // All Static variables
     // Database Version
     public static final int DATABASE_VERSION = 1;
 
     // Database Name
-    public static final String DATABASE_NAME = "db_verb2.db";
+    public static final String DATABASE_NAME = "db_verbs.db";
 
     //Table name
-    private static final String TABLE_NAME = "VERB";
+    private static final String TABLE_VERB = "verbs";
+    private static final String TABLE_EXAMPLE = "examples";
 
-    // Fields Table Columns names
-    private static final String KEY_ID = "id";
-    private static final String KEY_VERB1 = "verb1";
-    private static final String KEY_VERB2 = "verb2";
-    private static final String KEY_VERB3 = "verb3";
-    private static final String KEY_CONTAIN = "contain";
-    private static final String KEY_FAVORITE = "favorite";
 
     private SQLiteDatabase mDb;
     private Context mContext;
@@ -139,33 +134,63 @@ public class SqlHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Verbs> getData() {
-
         SQLiteDatabase db = this.getReadableDatabase();
         //câu lệnh Query tại đây
-        Cursor cursor = db.query(TABLE_NAME, null, null,
+        Cursor cursor = db.query(TABLE_VERB, null, null,
                 null, null, null, null, null);
         if (cursor != null)
             cursor.moveToFirst();
 
         //Lấy giá trị tại đây
         while (cursor.isAfterLast() == false) {
-
             String v1 = cursor.getString(1);
-            String v2 = cursor.getString(2);
-            String v3 = cursor.getString(3);
-            String contain = cursor.getString(4);
-            int favorite = cursor.getInt(5);
-            Verbs verb = new Verbs(v1, v2, v3, contain, favorite);
-            arr.add(verb);
+            String v2 = cursor.getString(3);
+            String v3 = cursor.getString(5);
+            String ipa1 = cursor.getString(2);
+            String ipa2 = cursor.getString(4);
+            String ipa3 = cursor.getString(6);
+            String contain = cursor.getString(9);
+            int favorite = cursor.getInt(7);
+            Verbs verb = new Verbs(v1, ipa1, v2, ipa2, v3, ipa3, contain, favorite);
+            mVerbs.add(verb);
             cursor.moveToNext();
         }
         cursor.close();
-        return arr;
+        getListExample();
+        int count = 0;
+        StringBuilder temp = new StringBuilder();
+        for (int i = 0; i < mVerbs.size(); i++) {
+            for (int k = 0; k < 3; k++) {
+                temp.append(mExps.get(count) + "\n") ;
+                count++;
+            }
+            mVerbs.get(i).setExample(temp+"");
+            temp = new StringBuilder();
+        }
+        return mVerbs;
+    }
+
+    public ArrayList<String> getListExample() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        //câu lệnh Query tại đây
+        Cursor cursor = db.query(TABLE_EXAMPLE, null, null,
+                null, null, null, null, null);
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        //Lấy giá trị tại đây
+        while (cursor.isAfterLast() == false) {
+            String exp = cursor.getString(2);
+            mExps.add(exp);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return mExps;
     }
 
     public void update(String verbName, int favorite) {
         open();
-        String query = "UPDATE " + TABLE_NAME + " SET favorite = " + favorite + " WHERE verb1 = '" + verbName+"'";
+        String query = "UPDATE " + TABLE_VERB + " SET favorite = " + favorite + " WHERE verb1 = '" + verbName + "'";
         mDb.execSQL(query);
         close();
     }

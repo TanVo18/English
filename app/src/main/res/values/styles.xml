@@ -55,7 +55,7 @@
     </style>
 
     <style name="definite_verb_tv">
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">13sp</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@color/TextColor</item>
@@ -73,8 +73,14 @@
     </style>
 
     <style name="intro_activity_btn">
-        <item name="android:textSize">25sp</item>
-        <item name="android:background">@color/Main_TabStrip_Color</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@android:color/black</item>
+        <item name="android:textColor">@color/colorRightAnswer</item>
+    </style>
+
+    <style name="intro_activity_tv">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/colorRightAnswer</item>
     </style>
 
     <style name="answerQuiz_frag_btn">
@@ -114,6 +120,10 @@
         <item name="android:background">@color/resultFragBtn</item>
         <item name="android:gravity">center</item>
         <item name="android:layout_marginTop">40dp</item>
+    </style>
+
+    <style name="definite_verb_frag_imgViewSphere">
+        <item name="android:layout_weight">1</item>
     </style>
 
 </resources>

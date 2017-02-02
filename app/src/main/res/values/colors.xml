@@ -23,5 +23,10 @@
     <color name="resultFragBtn">#d62e0c</color>
     <color name="colorChooseQuestion">#186e2a</color>
     <color name="IrreVerbAdapterWhiteColor">@android:color/white</color>
-    <color name="ItemVerbColor">#ffdf00</color>
+    <color name="ItemVerbWhiteColor">@android:color/white</color>
+    <color name="ItemVerbBlueColor">#80befc</color>
+    <color name="ItemVerbYellowColor">#f2e377</color>
+    <color name="ItemVerbGreenColor">#4edc93</color>
+    <color name="ItemVerbRedColor">#e1676b</color>
+
 </resources>

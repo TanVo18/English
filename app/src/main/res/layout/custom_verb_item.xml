@@ -3,7 +3,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="@dimen/custom_verb_itemLayoutHeight"
-    android:layout_marginTop="5dp"
+    android:layout_marginTop="@dimen/custom_verb_layoutMarginTop"
     android:background="@drawable/selector_row">
 
     <LinearLayout
@@ -43,5 +43,4 @@
             android:layout_width="1dp"
             android:layout_height="match_parent" />
     </LinearLayout>
-
 </RelativeLayout>

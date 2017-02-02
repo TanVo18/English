@@ -1,6 +1,7 @@
 package com.example.administrator.izienglish.fragments;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -24,7 +26,9 @@ import org.androidannotations.annotations.EFragment;
 import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @EFragment(R.layout.fragment_verb)
@@ -46,6 +50,7 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
     TextView tvVerb3;
     private SqlHelper mDb;
     private List<Verbs> mTempVerbs;
+    private List<String> mListImg;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,16 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
 
     @AfterViews
     public void Init() {
+        //tao mang chua ten file image trong asset
+        try {
+            mListImg = getImage(getContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "gel_pen_heavy.ttf");
         getFontForTv();
         mTempVerbs = mVerbs;
+        Log.i("======examp", mVerbs.get(2).getExample());
         mAdapter = new IrreVerbAdapter(mVerbs, mCustomFont);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setAdapter(mAdapter);
@@ -76,7 +88,7 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
                 else{
                     verb = mVerbs.get(position);
                 }
-                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).mPosition(position).build();
+                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).mPosition(position).mNameOfImage(mListImg.get(position)).build();
                 frag.setOnCallbackDataListener(VerbFragment.this);
                 frag.show(getFragmentManager(), "DialogFragment");
             }
@@ -176,5 +188,14 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
 
             }
         });
+    }
+
+    //tao mang chua ten cac phan tu trong folder asset/picture
+    private List<String> getImage(Context context) throws IOException {
+        AssetManager assetManager = context.getAssets();
+        //picture la thu muc trong asset
+        String[] files = assetManager.list("picture");
+        List<String> it = Arrays.asList(files);
+        return it;
     }
 }

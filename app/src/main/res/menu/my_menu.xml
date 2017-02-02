@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/googlePlay"
+        android:icon="@drawable/google_play_36"
+        app:showAsAction="ifRoom"
+        android:title="Google Play"></item>
+</menu>

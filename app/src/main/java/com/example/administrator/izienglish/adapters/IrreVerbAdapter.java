@@ -47,9 +47,19 @@ public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHo
         holder.mTvVerb3.setTypeface(mCustomFont);
         holder.itemView.setSelected(focusedItem == position);
         if (verb.getFavorite() == 1) {
-            holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbColor);
-        } else {
-            holder.mRelativeLayout.setBackgroundResource(R.color.IrreVerbAdapterWhiteColor);
+            holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbBlueColor);
+        }
+        else if(verb.getFavorite() == 2){
+            holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbYellowColor);
+        }
+        else if(verb.getFavorite() == 3){
+            holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbGreenColor);
+        }
+        else if(verb.getFavorite() == 4){
+            holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbRedColor);
+        }
+        else {
+            holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbWhiteColor);
         }
     }
 

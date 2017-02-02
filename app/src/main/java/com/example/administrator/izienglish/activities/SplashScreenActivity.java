@@ -47,7 +47,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                 try {
                     getFirebaseData();
                     sleep(8000);
-                    Intent intent = new Intent(getApplicationContext(), MainActivity_.class);
+                    Intent intent = new Intent(getApplicationContext(), IntroductionActivity_.class);
                     Bundle bundle = new Bundle();
                     bundle.putParcelableArrayList(KEY_QUESTION, (ArrayList) mQuestions);
                     intent.putExtra(KEY_BUNDLE, bundle);

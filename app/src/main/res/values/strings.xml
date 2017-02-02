@@ -2,11 +2,11 @@
     <string name="app_name">IziEnglish</string>
 
     <string-array name="array_question_titles">
-        <item>Question 1-20</item>
-        <item>Question 21-40</item>
-        <item>Question 41-60</item>
-        <item>Question 61-80</item>
-        <item>Question 81-100</item>
+        <item>Question 1-10</item>
+        <item>Question 11-20</item>
+        <item>Question 21-30</item>
+        <item>Question 31-40</item>
+        <item>Question 41-50</item>
     </string-array>
 
     <string-array name="array_quiz_quantities">
@@ -45,10 +45,8 @@
     <string name="quiz_btnFinish">Finish</string>
     <string name="quiz_btnNext">Next</string>
     <string name="quiz_btnBack">Back</string>
-    <string name="example_for_verb1">Mary will awake in an hour because she has to go to work.</string>
-    <string name="example_for_verb2">I awoke in the middle of the night when I heard that noise.</string>
-    <string name="example_for_verb3">The patient has awoken from a two-week coma.</string>
-    <string name="Intro_activity_btnLogin">Start</string>
+    <string name="Intro_activity_btnLogin">Skip</string>
+    <string name="Intro_activity_tv">Skip</string>
     <string name="AnswerQuiz_frag_btn">Finish</string>
     <string name="resultFragBtn">Review</string>
     <string name="verb_frag_title_verb1">INFINITIVE</string>
@@ -59,4 +57,6 @@
     <string name="share_frag_btn">Open Play Store</string>
     <string name="custom_verb_slash">|</string>
     <string name="facebook_app_id">748967865256003</string>
+    <string name="definite_frag_definition">Definition</string>
+    <string name="definite_frag_example">Example</string>
 </resources>

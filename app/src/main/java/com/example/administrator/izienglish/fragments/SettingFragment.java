@@ -2,10 +2,8 @@ package com.example.administrator.izienglish.fragments;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.widget.Button;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -20,8 +18,6 @@ import org.androidannotations.annotations.ViewById;
 public class SettingFragment extends Fragment {
     @ViewById(R.id.noti_switch)
     Switch mSwitch;
-    @ViewById(R.id.btnOpenStore)
-    Button mBtnOpen;
     private int mSwitchEnable = 0;
 
     public SettingFragment() {
@@ -33,24 +29,14 @@ public class SettingFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    @Click(R.id.btnOpenStore)
-    void OpenPlayStore(){
-        Intent intent = new Intent(Intent.ACTION_VIEW,
-                Uri.parse("market://details?id=" + getContext().getPackageName()));
-        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-            startActivity(intent);
-        }
-    }
-
     @Click(R.id.noti_switch)
-    void pushSwitch(){
+    void pushSwitch() {
         mSwitchEnable++;
-        if(mSwitchEnable%2!=0){
-            Toast.makeText(getContext(),"Turn On Remind Word",Toast.LENGTH_LONG).show();
-           getActivity().startService(new Intent(getContext(), AlarmService.class));
-        }
-        else{
-            Toast.makeText(getContext(),"Turn Off Remind Word",Toast.LENGTH_LONG).show();
+        if (mSwitchEnable % 2 != 0) {
+            Toast.makeText(getContext(), "Turn On Remind Word", Toast.LENGTH_LONG).show();
+            getActivity().startService(new Intent(getContext(), AlarmService.class));
+        } else {
+            Toast.makeText(getContext(), "Turn Off Remind Word", Toast.LENGTH_LONG).show();
             getActivity().stopService(new Intent(getContext(), AlarmService.class));
         }
     }

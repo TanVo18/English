@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="@dimen/splash_activity_tvSize"
         android:textColor="@android:color/white"
-        />
+        android:textSize="@dimen/splash_activity_tvSize" />
 </RelativeLayout>

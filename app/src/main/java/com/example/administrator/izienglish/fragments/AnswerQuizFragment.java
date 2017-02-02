@@ -80,7 +80,7 @@ public class AnswerQuizFragment extends Fragment{
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 i = mRadGroup.getCheckedRadioButtonId();
                 mRadAnswer = (RadioButton) mView.findViewById(i);
-                mCallback.Send(mRadAnswer.getText().toString(), mPosition);
+                mCallback.Send(mRadAnswer.getText().toString(),mPosition);
                 if (mOnCallbackDataListener != null) {
                     mOnCallbackDataListener.Pass(mPosition);
                 }
@@ -157,9 +157,11 @@ public class AnswerQuizFragment extends Fragment{
         }
     }
 
-    //test gui truc tiep qua fragment
+    //gui truc tiep qua fragment
     public interface SendToFragment {
         public void Pass(int position);
+        public void Send(String chosenKey, int position);
+        public void clickFinish();
     }
 
     public void setOnCallbackDataListener(SendToFragment onCallbackDataListener) {

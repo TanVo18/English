@@ -2,7 +2,7 @@ package com.example.administrator.izienglish.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.administrator.izienglish.fragments.AnswerQuizFragment;
 import com.example.administrator.izienglish.fragments.AnswerQuizFragment_;
@@ -13,17 +13,17 @@ import java.util.List;
 
 
 
-public class QuizPagerAdapter extends FragmentPagerAdapter {
+public class QuizPagerAdapter extends FragmentStatePagerAdapter {
     private List<Question> mQuestions = new ArrayList<Question>();
-    private String mTabTitles[];
+    private String mTabTitles[] = new String[10];
     private String mSelectedAnswers[];
     private int mFlag;
     AnswerQuizFragment.SendToFragment mQuizFragment;
     public QuizPagerAdapter(AnswerQuizFragment.SendToFragment quizFragment,FragmentManager fm, ArrayList<Question> questions, String[] tabTitle,int flag,String[] SelectedAnswers) {
         super(fm);
         this.mQuestions = questions;
-        this.mTabTitles = tabTitle;
         this.mFlag = flag;
+        this.mTabTitles = tabTitle;
         this.mSelectedAnswers = SelectedAnswers;
         mQuizFragment=quizFragment;
     }

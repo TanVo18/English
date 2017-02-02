@@ -41,7 +41,7 @@ public class ListQuestionFragment extends Fragment {
     @ViewById(R.id.recyclerView)
     RecyclerView mRecyclerView;
     private Typeface mCustomFont;
-
+    private ArrayList<Question> mSmallQuestion;
     public ListQuestionFragment() {
         // Required empty public constructor
     }
@@ -58,7 +58,39 @@ public class ListQuestionFragment extends Fragment {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                QuizFragment frag = new QuizFragment_().builder().mQuestions(mQuestions).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
+                switch (position){
+                    case 0:
+                        mSmallQuestion = new ArrayList<Question>();
+                        for(int i=0;i<10;i++){
+                            mSmallQuestion.add(mQuestions.get(i));
+                        }
+                        break;
+                    case 1:
+                        mSmallQuestion = new ArrayList<Question>();
+                        for(int i=10;i<20;i++){
+                            mSmallQuestion.add(mQuestions.get(i));
+                        }
+                        break;
+                    case 2:
+                        mSmallQuestion = new ArrayList<Question>();
+                        for(int i=20;i<30;i++){
+                            mSmallQuestion.add(mQuestions.get(i));
+                        }
+                        break;
+                    case 3:
+                        mSmallQuestion = new ArrayList<Question>();
+                        for(int i=30;i<40;i++){
+                            mSmallQuestion.add(mQuestions.get(i));
+                        }
+                        break;
+                    case 4:
+                        mSmallQuestion = new ArrayList<Question>();
+                        for(int i=40;i<50;i++){
+                            mSmallQuestion.add(mQuestions.get(i));
+                        }
+                        break;
+                }
+                QuizFragment frag = new QuizFragment_().builder().mQuestions(mSmallQuestion).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
                 mFragManager = getActivity().getSupportFragmentManager();
                 mFragManager.beginTransaction().replace(R.id.Container, frag).commit();
             }
