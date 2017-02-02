@@ -12,20 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class QuizPagerAdapter extends FragmentStatePagerAdapter {
     private List<Question> mQuestions = new ArrayList<Question>();
     private String mTabTitles[] = new String[10];
     private String mSelectedAnswers[];
     private int mFlag;
     AnswerQuizFragment.SendToFragment mQuizFragment;
-    public QuizPagerAdapter(AnswerQuizFragment.SendToFragment quizFragment,FragmentManager fm, ArrayList<Question> questions, String[] tabTitle,int flag,String[] SelectedAnswers) {
+
+    public QuizPagerAdapter(AnswerQuizFragment.SendToFragment quizFragment, FragmentManager fm, ArrayList<Question> questions, String[] tabTitle, int flag, String[] SelectedAnswers) {
         super(fm);
         this.mQuestions = questions;
         this.mFlag = flag;
         this.mTabTitles = tabTitle;
         this.mSelectedAnswers = SelectedAnswers;
-        mQuizFragment=quizFragment;
+        mQuizFragment = quizFragment;
     }
 
     @Override

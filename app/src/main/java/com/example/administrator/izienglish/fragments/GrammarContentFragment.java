@@ -19,6 +19,7 @@ public class GrammarContentFragment extends Fragment {
     WebView mWebView;
     @FragmentArg
     String mUrl;
+
     public GrammarContentFragment() {
         // Required empty public constructor
     }

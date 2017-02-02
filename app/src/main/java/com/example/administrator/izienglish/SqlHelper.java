@@ -19,13 +19,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 
-/**
- * Created by Administrator on 1/8/2016.
- */
+
 public class SqlHelper extends SQLiteOpenHelper {
 
-    ArrayList<Verbs> mVerbs = new ArrayList<Verbs>();
-    ArrayList<String> mExps = new ArrayList<String>();
+    private ArrayList<Verbs> mVerbs = new ArrayList<>();
+    private ArrayList<String> mExps = new ArrayList<>();
     // All Static variables
     // Database Version
     public static final int DATABASE_VERSION = 1;
@@ -36,8 +34,6 @@ public class SqlHelper extends SQLiteOpenHelper {
     //Table name
     private static final String TABLE_VERB = "verbs";
     private static final String TABLE_EXAMPLE = "examples";
-
-
     private SQLiteDatabase mDb;
     private Context mContext;
     public static File DATABASE_FILE;
@@ -161,10 +157,10 @@ public class SqlHelper extends SQLiteOpenHelper {
         StringBuilder temp = new StringBuilder();
         for (int i = 0; i < mVerbs.size(); i++) {
             for (int k = 0; k < 3; k++) {
-                temp.append(mExps.get(count) + "\n") ;
+                temp.append(mExps.get(count) + "\n");
                 count++;
             }
-            mVerbs.get(i).setExample(temp+"");
+            mVerbs.get(i).setExample(temp + "");
             temp = new StringBuilder();
         }
         return mVerbs;

@@ -79,7 +79,7 @@ public class DefiniteVerbFragment extends DialogFragment {
     }
 
     @AfterViews
-    public void Init()  {
+    public void Init() {
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
         mImgViewClose.setImageResource(R.drawable.close_50);
         mTvVerb1.setText(mVerb.getV1());
@@ -94,11 +94,11 @@ public class DefiniteVerbFragment extends DialogFragment {
         mImgViewSound3.setImageResource(R.drawable.speaker);
         InputStream myInput = null;
         try {
-            myInput = getActivity().getAssets().open("picture/" +mNameOfImage);
+            myInput = getActivity().getAssets().open("picture/" + mNameOfImage);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(myInput!=null){
+        if (myInput != null) {
             mImgViewVerb.setImageBitmap(BitmapFactory.decodeStream(myInput));
         }
         mTvDefinition.setText(getResources().getString(R.string.definite_frag_definition));
@@ -140,31 +140,31 @@ public class DefiniteVerbFragment extends DialogFragment {
     @Click(R.id.imgViewWhite)
     void ClickWhiteColor() {
         mVerb.setFavorite(0);
-        Toast.makeText(getContext(),"White",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "White", Toast.LENGTH_SHORT).show();
     }
 
     @Click(R.id.imgViewBlue)
     void ClickBlueColor() {
         mVerb.setFavorite(1);
-        Toast.makeText(getContext(),"Blue",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Blue", Toast.LENGTH_SHORT).show();
     }
 
     @Click(R.id.imgViewYellow)
     void ClickYellowColor() {
         mVerb.setFavorite(2);
-        Toast.makeText(getContext(),"Yellow",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Yellow", Toast.LENGTH_SHORT).show();
     }
 
     @Click(R.id.imgViewGreen)
     void ClickGreenColor() {
         mVerb.setFavorite(3);
-        Toast.makeText(getContext(),"Green",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Green", Toast.LENGTH_SHORT).show();
     }
 
     @Click(R.id.imgViewRed)
     void ClickRedColor() {
         mVerb.setFavorite(4);
-        Toast.makeText(getContext(),"Red",Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Red", Toast.LENGTH_SHORT).show();
     }
 
     //Send to VerbFragment

@@ -21,7 +21,6 @@ import java.util.List;
 public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHolder> {
     private List<Verbs> mVerbs;
     private Typeface mCustomFont;
-
     private int focusedItem = 0;
 
     public IrreVerbAdapter(List<Verbs> questions, Typeface font) {
@@ -48,17 +47,13 @@ public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHo
         holder.itemView.setSelected(focusedItem == position);
         if (verb.getFavorite() == 1) {
             holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbBlueColor);
-        }
-        else if(verb.getFavorite() == 2){
+        } else if (verb.getFavorite() == 2) {
             holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbYellowColor);
-        }
-        else if(verb.getFavorite() == 3){
+        } else if (verb.getFavorite() == 3) {
             holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbGreenColor);
-        }
-        else if(verb.getFavorite() == 4){
+        } else if (verb.getFavorite() == 4) {
             holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbRedColor);
-        }
-        else {
+        } else {
             holder.mRelativeLayout.setBackgroundResource(R.color.ItemVerbWhiteColor);
         }
     }
@@ -131,8 +126,6 @@ public class IrreVerbAdapter extends RecyclerView.Adapter<IrreVerbAdapter.ViewHo
             lm.scrollToPosition(focusedItem);
             return true;
         }
-
         return false;
     }
-
 }

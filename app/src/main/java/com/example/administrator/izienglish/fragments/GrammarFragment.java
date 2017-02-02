@@ -33,13 +33,11 @@ public class GrammarFragment extends Fragment {
     }
 
     @AfterViews
-    void Init(){
+    void Init() {
         mTitles = getResources().getStringArray(R.array.array_grammar_titles);
         mUrl = getActivity().getResources().getStringArray(R.array.array_grammar_url);
-        mAdapter = new GrammarPagerAdapter(getChildFragmentManager(),mTitles,mUrl);
+        mAdapter = new GrammarPagerAdapter(getChildFragmentManager(), mTitles, mUrl);
         mViewPager.setAdapter(mAdapter);
         mTabs.setupWithViewPager(mViewPager);
-
     }
-
 }

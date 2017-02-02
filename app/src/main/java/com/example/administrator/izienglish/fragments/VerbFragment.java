@@ -82,10 +82,9 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
                 *  phai phan ra 2 mang
                 * */
                 Verbs verb;
-                if(mTempVerbs.size()<mVerbs.size()){
+                if (mTempVerbs.size() < mVerbs.size()) {
                     verb = mTempVerbs.get(position);
-                }
-                else{
+                } else {
                     verb = mVerbs.get(position);
                 }
                 DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).mPosition(position).mNameOfImage(mListImg.get(position)).build();
@@ -107,8 +106,8 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
     @Override
     public void updateRecycler(Verbs verb) {
         mDb.update(verb.getV1(), verb.getFavorite());
-        for(int i=0;i<mVerbs.size();i++){
-            if(mVerbs.get(i).getV1().equals(verb.getV1())){
+        for (int i = 0; i < mVerbs.size(); i++) {
+            if (mVerbs.get(i).getV1().equals(verb.getV1())) {
                 mVerbs.set(i, verb);
             }
         }
@@ -165,8 +164,7 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
             @Override
             public void onTextChanged(CharSequence query, int start, int before, int count) {
                 query = query.toString().toLowerCase();
-                mTempVerbs = new ArrayList<Verbs>();
-                final List<Verbs> filterList = new ArrayList<Verbs>();
+                mTempVerbs = new ArrayList<>();
                 for (int i = 0; i < mVerbs.size(); i++) {
 
                     final String text = mVerbs.get(i).getV1();

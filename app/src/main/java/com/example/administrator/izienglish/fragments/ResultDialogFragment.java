@@ -31,7 +31,7 @@ import java.io.FileOutputStream;
 public class ResultDialogFragment extends DialogFragment {
     @ViewById(R.id.tvResult)
     TextView mTv;
-    private int mCount=0;
+    private int mCount = 0;
     @FragmentArg
     String[] mResults;
     @ViewById(R.id.donutProgress)
@@ -41,6 +41,7 @@ public class ResultDialogFragment extends DialogFragment {
     @ViewById(R.id.fragment_result)
     RelativeLayout mContent;
     private OnHeadlineSelectedListener mCallback;
+
     public ResultDialogFragment() {
     }
 
@@ -52,29 +53,29 @@ public class ResultDialogFragment extends DialogFragment {
     @AfterViews
     void Init() {
         getDialog().getWindow().requestFeature(Window.FEATURE_NO_TITLE);
-        for(int i = 0 ; i<mResults.length;i++){
-            if(mResults[i].equals("T")){
+        for (int i = 0; i < mResults.length; i++) {
+            if (mResults[i].equals("T")) {
                 mCount++;
             }
         }
         InitProgress();
-        mTv.setText("Score: "+mCount+"/10");
+        mTv.setText("Score: " + mCount + "/10");
     }
 
     @Click(R.id.btnReview)
-    void ClickReview(){
+    void ClickReview() {
         dismiss();
     }
 
-    public void InitProgress(){
-        float percent = (100*mCount)/mResults.length;
+    public void InitProgress() {
+        float percent = (100 * mCount) / mResults.length;
         mProgressBar.setFinishedStrokeWidth(70);
         mProgressBar.setUnfinishedStrokeWidth(70);
         mProgressBar.setProgress((int) percent);
     }
 
     @Click(R.id.imgViewShare)
-    void ActionShare(){
+    void ActionShare() {
         getScreen();
         mCallback.sendShareData();
     }
@@ -86,7 +87,6 @@ public class ResultDialogFragment extends DialogFragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-
         // This makes sure that the container activity has implemented
         // the callback interface. If not, it throws an exception
         try {
@@ -98,28 +98,28 @@ public class ResultDialogFragment extends DialogFragment {
     }
 
     //Function take a screenshot and save into internal storage
-    private void getScreen(){
+    private void getScreen() {
         mContent.setDrawingCacheEnabled(true);
         Bitmap b = mContent.getDrawingCache();
         String extr = Environment.getExternalStorageDirectory().toString();
         File myPath = new File(extr, "test.jpg");
         FileOutputStream fos = null;
         try {
-            Log.d("====","onSave");
+            Log.d("====", "onSave");
             fos = new FileOutputStream(myPath);
             b.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), b, "Screen", "screen");
             fos.flush();
             fos.close();
-            Log.d("====","onClose");
-        }catch (FileNotFoundException e) {
+            Log.d("====", "onClose");
+        } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        Log.i("TAG1","do this function");
-        Toast.makeText(getContext(),"Successful",Toast.LENGTH_LONG).show();
+        Log.i("TAG1", "do this function");
+        Toast.makeText(getContext(), "Successful", Toast.LENGTH_LONG).show();
     }
 }

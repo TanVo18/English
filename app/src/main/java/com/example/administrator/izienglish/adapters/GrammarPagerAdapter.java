@@ -15,7 +15,7 @@ public class GrammarPagerAdapter extends FragmentPagerAdapter {
     private String mTabTitles[];
     private String[] mUrls;
 
-    public GrammarPagerAdapter(FragmentManager fm,String[] titles,String[] urls) {
+    public GrammarPagerAdapter(FragmentManager fm, String[] titles, String[] urls) {
         super(fm);
         this.mTabTitles = titles;
         this.mUrls = urls;

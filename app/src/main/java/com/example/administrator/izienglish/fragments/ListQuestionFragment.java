@@ -28,12 +28,11 @@ import java.util.ArrayList;
 @EFragment
 public class ListQuestionFragment extends Fragment {
     @FragmentArg
-    ArrayList<Question> mQuestions = new ArrayList<Question>();
+    ArrayList<Question> mQuestions = new ArrayList<>();
     @FragmentArg
     int mFlag;
     @FragmentArg
     String[] mSelectedAnswers;
-    private String mInitArray[];
     private String[] mTitles;
     private QuestionRecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -50,7 +49,6 @@ public class ListQuestionFragment extends Fragment {
 
     @AfterViews
     public void Init() {
-
         mTitles = getResources().getStringArray(R.array.array_question_titles);
         mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "balsam_digit_regular.ttf");
         mAdapter = new QuestionRecyclerAdapter(mTitles, mCustomFont);
@@ -62,35 +60,35 @@ public class ListQuestionFragment extends Fragment {
             public void onClick(View view, int position) {
                 switch (position) {
                     case 0:
-                        mSmallQuestion = new ArrayList<Question>();
+                        mSmallQuestion = new ArrayList<>();
                         for (int i = 0; i < 10; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
                         mCallback.Send(mSmallQuestion);
                         break;
                     case 1:
-                        mSmallQuestion = new ArrayList<Question>();
+                        mSmallQuestion = new ArrayList<>();
                         for (int i = 10; i < 20; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
                         mCallback.Send(mSmallQuestion);
                         break;
                     case 2:
-                        mSmallQuestion = new ArrayList<Question>();
+                        mSmallQuestion = new ArrayList<>();
                         for (int i = 20; i < 30; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
                         mCallback.Send(mSmallQuestion);
                         break;
                     case 3:
-                        mSmallQuestion = new ArrayList<Question>();
+                        mSmallQuestion = new ArrayList<>();
                         for (int i = 30; i < 40; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
                         mCallback.Send(mSmallQuestion);
                         break;
                     case 4:
-                        mSmallQuestion = new ArrayList<Question>();
+                        mSmallQuestion = new ArrayList<>();
                         for (int i = 40; i < 50; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
@@ -155,7 +153,6 @@ public class ListQuestionFragment extends Fragment {
         }
     }
 
-
     public interface SendData {
         public void Send(ArrayList<Question> mSmallQuestion);
     }
@@ -163,7 +160,6 @@ public class ListQuestionFragment extends Fragment {
     @Override
     public void onAttach(Context activity) {
         super.onAttach(activity);
-
         try {
             mCallback = (SendData) activity;
         } catch (ClassCastException e) {
@@ -171,5 +167,4 @@ public class ListQuestionFragment extends Fragment {
                     + " must implement OnHeadlineSelectedListener");
         }
     }
-
 }

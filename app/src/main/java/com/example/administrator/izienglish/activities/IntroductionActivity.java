@@ -26,6 +26,7 @@ public class IntroductionActivity extends AppCompatActivity {
     CircleIndicator mIndicator;
     private IntroPagerAdapter mAdapter;
     private ArrayList<Question> mQuestions = new ArrayList<Question>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,7 @@ public class IntroductionActivity extends AppCompatActivity {
     void OpenMainActivity() {
         Intent intent = new Intent(IntroductionActivity.this, MainActivity_.class);
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(SplashScreenActivity.KEY_QUESTION,mQuestions);
+        bundle.putParcelableArrayList(SplashScreenActivity.KEY_QUESTION, mQuestions);
         intent.putExtra(SplashScreenActivity.KEY_BUNDLE, bundle);
         startActivity(intent);
     }

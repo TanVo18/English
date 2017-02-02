@@ -180,7 +180,12 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         }
     }
 
-    //Function from AnswerQuizFragment
+    /**
+     * Function from AnswerQuizFragment
+     * when we click Finish in AnswerQuizFragment
+     * we send flag = 2 to stop handler and send result
+     * reset result array
+     */
     @Override
     public void ClickFinish() {
         mFlag = 2;
@@ -191,7 +196,12 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         InitResultArrays();
     }
 
-    //Function from QuizFragment
+    /**
+     * Function from QuizFragment
+     * this function work when the time is over
+     * we send flag = 2 to stop handler and send result
+     * reset result array
+     */
     @Override
     public void SendFromQuizFrag() {
         mFlag = 2;
@@ -222,7 +232,13 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
         startActivity(Intent.createChooser(shareIntent, "send"));
     }
 
-    //interface From ListQuestionFragment
+    /**
+     * interface From ListQuestionFragment
+     * this function take group question which chosen at listQuestionFragment
+     * We take this and modified to find true answer and send to others
+     *
+     * @param questions
+     */
     @Override
     public void Send(ArrayList<Question> questions) {
         mSmallQuestion = questions;

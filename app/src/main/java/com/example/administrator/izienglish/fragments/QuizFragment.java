@@ -83,8 +83,7 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
         //start handler
         if (mFlag == 2) {
             mHandler.removeCallbacksAndMessages(null);
-        }
-        else{
+        } else {
             countSecond();
         }
     }

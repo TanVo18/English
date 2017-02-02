@@ -21,7 +21,7 @@ public class Verbs implements Parcelable {
 
     }
 
-    public Verbs(String v1,String ipa1, String v2,String ipa2, String v3,String ipa3, String definition, int favorite) {
+    public Verbs(String v1, String ipa1, String v2, String ipa2, String v3, String ipa3, String definition, int favorite) {
         this.v1 = v1;
         this.v2 = v2;
         this.v3 = v3;

@@ -47,6 +47,4 @@ public class QuestionRecyclerAdapter extends RecyclerView.Adapter<QuestionRecycl
             mImgView = (ImageView) itemView.findViewById(R.id.imgView);
         }
     }
-
-
 }

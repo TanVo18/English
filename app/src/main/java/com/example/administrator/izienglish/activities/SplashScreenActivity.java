@@ -30,6 +30,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @ViewById(R.id.tv)
     TextView mTvTitle;
     private Typeface mCustomFont;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

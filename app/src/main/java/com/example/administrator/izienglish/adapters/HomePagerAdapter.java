@@ -7,18 +7,19 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.administrator.izienglish.fragments.GrammarFragment_;
 
-public class HomePagerAdapter extends FragmentPagerAdapter  {
+public class HomePagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 4;
-    private String tabTitles[] = new String[] { "Grammar", "Irregular Verb", "Quiz","Setting" };
+    private String tabTitles[] = new String[]{"Grammar", "Irregular Verb", "Quiz", "Setting"};
     private Context mContext;
-    public HomePagerAdapter(FragmentManager fm,Context context) {
+
+    public HomePagerAdapter(FragmentManager fm, Context context) {
         super(fm);
         this.mContext = context;
     }
 
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return new GrammarFragment_();
             case 1:
@@ -35,17 +36,4 @@ public class HomePagerAdapter extends FragmentPagerAdapter  {
     public int getCount() {
         return PAGE_COUNT;
     }
-
-//    @Override
-//    public CharSequence getPageTitle(int position) {
-//        // Generate title based on item position
-//        return tabTitles[position];
-//    }
-
-//    @Override
-//    public int getPageIconResId(int position) {
-//        return mIcon;
-//    }
-
-
 }

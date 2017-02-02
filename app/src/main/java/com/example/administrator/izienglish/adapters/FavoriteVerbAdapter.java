@@ -77,6 +77,5 @@ public class FavoriteVerbAdapter extends RecyclerView.Adapter<FavoriteVerbAdapte
             mTvVerb3 = (TextView) itemView.findViewById(R.id.tvVerb3);
             mRelativeLayout = (RelativeLayout) itemView.findViewById(R.id.relativeLayout);
         }
-
     }
 }

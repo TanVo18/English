@@ -23,7 +23,7 @@ import org.androidannotations.annotations.FragmentArg;
 import org.androidannotations.annotations.ViewById;
 
 @EFragment(R.layout.fragment_answer_quiz)
-public class AnswerQuizFragment extends Fragment{
+public class AnswerQuizFragment extends Fragment {
     @ViewById(R.id.radGroup)
     RadioGroup mRadGroup;
     @ViewById(R.id.radA)
@@ -62,10 +62,9 @@ public class AnswerQuizFragment extends Fragment{
 
     @AfterViews
     public void Init() {
-        if(mPosition< MainActivity.QUANTITY_QUESTION-1){
+        if (mPosition < MainActivity.QUANTITY_QUESTION - 1) {
             mBtnFinish.setVisibility(View.INVISIBLE);
-        }
-        else{
+        } else {
             mBtnFinish.setVisibility(View.VISIBLE);
         }
         if (mFlag == 1) {
@@ -80,7 +79,7 @@ public class AnswerQuizFragment extends Fragment{
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 i = mRadGroup.getCheckedRadioButtonId();
                 mRadAnswer = (RadioButton) mView.findViewById(i);
-                mCallback.Send(mRadAnswer.getText().toString(),mPosition);
+                mCallback.Send(mRadAnswer.getText().toString(), mPosition);
                 if (mOnCallbackDataListener != null) {
                     mOnCallbackDataListener.Pass(mPosition);
                 }
@@ -141,7 +140,6 @@ public class AnswerQuizFragment extends Fragment{
 
     public interface SendData {
         public void Send(String chosenKey, int position);
-
         public void ClickFinish();
     }
 
@@ -158,6 +156,9 @@ public class AnswerQuizFragment extends Fragment{
     }
 
     //gui truc tiep qua fragment
+    /**
+     * this function work to change color when we click radioButton in a question
+     */
     public interface SendToFragment {
         public void Pass(int position);
     }

@@ -23,10 +23,6 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by Administrator on 16/1/2017.
- */
-
 public class AlarmService extends Service {
     private Handler mHandler;
     private long mSecond;
@@ -49,7 +45,7 @@ public class AlarmService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         mSecond = 0;
-        mIrreVerbs = new ArrayList<Verbs>();
+        mIrreVerbs = new ArrayList<>();
         mIrreVerbs = mDb.getData();
         countSecond();
         return START_STICKY;

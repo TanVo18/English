@@ -25,7 +25,7 @@ import org.androidannotations.annotations.ViewById;
 import java.util.ArrayList;
 
 @EFragment(R.layout.fragment_favorite)
-public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.OnCallbackDataListener{
+public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.OnCallbackDataListener {
     @FragmentArg
     ArrayList<Verbs> mVerbs = new ArrayList<Verbs>();
     private ArrayList<Verbs> mFavoriteVerbs = new ArrayList<Verbs>();
@@ -73,10 +73,10 @@ public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.O
         }));
     }
 
-    public void getFavoriteVerb(){
-        for(int i=0; i < mVerbs.size();i++){
+    public void getFavoriteVerb() {
+        for (int i = 0; i < mVerbs.size(); i++) {
             Verbs verb = mVerbs.get(i);
-            if(verb.getFavorite()!=0){
+            if (verb.getFavorite() != 0) {
                 mFavoriteVerbs.add(verb);
             }
         }
@@ -89,19 +89,23 @@ public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.O
     }
 
     //Get data From DefiniteVerbFragment
+    /**
+     * this function update recyclerView
+     * delete if verb is not interested and update if verb change color
+     * @param verb
+     */
     @Override
     public void updateRecycler(Verbs verb) {
-        mDb.update(verb.getV1(),verb.getFavorite());
-        if(verb.getFavorite()!=0){
-            for(int i=0;i<mFavoriteVerbs.size();i++){
-                if(mFavoriteVerbs.get(i).getV1().equals(verb.getV1())){
-                    mFavoriteVerbs.set(i,verb);
+        mDb.update(verb.getV1(), verb.getFavorite());
+        if (verb.getFavorite() != 0) {
+            for (int i = 0; i < mFavoriteVerbs.size(); i++) {
+                if (mFavoriteVerbs.get(i).getV1().equals(verb.getV1())) {
+                    mFavoriteVerbs.set(i, verb);
                 }
             }
-        }
-        else{
-            for(int i=0;i<mFavoriteVerbs.size();i++){
-                if(mFavoriteVerbs.get(i).getV1().equals(verb.getV1())){
+        } else {
+            for (int i = 0; i < mFavoriteVerbs.size(); i++) {
+                if (mFavoriteVerbs.get(i).getV1().equals(verb.getV1())) {
                     mFavoriteVerbs.remove(i);
                 }
             }
