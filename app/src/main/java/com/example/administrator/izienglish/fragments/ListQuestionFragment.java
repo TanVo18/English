@@ -42,6 +42,8 @@ public class ListQuestionFragment extends Fragment {
     RecyclerView mRecyclerView;
     private Typeface mCustomFont;
     private ArrayList<Question> mSmallQuestion;
+    private SendData mCallback;
+
     public ListQuestionFragment() {
         // Required empty public constructor
     }
@@ -58,41 +60,46 @@ public class ListQuestionFragment extends Fragment {
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), mRecyclerView, new ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                switch (position){
+                switch (position) {
                     case 0:
                         mSmallQuestion = new ArrayList<Question>();
-                        for(int i=0;i<10;i++){
+                        for (int i = 0; i < 10; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
+                        mCallback.Send(mSmallQuestion);
                         break;
                     case 1:
                         mSmallQuestion = new ArrayList<Question>();
-                        for(int i=10;i<20;i++){
+                        for (int i = 10; i < 20; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
+                        mCallback.Send(mSmallQuestion);
                         break;
                     case 2:
                         mSmallQuestion = new ArrayList<Question>();
-                        for(int i=20;i<30;i++){
+                        for (int i = 20; i < 30; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
+                        mCallback.Send(mSmallQuestion);
                         break;
                     case 3:
                         mSmallQuestion = new ArrayList<Question>();
-                        for(int i=30;i<40;i++){
+                        for (int i = 30; i < 40; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
+                        mCallback.Send(mSmallQuestion);
                         break;
                     case 4:
                         mSmallQuestion = new ArrayList<Question>();
-                        for(int i=40;i<50;i++){
+                        for (int i = 40; i < 50; i++) {
                             mSmallQuestion.add(mQuestions.get(i));
                         }
+                        mCallback.Send(mSmallQuestion);
                         break;
                 }
                 QuizFragment frag = new QuizFragment_().builder().mQuestions(mSmallQuestion).mFlag(mFlag).mSelectedAnswers(mSelectedAnswers).build();
                 mFragManager = getActivity().getSupportFragmentManager();
-                mFragManager.beginTransaction().replace(R.id.Container, frag).commit();
+                mFragManager.beginTransaction().addToBackStack(null).replace(R.id.Container, frag).commit();
             }
         }));
     }
@@ -145,6 +152,23 @@ public class ListQuestionFragment extends Fragment {
         @Override
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
+        }
+    }
+
+
+    public interface SendData {
+        public void Send(ArrayList<Question> mSmallQuestion);
+    }
+
+    @Override
+    public void onAttach(Context activity) {
+        super.onAttach(activity);
+
+        try {
+            mCallback = (SendData) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnHeadlineSelectedListener");
         }
     }
 

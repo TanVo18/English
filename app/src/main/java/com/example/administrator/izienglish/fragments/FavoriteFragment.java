@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -92,11 +91,19 @@ public class FavoriteFragment extends Fragment implements DefiniteVerbFragment.O
     //Get data From DefiniteVerbFragment
     @Override
     public void updateRecycler(Verbs verb) {
-        Log.i("fds","blablablabla");
         mDb.update(verb.getV1(),verb.getFavorite());
-        for(int i=0;i<mFavoriteVerbs.size();i++){
-            if(mFavoriteVerbs.get(i).getV1().equals(verb.getV1())){
-                mFavoriteVerbs.set(i, verb);
+        if(verb.getFavorite()!=0){
+            for(int i=0;i<mFavoriteVerbs.size();i++){
+                if(mFavoriteVerbs.get(i).getV1().equals(verb.getV1())){
+                    mFavoriteVerbs.set(i,verb);
+                }
+            }
+        }
+        else{
+            for(int i=0;i<mFavoriteVerbs.size();i++){
+                if(mFavoriteVerbs.get(i).getV1().equals(verb.getV1())){
+                    mFavoriteVerbs.remove(i);
+                }
             }
         }
         mAdapter.notifyDataSetChanged();

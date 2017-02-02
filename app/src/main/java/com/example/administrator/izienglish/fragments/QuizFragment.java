@@ -45,7 +45,7 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
     private int checks[] = new int[QUANTITY_QUESTION];
     private Handler mHandler;
     private int mSecond = 0;
-    private int mMinute = 5;
+    private int mMinute = 7;
     private SendData mCallback;
 
     public QuizFragment() {
@@ -64,7 +64,7 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 int second = msg.arg1;
-                if (mMinute == 0) {
+                if (mMinute == 0 && mSecond == 0) {
                     mHandler.removeCallbacksAndMessages(null);
                     mCallback.SendFromQuizFrag();
                 }
@@ -103,17 +103,6 @@ public class QuizFragment extends Fragment implements AnswerQuizFragment.SendToF
             mTabs.getTabAt(position).setCustomView(setupTab(position));
             checks[position] = position;
         }
-    }
-    //Interface From AnswerQuizFragment
-    @Override
-    public void Send(String chosenKey, int position) {
-
-    }
-
-    //Interface From AnswerQuizFragment
-    @Override
-    public void clickFinish() {
-
     }
 
     public void InitArray() {

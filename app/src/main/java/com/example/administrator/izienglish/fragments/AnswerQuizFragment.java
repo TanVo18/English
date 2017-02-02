@@ -160,8 +160,6 @@ public class AnswerQuizFragment extends Fragment{
     //gui truc tiep qua fragment
     public interface SendToFragment {
         public void Pass(int position);
-        public void Send(String chosenKey, int position);
-        public void clickFinish();
     }
 
     public void setOnCallbackDataListener(SendToFragment onCallbackDataListener) {

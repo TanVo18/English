@@ -72,7 +72,6 @@ public class AlarmService extends Service {
         long time = c.getTimeInMillis();
         c.add(Calendar.HOUR,24);
         mTime = c.getTimeInMillis() - time - Calendar.getInstance().get(Calendar.SECOND);
-        Log.i("length of time",mTime+"");
     }
 
     public void countSecond(){
