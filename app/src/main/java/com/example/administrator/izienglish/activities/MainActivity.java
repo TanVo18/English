@@ -27,8 +27,8 @@ import com.example.administrator.izienglish.fragments.SettingFragment;
 import com.example.administrator.izienglish.fragments.SettingFragment_;
 import com.example.administrator.izienglish.fragments.VerbFragment;
 import com.example.administrator.izienglish.fragments.VerbFragment_;
-import com.example.administrator.izienglish.model.Question;
-import com.example.administrator.izienglish.model.Verbs;
+import com.example.administrator.izienglish.model2.Question;
+import com.example.administrator.izienglish.model2.Verbs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;

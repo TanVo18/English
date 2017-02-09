@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.model.Verbs;
+import com.example.administrator.izienglish.model2.Verbs;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;

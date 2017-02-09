@@ -1,4 +1,4 @@
-package com.example.administrator.izienglish.model;
+package com.example.administrator.izienglish.model2;
 
 import android.os.Parcel;
 import android.os.Parcelable;
