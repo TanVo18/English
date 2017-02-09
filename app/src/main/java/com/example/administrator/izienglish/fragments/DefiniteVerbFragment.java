@@ -89,9 +89,9 @@ public class DefiniteVerbFragment extends DialogFragment {
         mTvIpa2.setText(mVerb.getIpa2());
         mTvIpa3.setText(mVerb.getIpa3());
         //set sound
-        mImgViewSound1.setImageResource(R.drawable.speaker);
-        mImgViewSound2.setImageResource(R.drawable.speaker);
-        mImgViewSound3.setImageResource(R.drawable.speaker);
+        mImgViewSound1.setImageResource(R.drawable.speaker2);
+        mImgViewSound2.setImageResource(R.drawable.speaker2);
+        mImgViewSound3.setImageResource(R.drawable.speaker2);
         InputStream myInput = null;
         try {
             myInput = getActivity().getAssets().open("picture/" + mNameOfImage);
