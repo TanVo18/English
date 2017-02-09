@@ -16,7 +16,7 @@ import android.util.Log;
 
 import com.example.administrator.izienglish.R;
 import com.example.administrator.izienglish.SqlHelper;
-import com.example.administrator.izienglish.model2.Verbs;
+import com.example.administrator.izienglish.model.Verbs;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.example.administrator.izienglish.fragments.AnswerQuizFragment;
 import com.example.administrator.izienglish.fragments.AnswerQuizFragment_;
-import com.example.administrator.izienglish.model2.Question;
+import com.example.administrator.izienglish.model.Question;
 
 import java.util.ArrayList;
 import java.util.List;

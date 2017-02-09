@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.example.administrator.izienglish.R;
-import com.example.administrator.izienglish.model2.Question;
+import com.example.administrator.izienglish.model.Question;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;

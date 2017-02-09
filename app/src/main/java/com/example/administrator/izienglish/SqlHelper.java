@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.administrator.izienglish.model2.Verbs;
+import com.example.administrator.izienglish.model.Verbs;
 
 import java.io.File;
 import java.io.FileOutputStream;
