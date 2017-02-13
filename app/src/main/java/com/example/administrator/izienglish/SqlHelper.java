@@ -53,7 +53,12 @@ public class SqlHelper extends SQLiteOpenHelper {
             DATABASE_FILE = context.getDatabasePath(DATABASE_NAME);
             if (mInvalidDatabaseFile) {
 
-                copyDatabase();
+                //   copyDatabase();
+                try {
+                    copyDataBase(context, DATABASE_NAME);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
 
             }
             if (mIsUpgraded) {
@@ -104,15 +109,6 @@ public class SqlHelper extends SQLiteOpenHelper {
 
     private void doUpgrade() {
         // implement the database upgrade here.
-    }
-
-
-    //để tạo database một lần duy nhất lúc khởi chạy ứng dụng lần đầu
-    private void copyDatabase() {
-        CopyAsync copyAsync = new CopyAsync();
-        copyAsync.execute(mContext);
-        setDatabaseVersion();
-        mInvalidDatabaseFile = false;
     }
 
     private void setDatabaseVersion() {
@@ -190,62 +186,27 @@ public class SqlHelper extends SQLiteOpenHelper {
         mDb.execSQL(query);
         close();
     }
-}
 
-class CopyAsync extends AsyncTask<Context, Void, Void> {
-    @Override
-    protected void onPreExecute() {
-        //      IrregularVerbActivity.mProgressDialog.show();
-        super.onPreExecute();
-    }
-
-    @Override
-    protected Void doInBackground(Context... params) {
-
-        AssetManager assetManager = params[0].getResources().getAssets();
-        InputStream in = null;
-        OutputStream out = null;
-        try {
-            in = assetManager.open(SqlHelper.DATABASE_NAME);
-            out = new FileOutputStream(SqlHelper.DATABASE_FILE);
-            byte[] buffer = new byte[1024];
-            int read = 0;
-            while ((read = in.read(buffer)) != -1) {
-                out.write(buffer, 0, read);
-            }
-        } catch (IOException e) {
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                }
-            }
-            if (out != null) {
-                try {
-                    out.close();
-                } catch (IOException e) {
-                }
-            }
+    //để tạo database một lần duy nhất lúc khởi chạy ứng dụng lần đầu
+    private void copyDataBase(Context context, String dbname) throws IOException {
+        // Open your local db as the input stream
+        InputStream myInput = context.getAssets().open(dbname);
+        // Path to the just created empty db
+        File outFileName = context.getDatabasePath(dbname);
+        // Open the empty db as the output stream
+        OutputStream myOutput = new FileOutputStream(outFileName);
+        // transfer bytes from the inputfile to the outputfile
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = myInput.read(buffer)) > 0) {
+            myOutput.write(buffer, 0, length);
         }
-
-        SQLiteDatabase db = null;
-        try {
-            db = SQLiteDatabase.openDatabase(SqlHelper.DATABASE_FILE.getAbsolutePath(), null,
-                    SQLiteDatabase.OPEN_READWRITE);
-            db.execSQL("PRAGMA user_version = " + SqlHelper.DATABASE_VERSION);
-        } catch (SQLiteException e) {
-        } finally {
-            if (db != null && db.isOpen()) {
-                db.close();
-            }
-        }
-        return null;
-    }
-
-    @Override
-    protected void onPostExecute(Void aVoid) {
-        super.onPostExecute(aVoid);
+        // Close the streams
+        myOutput.flush();
+        myOutput.close();
+        myInput.close();
+        setDatabaseVersion();
+        mInvalidDatabaseFile = false;
     }
 }
 

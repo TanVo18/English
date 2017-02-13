@@ -131,9 +131,11 @@ public class MainActivity extends AppCompatActivity implements AnswerQuizFragmen
     }
 
     public void getDataIrregularVerb() {
+        Log.i("=====getDataMain","aaaa");
         mIrreVerbs = new ArrayList<Verbs>();
         mDb = new SqlHelper(getBaseContext());
         mIrreVerbs = mDb.getData();
+        Log.i("=====Verbsize",mIrreVerbs.size()+"");
     }
 
     @Override
