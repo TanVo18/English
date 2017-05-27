@@ -14,7 +14,7 @@ import com.example.administrator.izienglish.fragments.IntroFragment_;
 
 public class IntroPagerAdapter extends FragmentPagerAdapter {
     final int PAGE_COUNT = 3;
-    int mImg[] = {R.drawable.english, R.drawable.grammar, R.drawable.vocabulary};
+    int mImg[] = {R.drawable.book_home_50, R.drawable.note_home_50, R.drawable.desk_lamp_50};
     int mImgWord[] = {R.drawable.grammar_word, R.drawable.verb_word, R.drawable.quiz_word};
 
     public IntroPagerAdapter(FragmentManager fm) {

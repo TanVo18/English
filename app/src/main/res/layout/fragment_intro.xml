@@ -6,10 +6,12 @@
     tools:context="com.example.administrator.izienglish.fragments.IntroFragment">
 
     <ImageView
+
         android:id="@+id/imgView"
         android:layout_width="@dimen/intro_frag_imgView_width"
         android:layout_height="@dimen/intro_frag_imgView_height"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
         />
 
     <pl.droidsonroids.gif.GifTextView

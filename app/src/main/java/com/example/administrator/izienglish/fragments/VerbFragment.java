@@ -29,6 +29,8 @@ import org.androidannotations.annotations.ViewById;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @EFragment(R.layout.fragment_verb)
@@ -61,15 +63,16 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
     @AfterViews
     public void Init() {
         //tao mang chua ten file image trong asset
-        try {
-            mListImg = getImage(getContext());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mListImg = getImage(getContext());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         mCustomFont = Typeface.createFromAsset(getActivity().getAssets(), "gel_pen_heavy.ttf");
         getFontForTv();
+        // sort word by alphabet
+        Collections.sort(mVerbs);
         mTempVerbs = mVerbs;
-        Log.i("======examp", mVerbs.get(2).getExample());
         mAdapter = new IrreVerbAdapter(mVerbs, mCustomFont);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setAdapter(mAdapter);
@@ -87,7 +90,7 @@ public class VerbFragment extends Fragment implements DefiniteVerbFragment.OnCal
                 } else {
                     verb = mVerbs.get(position);
                 }
-                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).mPosition(position).mNameOfImage(mListImg.get(position)).build();
+                DefiniteVerbFragment frag = new DefiniteVerbFragment_().builder().mVerb(verb).mPosition(position).mNameOfImage(verb.getV1().toString()).build();
                 frag.setOnCallbackDataListener(VerbFragment.this);
                 frag.show(getFragmentManager(), "DialogFragment");
             }

@@ -53,6 +53,8 @@ public class IntroductionActivity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList(SplashScreenActivity.KEY_QUESTION, mQuestions);
         intent.putExtra(SplashScreenActivity.KEY_BUNDLE, bundle);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+        finish();
     }
 }

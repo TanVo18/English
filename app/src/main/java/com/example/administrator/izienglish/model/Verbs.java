@@ -2,11 +2,12 @@ package com.example.administrator.izienglish.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 /**
  * Created by Administrator on 23/7/2016.
  */
-public class Verbs implements Parcelable {
+public class Verbs implements Parcelable,Comparable<Verbs> {
     private String v1;
     private String v2;
     private String v3;
@@ -147,4 +148,9 @@ public class Verbs implements Parcelable {
     }
 
 
+    @Override
+    public int compareTo(@NonNull Verbs verbs) {
+        int cmp = this.getV1().toLowerCase().toString().compareTo(verbs.getV1().toLowerCase().toString());
+        return cmp;
+    }
 }

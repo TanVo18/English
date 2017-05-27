@@ -27,6 +27,7 @@
     <dimen name="definiteVerb_frag_imgViewWidth">150dp</dimen>
     <dimen name="definiteVerb_frag_imgViewHeight">150dp</dimen>
     <dimen name="Intro_Activity_indicatorHeight">48dp</dimen>
+    <dimen name="Intro_Activity_indicatorMarginBottom">170dp</dimen>
     <dimen name="result_frag_tvMarginTop">30dp</dimen>
     <dimen name="result_frag_tvSize">25dp</dimen>
     <dimen name="custom_tab_tvSize">20sp</dimen>
@@ -39,9 +40,9 @@
     <dimen name="custom_FButton_shadowHeight">5dp</dimen>
     <dimen name="custom_verb_itemLayoutHeight">60dp</dimen>
     <dimen name="splash_activity_tvSize">50sp</dimen>
-    <dimen name="intro_frag_imgView_width">200dp</dimen>
-    <dimen name="intro_frag_imgView_height">250dp</dimen>
-    <dimen name="intro_frag_gif_marginTop">30dp</dimen>
+    <dimen name="intro_frag_imgView_width">100dp</dimen>
+    <dimen name="intro_frag_imgView_height">100dp</dimen>
+    <dimen name="intro_frag_gif_marginTop">20dp</dimen>
     <dimen name="intro_frag_btnWidth">60dp</dimen>
     <dimen name="intro_frag_btnHeight">60dp</dimen>
 </resources>

@@ -8,6 +8,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.DialogFragment;
+import android.util.Log;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -94,7 +95,7 @@ public class DefiniteVerbFragment extends DialogFragment {
         mImgViewSound3.setImageResource(R.drawable.speaker2);
         InputStream myInput = null;
         try {
-            myInput = getActivity().getAssets().open("picture/" + mNameOfImage);
+            myInput = getActivity().getAssets().open("picture/" + mNameOfImage + ".jpg");
         } catch (IOException e) {
             e.printStackTrace();
         }
